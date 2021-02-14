@@ -1,0 +1,40 @@
+.Sidebar {
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background-color: rgb(255, 255, 255); /* Change this to see actual size of sidebar */
+    top: 0;
+    bottom: 0; 
+    left: 0;
+    overflow: hidden; /* Disable scrollbars. Set to "scroll" to enable */
+}
+
+#Logo {
+    top: 0; /* Stick it to top */
+    padding-top: 1vh; /* Little extra space for logo */
+    width: 100px;
+}
+
+.Dashboards {
+    padding-top: 14vh;
+    padding-left: 31px;
+    opacity: 0.8;
+}
+
+.DashboardLogo {
+    width: 40px;
+}
+
+.VersionBox {
+    position: absolute;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Version text to the bottom */
+    bottom: 0;
+}
+
+.Version {
+    color: rgb(131, 131, 131);
+    padding-bottom: 1vh;
+}
