@@ -1,4 +1,5 @@
 import React from 'react';
+import './Signin.css';
 
 class Signin extends React.Component {
     constructor(props) {
@@ -40,9 +41,9 @@ class Signin extends React.Component {
         const { onRouteChange } = this.props;
         return(
             <article>
-                <main className="Form">
-                    <div className="InnerForm">
-                        <fieldset id="sign_up">
+                <main>
+                    <div className="Window">
+                        <fieldset id="sign_up" className="Form">
                             <legend className="CaptionLabel">
                                 Sign In
                             </legend>

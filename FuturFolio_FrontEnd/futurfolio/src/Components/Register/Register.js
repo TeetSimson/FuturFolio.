@@ -1,4 +1,5 @@
 import React from 'react';
+import './Register';
 
 class Register extends React.Component {
     constructor(props) {
@@ -46,9 +47,9 @@ class Register extends React.Component {
         const { onRouteChange } = this.props;
         return(
             <article>
-                <main className="Form">
+                <main className="Window">
                     <div className="InnerForm">
-                        <fieldset id="sign_up">
+                        <fieldset id="sign_up" className="Form">
                             <legend className="CaptionLabel">
                                 Register
                             </legend>
