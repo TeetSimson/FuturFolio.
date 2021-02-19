@@ -1,10 +1,9 @@
 import './App.css';
 import Sidebar from './Components/Sidebar/Sidebar';
-import StockDash from './Components/StockDash/StockDash';
 import Signin from './Components/Signin/Signin';
 import Register from './Components/Register/Register';
-
-import React, { Component } from 'react'
+import Dashboards from './Components/Dashboards/Dashboards';
+import React, { Component } from 'react';
 
 
 const initialState = {
@@ -15,7 +14,8 @@ const initialState = {
     name: '',
     email: '',
     entries: 0,
-    joined: ''
+    joined: '',
+    dashboard: 'Dashboard'
   }
 }
 
@@ -25,6 +25,24 @@ export default class App extends Component {
     this.state = initialState;
   }
 
+  // Functions to change Dashboards
+  DashChangeDash = () => {
+    this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
+  }
+
+  DashChangeStock = () => {
+    this.setState(Object.assign(this.state.user, { dashboard: 'StockDash'}))
+  }
+
+  DashChangeLoans = () => {
+    this.setState(Object.assign(this.state.user, { dashboard: 'LoansDash'}))
+  }
+
+  DashChangeRealEstate = () => {
+    this.setState(Object.assign(this.state.user, { dashboard: 'RealEstateDash'}))
+  }
+
+  // Route changes
   onRouteChange = (route) => {
     if (route === 'signout') {
       this.setState(initialState) // If user is not signed in clear state
@@ -34,6 +52,8 @@ export default class App extends Component {
     this.setState({route: route});
   }
 
+
+  // RENDERING STARTS
   render() {
     const { isSignedIn, route } = this.state; // so we don´t have to do this.state.isSignedIN
 
@@ -41,8 +61,15 @@ export default class App extends Component {
       <div>
       { route === 'home' // If we are on "home" page
       ?  <div className="App">
-          <Sidebar />
-          <StockDash />
+          <Sidebar 
+            DashChangeDash={this.DashChangeDash} // Sending functions to sidebar buttons
+            DashChangeStock={this.DashChangeStock}
+            DashChangeLoans={this.DashChangeLoans}
+            DashChangeRealEstate={this.DashChangeRealEstate}
+            />
+          <Dashboards 
+            dashboard={this.state.user.dashboard} // Sending which dashboard to display
+          />
         </div>
       : ( // Else if we are on "signin" page
         route === 'signin' 

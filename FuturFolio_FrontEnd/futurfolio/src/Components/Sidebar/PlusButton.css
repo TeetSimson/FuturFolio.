@@ -1,0 +1,56 @@
+.Checkboxes {
+    background-color: rgb(255, 255, 255);
+    box-shadow: ;
+    width: 6vw;
+    height: 12vh;
+    position: fixed;
+    border-radius: 8px;
+    -webkit-box-shadow: 10px 10px 64px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 10px 10px 64px 0px rgba(0,0,0,0.15);
+    box-shadow: 10px 10px 64px 0px rgba(0,0,0,0.15);
+    padding: 2%;
+    margin-top: -25px;
+    margin-left: 50px;
+}
+
+h3 {
+    margin-top: -10px;
+}
+
+label {
+    font-size: 18px;
+}
+
+button {
+    appearance: none;
+    border: none;
+    background-color: white;
+    outline: none;
+    width: 110px;
+    padding: 5vh;
+}
+
+.Icons {
+    transition: all .2s ease-in-out;
+}
+
+.Icons:hover {
+    opacity: 0.8;
+    /* background-color: rgb(247, 247, 247); */
+    transform: scale(1.3);
+}
+
+.IconX {
+    width: 40px;
+    margin-left: -6px;
+    margin-top: -5px;
+}
+
+.Plus {
+    display: flex;
+    justify-content: center;
+}
+.Icon {
+    width: 30px;
+    margin-left: -6px;
+}

@@ -9,20 +9,33 @@
     overflow: hidden; /* Disable scrollbars. Set to "scroll" to enable */
 }
 
+.SidebarButtons {
+    margin-top: 8vh;
+    display: flex;
+    justify-content: center;
+}
+
 #Logo {
     top: 0; /* Stick it to top */
     padding-top: 1vh; /* Little extra space for logo */
     width: 100px;
+    padding-left: 3px;
 }
 
 .Dashboards {
-    padding-top: 14vh;
-    padding-left: 31px;
-    opacity: 0.8;
+    padding: 2vh;
+    margin-left: -4px;
+    opacity: 0.7;
 }
 
 .DashboardLogo {
     width: 40px;
+    transition: all .05s ease-in-out;
+}
+
+.DashboardLogo:hover {
+    transform: scale(1.2);
+    opacity: 0.4;
 }
 
 .VersionBox {

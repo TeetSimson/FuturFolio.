@@ -14,8 +14,9 @@
   border-bottom-left-radius: 50px;
   position: fixed;
   top: 0; 
-  left: 110px; /* width of sidebar */
+  left: 110px; /* Width of sidebar */
   right: 0;
   bottom: 0;
   overflow: auto; 
+  z-index: -1; /* For the plus button box to be in front */
 }
