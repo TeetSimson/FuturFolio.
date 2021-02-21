@@ -8,10 +8,30 @@ import ProfileScreen from './ProfileScreen';
 export default class Topbar extends Component {
     render() {
         return (
-            <nav className="Topbar">
-                <img className="profilepic" src={profilepic} alt="profile" onClick={this.props.ChangeProfileScreen}/>
-            </nav>
+            <Navbar>
+                <NavItem icon= {profilepic}/>
+            </Navbar>
         )
     }
 }
+
+function Navbar(props){ //function of the navbar which is the topbar
+    return(
+        <nav className="topbar">
+            <ul className="topbar-nav">{props.children}</ul>
+                
+        </nav>
+    );
+}
+
+function NavItem(props){//function for the items within the navbar
+    return(
+        <li className="nav-item">
+            <a href="#" className = "icon-button">
+                {props.icon}
+            </a>
+        </li>
+    );
+}
+
 
