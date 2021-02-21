@@ -10,6 +10,8 @@ cogIcon.svg - Icon by Raj Dev on freeicons.io
 
 chevronRight.svg - Icon by Raj Dev on freeicons.io
 
+chevronLeft.svg - Icon by Raj Dev on freeicons.io
+
 powerIcon.svg - Icon by Fasil on freeicons.io
                                 
 
