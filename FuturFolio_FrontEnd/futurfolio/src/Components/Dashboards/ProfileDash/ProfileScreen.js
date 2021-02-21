@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import profilepic from './profilepic.jpg';
+
 export default class ProfileScreen extends Component{
     render(){
         return(

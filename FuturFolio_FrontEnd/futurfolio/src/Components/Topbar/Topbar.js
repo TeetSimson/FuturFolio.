@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../../App.css';
 import "./Topbar.css";
 import profilepic from './profilepic.jpg';
-import ProfileScreen from './ProfileScreen';
 
 
 export default class Topbar extends Component {
