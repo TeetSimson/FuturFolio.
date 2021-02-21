@@ -3,6 +3,8 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import Signin from './Components/Signin/Signin';
 import Register from './Components/Register/Register';
 import Dashboards from './Components/Dashboards/Dashboards';
+import Topbar from './Components/Topbar/Topbar';
+import ProfileScreen from './Components/Topbar/ProfileScreen';
 import React, { Component } from 'react';
 
 
@@ -17,6 +19,10 @@ const initialState = {
     joined: '',
     dashboard: 'Dashboard'
   }
+}
+const profileState = {
+  route: 'profile',
+  isSignedIn: true
 }
 
 export default class App extends Component {
@@ -40,6 +46,10 @@ export default class App extends Component {
 
   DashChangeRealEstate = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'RealEstateDash'}))
+  }
+
+  ChangeProfileScreen = () => {
+    this.setState(profileState)
   }
 
   // Route changes
@@ -70,12 +80,18 @@ export default class App extends Component {
           <Dashboards 
             dashboard={this.state.user.dashboard} // Sending which dashboard to display
           />
+          <Topbar/>
         </div>
+      :  // Else if we are on "signin" page
+        route === 'profile' 
+          ? <ProfileScreen/>
+
       : ( // Else if we are on "signin" page
         route === 'signin' 
           ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> // If on "signin" page
           : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> // If on "register" page
         )
+      
       }
       </div>
     )
