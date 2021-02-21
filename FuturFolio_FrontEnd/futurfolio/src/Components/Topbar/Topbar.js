@@ -8,7 +8,10 @@ export default class Topbar extends Component {
     render() {
         return (
             <Navbar>
-                <NavItem icon= {profilepic}/>
+                <NavItem icon= "😃"/>
+                <NavItem icon= "😃"/>
+                <NavItem icon= "😃"/>
+
             </Navbar>
         )
     }
