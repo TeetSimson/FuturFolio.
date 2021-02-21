@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import StockDash from './StockDash/StockDash';
+import ProfileDash from './ProfileDash/ProfileScreen';
 
 export default class Dashboards extends Component {
     render() {
@@ -23,10 +24,15 @@ export default class Dashboards extends Component {
                             ? 
                                 console.log("Shows RE actually")
                             :
-                                console.log("ERROR")
+                                (this.props.dashboard === 'ProfileDash'
+                                ? 
+                                    <ProfileDash />
+                                :
+                                    console.log("ERROR")
+                                )
                             )
-                        )
 
+                        )
                     )
                 }
 
