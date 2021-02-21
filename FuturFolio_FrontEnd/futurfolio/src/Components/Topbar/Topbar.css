@@ -46,7 +46,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: filter 300ms;
 }
+
+.icon-button:hover{
+    filter: brightness(1.2);
+}
+
+.icon-button svg {
+    fill: var(--text-color);
+    width: 20px;
+    height: 20px;
+}
+
+.dropdown{
+    position: absolute;
+    top: 58px;
+    width: 300px;
+    transform: translateX(-45%);
+    background-color: var(--bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.menu-item{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 0.5rem;
+}
+
+.menu-item:hover{
+    background-color: #525357;
+}
+
+.icon-right {
+    margin-left: auto;
+}
+
 
 
 
@@ -70,4 +111,9 @@ ul{
 .profilepic:hover {
     transform: scale(1.2);
     opacity: 0.4;
+}
+
+a{
+    color: var(--text-color);
+    text-decoration: none;
 }
