@@ -17,7 +17,7 @@ export default class Topbar extends Component {
     render() {
         return (
             <Navbar>
-                <NavItem icon={<BellIcon />} />
+                <NavItem icon={<BellIcon />} onClick={this.props.DashChangeProfile}/>
                 <NavItem icon={<ProfileIcon />}>
                     {/*Dropdown goes here*/}
                     <DropdownMenu/>
@@ -25,8 +25,7 @@ export default class Topbar extends Component {
 
             </Navbar>
         );
-    }
-}
+    
 
 function DropdownMenu(){//dropdownmenu function
 
@@ -69,7 +68,8 @@ function DropdownMenu(){//dropdownmenu function
                     {/*adds an item called My Profile*/}
                     <DropdownItem 
                     leftIcon = {<ProfileIcon/>}
-                    rightIcon={<RightChevron/>}>
+                    rightIcon={<RightChevron/>}
+                    >
                         My Profile
                     </DropdownItem>
 
@@ -103,8 +103,10 @@ function DropdownMenu(){//dropdownmenu function
                     <DropdownItem
                     leftIcon={<LeftChevron />}
                     gotoMenu="main"
-                    />
-                    <DropdownItem>Settings</DropdownItem>
+                    >
+                        Settings
+                    </DropdownItem>
+                    <DropdownItem>Dark Mode</DropdownItem>
                 </div>
             </CSSTransition>
         </div>
@@ -141,4 +143,5 @@ function NavItem(props){//function for the items within the navbar
     );
 }
 
-
+}
+}
