@@ -37,7 +37,6 @@ function NavItem(props){//function for the items within the navbar
 
 
 export default class Topbar extends Component {
-
     render() {
         return (
             <Navbar>
@@ -46,7 +45,7 @@ export default class Topbar extends Component {
                 </NavItem>
                 <NavItem icon={<ProfileIcon />}>
                     {/*Dropdown goes here*/}
-                    <DropdownMenu/>
+                    <DropdownMenu DashChangeProfile={this.props.DashChangeProfile}/>
                 </NavItem>
 
             </Navbar>

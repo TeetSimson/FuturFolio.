@@ -6,7 +6,7 @@ import { ReactComponent as LeftChevron } from './Icons/chevronLeft.svg';
 import { ReactComponent as PowerIcon } from './Icons/powerIcon.svg';
 import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
 
-export default function DropdownMenu(){//dropdownmenu function
+export default function DropdownMenu(props){//dropdownmenu function
 
     const [activeMenu, setActiveMenu] = useState('main');//state of the menu
     const [menuHeight, setMenuHeight] = useState(null);
@@ -45,13 +45,14 @@ export default function DropdownMenu(){//dropdownmenu function
               >
                 <div className="menu">
                     {/*adds an item called My Profile*/}
-                    <DropdownItem 
-                    leftIcon = {<ProfileIcon/>}
-                    rightIcon={<RightChevron/>}
-                    >
-                        My Profile
-                    </DropdownItem>
-
+                    <div onClick={props.DashChangeProfile}>
+                        <DropdownItem 
+                        leftIcon = {<ProfileIcon/>}
+                        rightIcon={<RightChevron/>}
+                        >
+                            My Profile
+                        </DropdownItem>
+                    </div>
                     {/*adds an item called Settings*/}
                     <DropdownItem
                     leftIcon={<CogIcon />}

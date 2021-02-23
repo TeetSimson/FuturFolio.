@@ -46,6 +46,7 @@ export default class App extends Component {
 
   DashChangeProfile = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'ProfileDash'}))
+    console.log("Worked")
   }
 
   // Route changes

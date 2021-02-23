@@ -6,7 +6,7 @@ import { ReactComponent as LeftChevron } from './Icons/chevronLeft.svg';
 import { ReactComponent as PowerIcon } from './Icons/powerIcon.svg';
 import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
 
-export default function DropdownMenu(){//dropdownmenu function
+export default function NotificationMenu(){//dropdownmenu function
 
     const [activeMenu, setActiveMenu] = useState('main');//state of the menu
     const [menuHeight, setMenuHeight] = useState(null);
