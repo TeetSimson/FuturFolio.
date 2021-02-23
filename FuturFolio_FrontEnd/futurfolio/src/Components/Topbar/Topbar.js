@@ -3,8 +3,8 @@ import '../../App.css';
 import "./Topbar.css";
 import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
 import { ReactComponent as BellIcon } from './Icons/bellIcon.svg';
-
 import DropdownMenu from './DropdownMenu'
+import NotificationMenu from './NotificationMenu';
 
 function Navbar(props){ //function of the navbar which is the topbar
 
@@ -41,7 +41,9 @@ export default class Topbar extends Component {
     render() {
         return (
             <Navbar>
-                <NavItem icon={<BellIcon />} onClick={this.props.DashChangeProfile}/>
+                <NavItem icon={<BellIcon />}>
+                    <NotificationMenu/>
+                </NavItem>
                 <NavItem icon={<ProfileIcon />}>
                     {/*Dropdown goes here*/}
                     <DropdownMenu/>
