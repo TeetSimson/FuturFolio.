@@ -1,0 +1,126 @@
+.StockDash {
+    padding-top: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.NetWorthPanel {
+    margin-top: 30px;
+    width: 50%;
+    height: 25rem;
+}
+
+.NetWorthPanelInner {
+    width: calc(100% - 30px);;
+    height: 25rem;
+    border-radius: 25px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+    backdrop-filter: blur(4px);
+    border: 0.1em solid rgba(255, 255, 255, 0.123);
+    transition: all 100ms;
+}
+
+.CustomPanels {
+    margin-top: 30px;
+    display: flex;
+    width: 50%;
+    height: 25rem;
+}
+
+.CustomPanel {
+    width: 50%;
+    height: 25rem;
+    border-radius: 25px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+    backdrop-filter: blur(4px);
+    border: 0.1em solid rgba(255, 255, 255, 0.123);
+    transition: all 100ms;
+}
+
+.CustomPanel2 {
+    width: 50%;
+    height: 25rem;
+    margin-left: 30px;
+    border-radius: 25px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+    backdrop-filter: blur(4px);
+    border: 0.1em solid rgba(255, 255, 255, 0.123);
+    transition: all 200ms;
+}
+
+.StocksPanel {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 25rem;
+    border-radius: 25px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+    backdrop-filter: blur(4px);
+    border: 0.1em solid rgba(255, 255, 255, 0.123);
+    will-change: contents;
+    transition: all 200ms;
+}
+
+.NetWorthPanelInner:hover{
+    transform: scale(1.03);
+}
+
+.CustomPanel:hover{
+    transform: scale(1.04);
+}
+
+.CustomPanel2:hover{
+    transform: scale(1.04);
+}
+
+.StocksPanel:hover{
+    transform: scale(1.015);
+}
+
+@media only screen and (max-width:1610px) {
+    .NetWorthPanel {
+        width: 100%;
+    }
+
+    .NetWorthPanelInner {
+        width: 100%;
+    }
+    
+    .CustomPanels {
+        width: 100%;
+    }
+
+    .CustomPanel {
+        margin-right: 15px;
+        width: 50%;
+        height: 25rem;
+    }
+    
+    .CustomPanel2 {
+        margin-left: 15px;
+        width: 50%;
+        height: 25rem;
+    }
+}
+
+@media only screen and (max-width:910px) {
+    .CustomPanels {
+        width: 100%;
+        height: 52rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .CustomPanel {
+        margin-right: 0px;
+        width: 100%;
+        height: 25rem;
+    }
+    .CustomPanel2 {
+        margin-top: 30px;
+        margin-left: 0px;
+        width: 100%;
+        height: 25rem;
+    }
+}
