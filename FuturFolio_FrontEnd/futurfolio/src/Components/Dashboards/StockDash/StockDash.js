@@ -1,11 +1,27 @@
 import React, { Component } from 'react'
-import Logo from '../../Sidebar/Futurfolio_logo.png';
+import './StockDash.css';
+import NetWorth from './NetWorth/NetWorth';
 
 export default class StockDash extends Component {
     render() {
         return (
-            <div>
-                <img id="Logo" src={Logo} alt='Logo'/> {/*Temporary */}
+            <div className="StockDash">
+                <div className="NetWorthPanel">
+                    <div className="NetWorthPanelInner">
+                        <NetWorth />
+                    </div>
+                </div>
+                <div className="CustomPanels">
+                    <div className="CustomPanel">
+
+                    </div>
+                    <div className="CustomPanel2">
+
+                    </div>
+                </div>
+                <div className="StocksPanel">
+
+                </div>
             </div>
         )
     }
