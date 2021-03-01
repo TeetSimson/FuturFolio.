@@ -1,10 +1,16 @@
 import React, { Component, useEffect, useState} from 'react'
+//for the transition animation
 import {CSSTransition} from 'react-transition-group';
+//svg files for the icons used
 import { ReactComponent as CogIcon } from './Icons/cogIcon.svg';
 import { ReactComponent as RightChevron } from './Icons/chevronRight.svg';
 import { ReactComponent as LeftChevron } from './Icons/chevronLeft.svg';
 import { ReactComponent as PowerIcon } from './Icons/powerIcon.svg';
 import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
+import { ReactComponent as AppearanceIcon } from './Icons/appearanceIcon.svg';
+import { ReactComponent as LanguageIcon } from './Icons/languageIcon.svg';
+import { ReactComponent as LocationIcon } from './Icons/locationIcon.svg';
+import { ReactComponent as AdvancedIcon } from './Icons/advancedIcon.svg';
 
 export default function DropdownMenu(props){//dropdownmenu function
 
@@ -71,7 +77,11 @@ export default function DropdownMenu(props){//dropdownmenu function
                     rightIcon={<RightChevron/>}
                     gotoMenu="settings"
                     >
-                        Settings
+                        <p>{/*A lot of spaces for styling*/}
+                            Settings &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </p>
                     </DropdownItem>
 
                     {/*adds an item called Log Out*/}
@@ -92,16 +102,42 @@ export default function DropdownMenu(props){//dropdownmenu function
               >
                 <div className="menu">
                     {/*adds an item called Settings*/}
-                    <DropdownItemBack
+                    <DropdownItemBack //I used a difference function for the Leftchevron styling
                     leftIcon={<LeftChevron className="leftChevron"/>}
-                    gotoMenu="main"
+                    gotoMenu="main"  //takes back to main menu
                     >
                         Settings
                     </DropdownItemBack>
-                    <DropdownItem>Appearance</DropdownItem>
-                    <DropdownItem>Language</DropdownItem>
-                    <DropdownItem>Location</DropdownItem>
-                    <DropdownItem>Advanced Settings</DropdownItem>
+                    {/*adds an item called Appearance for personalisation*/}
+                    <DropdownItem
+                    leftIcon={<AppearanceIcon />}
+                    rightIcon={<RightChevron/>}
+                    gotoMenu="#" //goes to Appearance Menu
+                    >
+                        <p>Appearance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </DropdownItem>
+
+                    <DropdownItem
+                    leftIcon={<LanguageIcon />}
+                    rightIcon={<RightChevron/>}
+                    gotoMenu="#" //goes to Appearance Menu
+                    >
+                        <p>Language&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </DropdownItem>
+
+                    <DropdownItem
+                    leftIcon={<LocationIcon />}
+                    rightIcon={<RightChevron/>}
+                    gotoMenu="#" //goes to Appearance Menu
+                    >
+                        <p>Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </DropdownItem>
+                    
+                    <DropdownItem
+                    leftIcon={<AdvancedIcon />}
+                    >
+                        Advanced Settings
+                    </DropdownItem>
                 </div>
             </CSSTransition>
         </div>
