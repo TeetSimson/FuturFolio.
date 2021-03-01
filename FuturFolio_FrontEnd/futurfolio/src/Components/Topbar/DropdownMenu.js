@@ -112,7 +112,7 @@ export default function DropdownMenu(props){//dropdownmenu function
                     <DropdownItem
                     leftIcon={<AppearanceIcon />}
                     rightIcon={<RightChevron/>}
-                    gotoMenu="#" //goes to Appearance Menu
+                    gotoMenu="appearance" //goes to Appearance Menu
                     >
                         <p>Appearance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     </DropdownItem>
@@ -120,7 +120,7 @@ export default function DropdownMenu(props){//dropdownmenu function
                     <DropdownItem
                     leftIcon={<LanguageIcon />}
                     rightIcon={<RightChevron/>}
-                    gotoMenu="#" //goes to Appearance Menu
+                    gotoMenu="language" //goes to Appearance Menu
                     >
                         <p>Language&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     </DropdownItem>
@@ -128,7 +128,7 @@ export default function DropdownMenu(props){//dropdownmenu function
                     <DropdownItem
                     leftIcon={<LocationIcon />}
                     rightIcon={<RightChevron/>}
-                    gotoMenu="#" //goes to Appearance Menu
+                    gotoMenu="location" //goes to Appearance Menu
                     >
                         <p>Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     </DropdownItem>
@@ -138,6 +138,63 @@ export default function DropdownMenu(props){//dropdownmenu function
                     >
                         Advanced Settings
                     </DropdownItem>
+                </div>
+            </CSSTransition>
+
+            <CSSTransition 
+              in={activeMenu === 'appearance'}
+              unmountOnExit // unmountOnExit removes the children when main is not active
+              timeout={500} //duration of animation
+              classNames="menu-tertiary"
+              onEnter={calcHeight}
+              >
+                <div className="menu">
+                    {/*adds an item called Settings*/}
+                    <DropdownItemBack //I used a difference function for the Leftchevron styling
+                    leftIcon={<LeftChevron className="leftChevron"/>}
+                    gotoMenu="settings"  //takes back to main menu
+                    >
+                        Appearance
+                    </DropdownItemBack>
+                    
+                </div>
+            </CSSTransition>
+
+            <CSSTransition 
+              in={activeMenu === 'language'}
+              unmountOnExit // unmountOnExit removes the children when main is not active
+              timeout={500} //duration of animation
+              classNames="menu-tertiary"
+              onEnter={calcHeight}
+              >
+                <div className="menu">
+                    {/*adds an item called Settings*/}
+                    <DropdownItemBack //I used a difference function for the Leftchevron styling
+                    leftIcon={<LeftChevron className="leftChevron"/>}
+                    gotoMenu="settings"  //takes back to main menu
+                    >
+                        Choose your language
+                    </DropdownItemBack>
+                    
+                </div>
+            </CSSTransition>
+
+            <CSSTransition 
+              in={activeMenu === 'location'}
+              unmountOnExit // unmountOnExit removes the children when main is not active
+              timeout={500} //duration of animation
+              classNames="menu-tertiary"
+              onEnter={calcHeight}
+              >
+                <div className="menu">
+                    {/*adds an item called Settings*/}
+                    <DropdownItemBack //I used a difference function for the Leftchevron styling
+                    leftIcon={<LeftChevron className="leftChevron"/>}
+                    gotoMenu="settings"  //takes back to main menu
+                    >
+                        Choose your location
+                    </DropdownItemBack>
+                    
                 </div>
             </CSSTransition>
         </div>
