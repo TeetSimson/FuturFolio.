@@ -33,6 +33,18 @@ export default function DropdownMenu(props){//dropdownmenu function
     }
 
 
+    function DropdownItemBack(props){//Items nested in the function
+        return(
+            <a href="#" className="menu-item" onClick={() => props.gotoMenu && setActiveMenu(props.gotoMenu)}>
+                <span className="leftChevron">{props.leftIcon}</span>{/*Icon on the left*/}
+                {props.children}
+
+                <span className="icon-right">{props.rightIcon}</span>{/*Icon on the right*/}
+                
+            </a>
+        );
+    }
+
     return(
         <div className="dropdown" style={{height: menuHeight}}>
             {/*if activeMenu is main then show children*/}
@@ -48,7 +60,7 @@ export default function DropdownMenu(props){//dropdownmenu function
                     <div onClick={props.DashChangeProfile}>
                         <DropdownItem 
                         leftIcon = {<ProfileIcon/>}
-                        rightIcon={<RightChevron/>}
+                        
                         >
                             My Profile
                         </DropdownItem>
@@ -80,13 +92,16 @@ export default function DropdownMenu(props){//dropdownmenu function
               >
                 <div className="menu">
                     {/*adds an item called Settings*/}
-                    <DropdownItem
-                    leftIcon={<LeftChevron />}
+                    <DropdownItemBack
+                    leftIcon={<LeftChevron className="leftChevron"/>}
                     gotoMenu="main"
                     >
                         Settings
-                    </DropdownItem>
-                    <DropdownItem>Dark Mode</DropdownItem>
+                    </DropdownItemBack>
+                    <DropdownItem>Appearance</DropdownItem>
+                    <DropdownItem>Language</DropdownItem>
+                    <DropdownItem>Location</DropdownItem>
+                    <DropdownItem>Advanced Settings</DropdownItem>
                 </div>
             </CSSTransition>
         </div>
