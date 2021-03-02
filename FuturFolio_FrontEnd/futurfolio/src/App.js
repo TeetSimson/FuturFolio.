@@ -18,7 +18,7 @@ const initialState = {
     entries: 0,
     joined: '',
     dashboard: 'Dashboard',
-    title: 'Stocks'
+    title: 'Dashboard'
   }
 }
 
@@ -31,23 +31,27 @@ export default class App extends Component {
   // Functions to change Dashboards
   DashChangeDash = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
+    this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
   }
 
   DashChangeStock = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'StockDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Stocks'}))
   }
 
   DashChangeLoans = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'LoansDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Loans'}))
   }
 
   DashChangeRealEstate = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'RealEstateDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Real Estate'}))
   }
 
   DashChangeProfile = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'ProfileDash'}))
-    console.log("Worked")
+    this.setState(Object.assign(this.state.user, { title: 'Profile'}))
   }
 
   // Route changes
