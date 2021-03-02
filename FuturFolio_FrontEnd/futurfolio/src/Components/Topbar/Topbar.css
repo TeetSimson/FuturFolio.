@@ -129,6 +129,45 @@
     background-color: #ffffff79;
 }
 
+/* Profile viewing menu styling*/
+/* profile icon styling*/
+.profdrop-icon{
+    --button-size: calc(150px * 0.5);
+    width: var(--button-size);
+    height: var(--button-size);
+    background-color: #e3e5eb41;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 300ms;
+}
+
+/* main module of profile styling*/
+.profdrop-item{
+    height: 50px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding-top: 40px;
+    padding-bottom: 70px;
+    margin: 2px;
+}
+
+/* profile name positioning*/
+.prof-name{
+    position: absolute;
+    top: 140px;
+    left:130px;
+}
+
+
+
 
 /* CSSTransition classes*/
 .menu-primary-enter{
