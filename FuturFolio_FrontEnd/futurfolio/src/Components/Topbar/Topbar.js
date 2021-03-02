@@ -26,7 +26,7 @@ function NavItem(props){//function for the items within the navbar
 
     return(
         <li className="nav-item">
-            <a href="#" className = "icon-button" onClick={() => setOpen(!open)}>{/*changes state on a click, toggles the boolean*/}
+            <a href="#" className = "nav-icon-button" onClick={() => setOpen(!open)}>{/*changes state on a click, toggles the boolean*/}
                 {props.icon}
             </a>
 
