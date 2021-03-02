@@ -6,9 +6,9 @@ import { ReactComponent as LeftChevron } from './Icons/chevronLeft.svg';
 import { ReactComponent as PowerIcon } from './Icons/powerIcon.svg';
 import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
 
-export default function DropdownMenu(props){//dropdownmenu function
+export default function DropdownMenu(props){ //dropdownmenu function
 
-    const [activeMenu, setActiveMenu] = useState('main');//state of the menu
+    const [activeMenu, setActiveMenu] = useState('main'); //state of the menu
     const [menuHeight, setMenuHeight] = useState(null);
 
 
@@ -20,7 +20,7 @@ export default function DropdownMenu(props){//dropdownmenu function
     }
 
 
-    function DropdownItem(props){//Items nested in the function
+    function DropdownItem(props){ //Items nested in the function
         return(
             <a href="#" className="menu-item" onClick={() => props.gotoMenu && setActiveMenu(props.gotoMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>{/*Icon on the left*/}
