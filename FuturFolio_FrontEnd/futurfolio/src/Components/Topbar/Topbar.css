@@ -1,4 +1,13 @@
 
+:root{
+    --bg: #86868688;
+    --bg-accent: #ffffff;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border: 1px solid #474a4d00;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
 
 
 .topbar {
@@ -7,7 +16,7 @@
     left: 110px;
     right: 0;
     height: var(--nav-size);
-    background-color: var(--bg);
+    
     padding: 0 1rem;
     border-bottom: var(--border);
    
@@ -31,7 +40,7 @@
     --button-size: calc(var(--nav-size) * 0.5);
     width: var(--button-size);
     height: var(--button-size);
-    background-color: #484a4d;
+    background-color: #e3e5eb41;
     border-radius: 50%;
     padding: 5px;
     margin: 2px;
@@ -40,6 +49,34 @@
     justify-content: center;
     transition: filter 300ms;
 }
+
+.icon-right {
+    --button-size: calc(var(--nav-size) * 0.5);
+    width: var(--button-size);
+    height: var(--button-size);
+    
+    border-radius: 50%;
+    padding: 5px;
+    margin-left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 300ms;
+}
+
+.leftChevron{
+    --button-size: calc(80px * 0.5);
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: 60%;
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 300ms;
+}
+
 
 .icon-button:hover{
     filter: brightness(1.2);
@@ -56,7 +93,7 @@
     top: 58px;
     width: 300px;
     transform: translateX(-45%);
-    background-color: var(--bg);
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
     border: var(--border);
     border-radius: var(--border-radius);
     padding: 1rem;
@@ -74,12 +111,10 @@
 }
 
 .menu-item:hover{
-    background-color: #525357;
+    background-color: #ffffff79;
 }
 
-.icon-right {
-    margin-left: auto;
-}
+
 /* CSSTransition classes*/
 .menu-primary-enter{
     position: absolute;
@@ -114,6 +149,24 @@
 }
 
 .menu-secondary-exit-active{
+    transform: translateX(110%);
+    transition: all var(--speed) ease;
+}
+
+.menu-tertiary-enter{
+    transform: translateX(110%);
+}
+
+.menu-tertiary-enter-active{
+    transform: translateX(0%);
+    transition: all var(--speed) ease;
+}
+
+.menu-tertiary-exit{
+
+}
+
+.menu-tertiary-exit-active{
     transform: translateX(110%);
     transition: all var(--speed) ease;
 }

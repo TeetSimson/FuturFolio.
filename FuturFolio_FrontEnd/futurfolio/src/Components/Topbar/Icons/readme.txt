@@ -14,7 +14,16 @@ chevronLeft.svg - Icon by Raj Dev on freeicons.io
 
 powerIcon.svg - Icon by Fasil on freeicons.io
                                 
+appearanceIcon.svg - Icon by icon king1 on freeicons.io
 
+languageIcon.svg - Icon by www.wishforge.games on freeicons.io
+
+locationIcon.svg - Icon by Free Preloaders on freeicons.io
+
+advancedIcon.svg - Icon by Raj Dev on freeicons.io
+                                
 
                                 
-                             
+
+                                
+

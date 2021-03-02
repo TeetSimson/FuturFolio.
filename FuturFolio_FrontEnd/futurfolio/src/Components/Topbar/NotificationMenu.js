@@ -44,50 +44,11 @@ export default function NotificationMenu(){//dropdownmenu function
               onEnter={calcHeight}
               >
                 <div className="menu">
-                    {/*adds an item called My Profile*/}
-                    <DropdownItem 
-                    leftIcon = {<ProfileIcon/>}
-                    rightIcon={<RightChevron/>}
-                    >
-                        My Profile
-                    </DropdownItem>
-
-                    {/*adds an item called Settings*/}
-                    <DropdownItem
-                    leftIcon={<CogIcon />}
-                    rightIcon={<RightChevron/>}
-                    gotoMenu="settings"
-                    >
-                        Settings
-                    </DropdownItem>
-
-                    {/*adds an item called Log Out*/}
-                    <DropdownItem
-                    leftIcon={<PowerIcon />}
-                    >
-                        Log Out
-                    </DropdownItem>
+                   NOTIFICATIONS
                 </div>
             </CSSTransition>
 
-            <CSSTransition 
-              in={activeMenu === 'settings'}
-              unmountOnExit // unmountOnExit removes the children when main is not active
-              timeout={500} //duration of animation
-              classNames="menu-secondary"
-              onEnter={calcHeight}
-              >
-                <div className="menu">
-                    {/*adds an item called Settings*/}
-                    <DropdownItem
-                    leftIcon={<LeftChevron />}
-                    gotoMenu="main"
-                    >
-                        Settings
-                    </DropdownItem>
-                    <DropdownItem>Dark Mode</DropdownItem>
-                </div>
-            </CSSTransition>
+           
         </div>
     );
 }
