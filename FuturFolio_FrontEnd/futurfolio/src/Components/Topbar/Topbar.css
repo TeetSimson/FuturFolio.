@@ -9,6 +9,22 @@
     --speed: 500ms;
 }
 
+.DashboardTitle {
+    margin-top: 30px;
+    margin-left: 50px;
+    font-size: 60px;
+    color: rgb(48, 48, 48);
+}
+
+.Stick {
+    width: 5px;
+    height: 50px;
+    margin-left: 15px;
+    margin-top: 45px;
+    background-color: rgb(28, 126, 255);
+    margin-right: auto;
+    border-radius: 10px;
+}
 
 .topbar {
     position: absolute;
@@ -16,7 +32,6 @@
     left: 110px;
     right: 0;
     height: var(--nav-size);
-    
     padding: 0 1rem;
     border-bottom: var(--border);
    
@@ -41,7 +56,7 @@
     width: var(--button-size);
     height: var(--button-size);
     background-color: #e3e5eb41;
-    border-radius: 50%;
+    border-radius: 8px;
     padding: 5px;
     margin: 2px;
     display: flex;

@@ -17,7 +17,8 @@ const initialState = {
     email: '',
     entries: 0,
     joined: '',
-    dashboard: 'Dashboard'
+    dashboard: 'Dashboard',
+    title: 'Stocks'
   }
 }
 
@@ -77,7 +78,10 @@ export default class App extends Component {
           <Dashboards 
             dashboard={this.state.user.dashboard} // Sending which dashboard to display
           />
-          <Topbar DashChangeProfile={this.DashChangeProfile}/> 
+          <Topbar 
+            DashChangeProfile={this.DashChangeProfile}
+            title={this.state.user.title}
+            /> 
         </div>
       :  // Else if we are on "profile" page
         route === 'profile' 

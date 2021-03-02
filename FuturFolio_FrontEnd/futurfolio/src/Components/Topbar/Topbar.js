@@ -37,9 +37,12 @@ function NavItem(props){//function for the items within the navbar
 
 
 export default class Topbar extends Component {
+
     render() {
         return (
             <Navbar>
+                <h1 className="DashboardTitle">{this.props.title}</h1>
+                <span className="Stick"></span>
                 <NavItem icon={<BellIcon />}>
                     <NotificationMenu/>
                 </NavItem>
