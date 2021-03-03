@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './StockDash.css';
 import NetWorth from './NetWorth/NetWorth';
+import StocksTable from './StocksTable/StocksTable';
 
 export default class StockDash extends Component {
     render() {
@@ -20,7 +21,7 @@ export default class StockDash extends Component {
                     </div>
                 </div>
                 <div className="StocksPanel">
-
+                    <StocksTable />
                 </div>
             </div>
         )
