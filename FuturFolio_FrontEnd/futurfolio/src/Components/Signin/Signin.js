@@ -45,16 +45,15 @@ class Signin extends React.Component {
                     <div className="Window">
                         <fieldset id="sign_up" className="Form">
                             <legend className="CaptionLabel">
-                                Sign In
                             </legend>
                             <div>
                                 <label className="Label" htmlFor="email-address">
                                     Email
                                 </label>
-                                <input className="Email" 
-                                    type="email" 
-                                    name="email-address"  
-                                    id="email-address" 
+                                <input className="Email"
+                                    type="email"
+                                    name="email-address"
+                                    id="email-address"
                                     onChange={this.onEmailChange} // Passing input to function to get the value
                                 />
                             </div>
@@ -62,23 +61,23 @@ class Signin extends React.Component {
                                 <label className="Label" htmlFor="password">
                                     Password
                                 </label>
-                                <input className="Password" 
-                                type="password" 
-                                name="password"  
-                                id="password" 
-                                onChange={this.onPasswordChange}    
+                                <input className="Password"
+                                type="password"
+                                name="password"
+                                id="password"
+                                onChange={this.onPasswordChange}
                                 />
                             </div>
                         </fieldset>
                         <div>
-                            <input 
+                            <input
                                 onClick={this.onSubmitSignIn} // When clicked sign in function will check with the server
-                                className="SigninButton" 
+                                className="SigninButton"
                                 type="submit"
-                                value="Sign in" 
+                                value="Sign in"
                             />
                         </div>
-                        <div> 
+                        <div>
                         <button onClick={() => onRouteChange('register')} // Go to register page
                             className="RegisterButton">Register</button>
                         </div>
@@ -87,6 +86,6 @@ class Signin extends React.Component {
             </article>
         )
     }
-} 
+}
 
 export default Signin;
