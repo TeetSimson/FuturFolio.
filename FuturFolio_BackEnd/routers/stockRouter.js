@@ -4,27 +4,52 @@ const User = require("../models/userModel");
 router.post("/", async (req,res) => {
 	try{
 
-		const {email, stock} = req.body;
+		const {email} = req.body;
 
-		if(!stock)
-			return res.status(400).json({errorMessage : "You have not invested in this stock"});
 
 		const userDetails = await User.findOne({email});
 
 		const stocksList = await userDetails.stocks ;
 
-		const chosenStock = await stocksList.find(obj =>{
-			return obj.stockName === stock ;
+
+
+		res.send(stocksList);
+
+	}catch (err){
+		console.error(err);
+		res.status(500).send();
+	}
+});
+
+router.post("/newStock", async (req,res) => {
+	try{
+
+		const {email,stockName,amount,date,price,dividends} = req.body;
+
+		if(!email||!stockName||!amount||!date||!price||!dividends)
+			return res.status(400).json({errorMessage: "Please fill in all fields"});
+
+		const userDetails = await User.findOne({email});
+
+		const stocksList = await userDetails.stocks;
+
+		const existingStock = await stocksList.find(obj =>{
+			return obj.stockName === stockName ;
 		});
 
-		const amount = await chosenStock.amount ;
-		const date = await chosenStock.date;
-		const price = await chosenStock.price;
+		if(existingStock)
+			return res.status(400).json({errorMessage : "You have already invested in this stock"});
 
-
-		res.send({"amount":amount,
+		var newStock = {"stockName":stockName,
+			"amount":amount,
 			"date":date,
-			"price":price});
+			"price":price,
+			"dividends":dividends};
+
+		User.findOneAndUpdate(
+			{ email:email }, 
+			{ $push: { stocks: newStock  } }
+			);
 
 	}catch (err){
 		console.error(err);

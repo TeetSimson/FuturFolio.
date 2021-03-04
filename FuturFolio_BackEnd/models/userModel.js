@@ -5,10 +5,12 @@ const userSchema = new mongoose.Schema({
 	email : {type: String, required: true},
 	passwordHash : {type: String, required: true},
 	stocks : [{
+		_id:false,
 		stockName : {type: String},
 		amount : {type: Number},
 		date : {type : String},
-		price : {type : Number}
+		price : {type : Number},
+		dividens : {type: Number}
 	}]
 });
 

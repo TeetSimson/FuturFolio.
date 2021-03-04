@@ -1,17 +1,20 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+var validator = require("email-validator");
 
 router.post("/register", async (req,res) => {
 	try{
 
-	console.log("attempting login");
 	const { name, email, password /*, passwordVerify */} = req.body;
 
 	// validation
 
 	if(!name || !email || !password /*|| !passwordVerify*/ )
 		return res.status(400).json({errorMessage : "Please fill all required fields."});
+
+	if(!validator.validate(email))
+		return res.status(400).json({errorMessage : "Please enter a valid email address."})
 
 	if ( password.length < 6)
 		return res.status(400).json({errorMessage : "Password must be at least 6 characters."});
@@ -56,13 +59,11 @@ router.post("/signin", async (req,res) => {
 
 		const existingUser = await User.findOne({email});
 		if(!existingUser)
-			return res.status(401).json({errorMessage : "Please enter a valid email."});
+			return res.status(401).json({errorMessage : "Please enter a valid email address."});
 
 		const passwordCorrect = await bcrypt.compare(password, existingUser.passwordHash);
 		if (!passwordCorrect)
 			return res.status(401).json({errorMessage: "Please enter a valid password."});
-
-		console.log("signed in");
 
 	}catch (err){
 		console.error(err);
