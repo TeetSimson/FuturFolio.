@@ -1,3 +1,7 @@
+.StocksPanel {
+    padding: 10px;
+}
+
 .TopBar {
     display: flex;
 }
@@ -60,4 +64,8 @@
     margin-left: 20px;
     margin-top: 7px;
     font-size: 30px;
+}
+
+.TableBox{
+    margin-top: 15px;
 }

@@ -1,0 +1,13 @@
+.Table {
+    background-color: rgba(255, 255, 255, 0.185);
+    height: 300px;
+}
+
+.MainRow {
+    background-color: rgba(255, 255, 255, 0.185);
+}
+
+.Row {
+    padding: 0px;
+    height: 30px;
+}

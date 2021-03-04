@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import './StocksTable.css'
+import Table from './Table';
 
 export default class StocksTable extends Component {
     render() {
         return (
-            <div>
+            <div className="StocksBox">
                 <div className="TopBar">
                     <p className="Title">Stocks</p>
                     <div className="TopBarBox">
@@ -17,9 +18,9 @@ export default class StocksTable extends Component {
                             </button>
                         </div>
                     </div>
-                    <div className="TableBox">
-
-                    </div>
+                </div>
+                <div className="TableBox">
+                        <Table />
                 </div>
             </div>
         )
