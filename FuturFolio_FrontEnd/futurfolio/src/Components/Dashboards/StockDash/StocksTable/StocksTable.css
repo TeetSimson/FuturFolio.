@@ -36,7 +36,8 @@
 
 .Market {
     margin-left: auto;
-    color: #15C16A;
+    font-weight: 600;
+    color: #00a552;
 }
 
 .AddStock {
@@ -64,8 +65,4 @@
     margin-left: 20px;
     margin-top: 7px;
     font-size: 30px;
-}
-
-.TableBox{
-    margin-top: 15px;
 }
