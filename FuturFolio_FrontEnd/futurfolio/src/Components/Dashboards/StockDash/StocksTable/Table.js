@@ -164,13 +164,13 @@ export default class Table extends React.Component {
               
             </div>
             <div id="div2" className="uk-overflow-auto" onScroll={this.SyncScroll(this)}>
-              <table className="uk-table uk-table-hover uk-table-middle uk-table-divider Row">
+              <table className="uk-table uk-table-hover uk-table-middle Row">
                 <tbody className="Row">
                   <Header />
                   {isLoading ? (
                     <tr>
-                      <td colSpan={6} className="uk-text-center">
-                        <em className="uk-text-muted">Loading...</em>
+                      <td colSpan={17}>
+                        <em>Loading...</em>
                       </td>
                     </tr>
                   ) : (
