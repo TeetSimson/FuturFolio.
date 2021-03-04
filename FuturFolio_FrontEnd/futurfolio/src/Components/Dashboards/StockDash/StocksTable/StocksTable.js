@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './StocksTable.css'
 import Table from './Table';
 
+
 export default class StocksTable extends Component {
     render() {
         return (
@@ -19,6 +20,7 @@ export default class StocksTable extends Component {
                         </div>
                     </div>
                 </div>
+
                 <div className="TableBox">
                         <Table />
                 </div>

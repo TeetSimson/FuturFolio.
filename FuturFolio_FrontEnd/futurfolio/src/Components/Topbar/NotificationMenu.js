@@ -48,9 +48,20 @@ export default function NotificationMenu(){//dropdownmenu function
                     
                         <NotificationItem 
                         leftIcon = {<ProfileIcon/>}
-                        
                         >
                             Notification 1
+                        </NotificationItem>
+
+                        <NotificationItem 
+                        leftIcon = {<ProfileIcon/>}
+                        >
+                            Notification 2
+                        </NotificationItem>
+
+                        <NotificationItem 
+                        leftIcon = {<ProfileIcon/>}
+                        >
+                            Notification 3
                         </NotificationItem>
                     
                    

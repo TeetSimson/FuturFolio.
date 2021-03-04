@@ -1,7 +1,7 @@
 .NetWorthTab {
     margin: 15px;
     width: calc(100%-15px);
-    height: 150px;
+    height: 120px;
     border-radius: 25px;
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0) );
     backdrop-filter: blur(4px);
@@ -9,7 +9,7 @@
 }
 
 .NetWorthNumber {
-    font-size: 4rem;
+    font-size: 3rem;
     margin-left: 30px;
     margin-top: 10px;
     color: rgb(48, 48, 48);
