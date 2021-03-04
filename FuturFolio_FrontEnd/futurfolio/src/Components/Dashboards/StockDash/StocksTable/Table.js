@@ -145,25 +145,13 @@ export default class Table extends React.Component {
       });
   }
 
-  SyncScroll(div) {
-   
-      console.log("Works");
-      var div1 = document.getElementById("div1");
-      console.log(div.scrollTop);
-
-  }
-
   render() {
     const { users } = this.state;
     const isLoading = users === null;
     return (
       <main className="Table">
-        
         <div className="table-container">
-            <div stye={{overflow: 'scroll'}}>
-              
-            </div>
-            <div id="div2" className="uk-overflow-auto" onScroll={this.SyncScroll(this)}>
+            <div id="div2" className="uk-overflow-auto">
               <table className="uk-table uk-table-hover uk-table-middle Row">
                 <tbody className="Row">
                   <Header />

@@ -59,7 +59,7 @@ table {
 td {
     border: solid 1px rgba(0, 0, 0, 0);
     border-style: solid none;
-    background-color: rgba(255, 255, 255, 0.192);
+    background-color: rgba(255, 255, 255, 0.089);
 }
 td:first-child {
     border-left-style: solid;
