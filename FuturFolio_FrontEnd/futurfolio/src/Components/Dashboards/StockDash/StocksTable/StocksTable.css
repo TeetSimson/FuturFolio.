@@ -1,0 +1,68 @@
+.StocksPanel {
+    padding: 10px;
+}
+
+.TopBar {
+    display: flex;
+}
+
+.TopBarBox {
+    margin-right: -1px;
+    margin-top: -1px;  /* Hide border */
+}
+
+.TimerBox {
+    display: flex;
+    width: 400px;
+    height: 50px;
+    margin-top: -1px;
+    margin-right: 0px;
+    border-radius: 20px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.116), rgba(255, 255, 255, 0) );
+    backdrop-filter: blur(4px);
+    -webkit-box-shadow: 10px 10px 44px -6px rgba(0, 0, 0, 0.096);
+    -moz-box-shadow: 10px 10px 44px -6px rgba(0, 0, 0, 0.096);
+    box-shadow: 10px 10px 44px -6px rgba(0, 0, 0, 0.096);
+}
+
+.Title {
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-right: auto;
+    font-size: 30px;
+    text-shadow: 5px 5px 20px rgba(31, 31, 31, 0.308);
+}
+
+.Market {
+    margin-left: auto;
+    font-weight: 600;
+    color: #00a552;
+}
+
+.AddStock {
+    width: 110px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 20px;
+    margin-left: 20px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.63), rgba(255, 255, 255, 0.425) );
+}
+
+.AddStock:hover {
+    background: linear-gradient(0.55turn, rgb(0, 139, 252), rgb(0, 132, 255) );
+    color: white;
+    cursor: pointer;
+}
+
+.Add {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Numbers {
+    margin-left: 20px;
+    margin-top: 7px;
+    font-size: 30px;
+}

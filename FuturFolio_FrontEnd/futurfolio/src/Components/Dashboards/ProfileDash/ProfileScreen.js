@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import profilepic from './profilepic.jpg';
+import "./ProfileScreen.css"
+import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
 
 export default class ProfileScreen extends Component{
     render(){
         return(
             <div>
                 <div>
-                    <div style={{
-                        display:"flex",
-                        justifyContent: "space-around",
-                        margin: "18px 0px",
-                        borderBottom:"1px solid grey"
-                    }}>
-                        <img style={{width:"160px", height:"160px", borderRadius:"80px"}}
-                        src={profilepic}
-                        />
+                    <div className="ProfilePos">
+                        <div className="ProfileIcon">
+                            <ProfileIcon/>
+                        </div>
+                        
                     </div>
                     <div>
                         <h4>Name holder</h4>

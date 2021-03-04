@@ -12,9 +12,11 @@ import { ReactComponent as LanguageIcon } from './Icons/languageIcon.svg';
 import { ReactComponent as LocationIcon } from './Icons/locationIcon.svg';
 import { ReactComponent as AdvancedIcon } from './Icons/advancedIcon.svg';
 
-export default function DropdownMenu(props){//dropdownmenu function
+var name = "Elon Musk"; // A variable for profile name
 
-    const [activeMenu, setActiveMenu] = useState('main');//state of the menu
+export default function DropdownMenu(props){ //dropdownmenu function
+
+    const [activeMenu, setActiveMenu] = useState('main'); //state of the menu
     const [menuHeight, setMenuHeight] = useState(null);
 
 
@@ -26,7 +28,7 @@ export default function DropdownMenu(props){//dropdownmenu function
     }
 
 
-    function DropdownItem(props){//Items nested in the function
+    function DropdownItem(props){ //Items nested in the function
         return(
             <a href="#" className="menu-item" onClick={() => props.gotoMenu && setActiveMenu(props.gotoMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>{/*Icon on the left*/}
@@ -34,6 +36,15 @@ export default function DropdownMenu(props){//dropdownmenu function
 
                 <span className="icon-right">{props.rightIcon}</span>{/*Icon on the right*/}
                 
+            </a>
+        );
+    }
+
+    function ProfileDropItem(props){ //Items nested in the function
+        return(
+            <a href="#" className="profdrop-item" onClick={() => props.gotoMenu && setActiveMenu(props.gotoMenu)}>
+                <span className="profdrop-icon">{props.Icon}</span>{/*Profile Image*/}
+                <span className="prof-name">{props.children} </span>              
             </a>
         );
     }
@@ -62,6 +73,13 @@ export default function DropdownMenu(props){//dropdownmenu function
               onEnter={calcHeight}
               >
                 <div className="menu">
+                    <ProfileDropItem //The top bit of the menu
+                    Icon = {<ProfileIcon/>}
+                    >
+                        {name} {/* The profile's name */}
+                    </ProfileDropItem>
+
+
                     {/*adds an item called My Profile*/}
                     <div onClick={props.DashChangeProfile}>
                         <DropdownItem 

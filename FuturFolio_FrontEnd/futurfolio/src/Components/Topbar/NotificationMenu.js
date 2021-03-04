@@ -20,9 +20,9 @@ export default function NotificationMenu(){//dropdownmenu function
     }
 
 
-    function DropdownItem(props){//Items nested in the function
+    function NotificationItem(props){//Items nested in the function
         return(
-            <a href="#" className="menu-item" onClick={() => props.gotoMenu && setActiveMenu(props.gotoMenu)}>
+            <a href="#" className="notif-item" onClick={() => props.gotoMenu && setActiveMenu(props.gotoMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>{/*Icon on the left*/}
                 {props.children}
 
@@ -44,7 +44,27 @@ export default function NotificationMenu(){//dropdownmenu function
               onEnter={calcHeight}
               >
                 <div className="menu">
-                   NOTIFICATIONS
+                    {/*adds an item called My Profile*/}
+                    
+                        <NotificationItem 
+                        leftIcon = {<ProfileIcon/>}
+                        >
+                            Notification 1
+                        </NotificationItem>
+
+                        <NotificationItem 
+                        leftIcon = {<ProfileIcon/>}
+                        >
+                            Notification 2
+                        </NotificationItem>
+
+                        <NotificationItem 
+                        leftIcon = {<ProfileIcon/>}
+                        >
+                            Notification 3
+                        </NotificationItem>
+                    
+                   
                 </div>
             </CSSTransition>
 

@@ -17,7 +17,8 @@ const initialState = {
     email: '',
     entries: 0,
     joined: '',
-    dashboard: 'Dashboard'
+    dashboard: 'Dashboard',
+    title: 'Dashboard'
   }
 }
 
@@ -30,23 +31,27 @@ export default class App extends Component {
   // Functions to change Dashboards
   DashChangeDash = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
+    this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
   }
 
   DashChangeStock = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'StockDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Stocks'}))
   }
 
   DashChangeLoans = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'LoansDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Loans'}))
   }
 
   DashChangeRealEstate = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'RealEstateDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Real Estate'}))
   }
 
   DashChangeProfile = () => {
     this.setState(Object.assign(this.state.user, { dashboard: 'ProfileDash'}))
-    console.log("Worked")
+    this.setState(Object.assign(this.state.user, { title: 'Profile'}))
   }
 
   // Route changes
@@ -77,7 +82,10 @@ export default class App extends Component {
           <Dashboards 
             dashboard={this.state.user.dashboard} // Sending which dashboard to display
           />
-          <Topbar DashChangeProfile={this.DashChangeProfile}/> 
+          <Topbar 
+            DashChangeProfile={this.DashChangeProfile}
+            title={this.state.user.title}
+            /> 
         </div>
       :  // Else if we are on "profile" page
         route === 'profile' 

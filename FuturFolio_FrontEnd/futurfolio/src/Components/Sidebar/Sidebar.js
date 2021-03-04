@@ -39,7 +39,6 @@ export default class Sidebar extends Component {
             <nav className="Sidebar">
                 <img id="Logo" src={Logo} alt='Logo'/>
                 <div className="SidebarButtons">
-                    {/* Sample icon, will be replaced by function later*/}
                     <SidebarItems
                         DashChangeDash={this.props.DashChangeDash}
                         DashChangeStock={this.props.DashChangeStock}
