@@ -123,8 +123,9 @@
     width: 300px;
     transform: translateX(-45%);
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
-    border: var(--border);
-    border-radius: var(--border-radius);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.178);
+    border-radius: 20px;
     padding: 1rem;
     overflow: hidden;
     transition: height var(--speed) ease;
@@ -179,8 +180,6 @@
     top: 140px;
     left:130px;
 }
-
-
 
 
 /* CSSTransition classes*/
