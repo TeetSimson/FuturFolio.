@@ -186,6 +186,14 @@ export default function DropdownMenu(props){ //dropdownmenu function
                     >
                         Appearance
                     </DropdownItemBack>
+
+                    <DropdownItemSingle>
+                        Light Mode
+                    </DropdownItemSingle>
+
+                    <DropdownItemSingle>
+                        Dark Mode
+                    </DropdownItemSingle>
                     
                 </div>
             </CSSTransition>
