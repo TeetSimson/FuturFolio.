@@ -1,13 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/userModel");
+const auth = require("../middleware/auth")
 
-router.post("/", async (req,res) => {
+router.post("/", auth, async (req,res) => {
 	try{
 
-		const {email} = req.body;
+		/*const {email} = req.body;*/
 
 
-		const userDetails = await User.findOne({email});
+		const userDetails = await User.findById(req.user);
 
 		const stocksList = await userDetails.stocks ;
 
@@ -21,15 +22,15 @@ router.post("/", async (req,res) => {
 	}
 });
 
-router.post("/newStock", async (req,res) => {
+router.post("/newStock", auth, async (req,res) => {
 	try{
+		const id = req.user;
+		const {stockName,amount,date,price,dividends} = req.body;
 
-		const {email,stockName,amount,date,price,dividends} = req.body;
-
-		if(!email||!stockName||!amount||!date||!price||!dividends)
+		if(!stockName||!amount||!date||!price||!dividends)
 			return res.status(400).json({errorMessage: "Please fill in all fields"});
 
-		const userDetails = await User.findOne({email});
+		const userDetails = await User.findById(id);
 
 		const stocksList = await userDetails.stocks;
 
@@ -40,14 +41,16 @@ router.post("/newStock", async (req,res) => {
 		if(existingStock)
 			return res.status(400).json({errorMessage : "You have already invested in this stock"});
 
-		var newStock = {"stockName":stockName,
+		var newStock = {
+			"stockName":stockName,
 			"amount":amount,
 			"date":date,
 			"price":price,
-			"dividends":dividends};
+			"dividends":dividends
+		};
 
-		User.findOneAndUpdate(
-			{ email:email }, 
+		User.findByIdAndUpdate(
+			id,
 			{ $push: { stocks: newStock  } }
 			);
 

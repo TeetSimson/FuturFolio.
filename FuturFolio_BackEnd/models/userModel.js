@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
 		amount : {type: Number},
 		date : {type : String},
 		price : {type : Number},
-		dividens : {type: Number}
+		dividends : {type: Number}
 	}]
 });
 
