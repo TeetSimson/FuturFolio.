@@ -5,7 +5,7 @@ export default class SettingsDash extends Component {
     render() {
         return (
             <div>
-                <h1>Settings</h1>
+                <h1 className="Text">Settings</h1>
             </div>
         )
     }

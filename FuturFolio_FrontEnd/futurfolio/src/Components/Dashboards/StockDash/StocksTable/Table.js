@@ -138,9 +138,10 @@ export default class Table extends React.Component {
   };
 
   componentDidMount() {
-    fetch("https://randomuser.me/api/1.1/?results=15")
+    fetch("http://localhost:5000/stocks/")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         this.setState({ users: data.results });
       });
   }
