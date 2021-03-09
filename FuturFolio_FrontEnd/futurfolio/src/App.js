@@ -54,6 +54,11 @@ export default class App extends Component {
     this.setState(Object.assign(this.state.user, { title: 'Profile'}))
   }
 
+  DashChangeSettings = () => {
+    this.setState(Object.assign(this.state.user, { dashboard: 'SettingsDash'}))
+    this.setState(Object.assign(this.state.user, { title: 'Settings'}))
+  }
+
   // Route changes
   onRouteChange = (route) => {
     if (route === 'signout') {
@@ -84,6 +89,7 @@ export default class App extends Component {
           />
           <Topbar 
             DashChangeProfile={this.DashChangeProfile}
+            DashChangeSettings={this.DashChangeSettings}
             title={this.state.user.title}
             /> 
         </div>

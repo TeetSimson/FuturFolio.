@@ -48,7 +48,10 @@ export default class Topbar extends Component {
                 </NavItem>
                 <NavItem icon={<ProfileIcon />}>
                     {/*Dropdown goes here*/}
-                    <DropdownMenu DashChangeProfile={this.props.DashChangeProfile}/>
+                    <DropdownMenu 
+                        DashChangeProfile={this.props.DashChangeProfile}
+                        DashChangeSettings={this.props.DashChangeSettings}
+                        />
                 </NavItem>
 
             </Navbar>

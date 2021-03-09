@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../App.css';
 import StockDash from './StockDash/StockDash';
 import ProfileDash from './ProfileDash/ProfileScreen';
+import SettingsDash from './SettingsDash/SettingsDash';
 
 export default class Dashboards extends Component {
     render() {
@@ -28,7 +29,12 @@ export default class Dashboards extends Component {
                                 ? 
                                     <ProfileDash />
                                 :
-                                    console.log("ERROR")
+                                    (this.props.dashboard === 'SettingsDash'
+                                    ? 
+                                        <SettingsDash />
+                                    :
+                                        console.log("ERROR")
+                                    )
                                 )
                             )
 

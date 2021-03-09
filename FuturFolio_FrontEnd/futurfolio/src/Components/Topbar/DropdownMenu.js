@@ -163,11 +163,13 @@ export default function DropdownMenu(props){ //dropdownmenu function
                         <p>Location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     </DropdownItem>
                     
+                    <div onClick={props.DashChangeSettings}>
                     <DropdownItem
                     leftIcon={<AdvancedIcon />}
                     >
                         Advanced Settings
                     </DropdownItem>
+                    </div>
                 </div>
             </CSSTransition>
 
