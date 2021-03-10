@@ -1,12 +1,29 @@
+/*Profile picture style*/
 .ProfilePos{
     display: flex;
-    justify-content: space-around;
-    margin: 18px 0px;
-    border-bottom: 1px solid grey;
+    justify-content:left;
+    margin-left: 50px;
+    margin-top: 120px;
+    
+}
+
+.Name{
+    display: flex;
+    justify-content: right;
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+.Description{
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    margin-left: 80px;
+    margin-top: 80px;
 }
 
 .ProfileIcon{
-    --button-size: calc(150px);
+    --button-size: calc(200px);
     width: var(--button-size);
     height: var(--button-size);
     background-color: #e3e5eb41;
@@ -23,4 +40,80 @@
     fill: #ffffff;
     width: 60px;
     height: 60px;
+}
+
+.leftIcon{
+    --button-size: calc(var(--nav-size) * 0.5);
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: 8px;
+    padding: 5px;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: filter 300ms;
+}
+
+.leftIcon svg{
+    width: 40px;
+    height: 40px;
+}
+
+.profsetitem{
+    display:flex;
+    justify-content: right;
+    margin-left: 70px;
+    margin-top: 30px;
+}
+
+
+.profsetbutton{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 0.5rem;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+
+.profsetbutton:hover{
+    background-color: #ffffff79;
+}
+
+.Email{
+    display:table;
+    justify-content:center;
+    align-items: center;
+    
+}
+
+.Location{
+    display:table;
+    justify-content:center;
+    align-items: center;
+    
+}
+
+.Friends{
+    display:table;
+    justify-content:center;
+    align-items: center;
+    
+}
+.Row {
+    display: table;
+    width: 100%; /*Optional*/
+    table-layout: fixed; /*Optional*/
+    border-spacing: 10px; /*Optional*/
+}
+.Column {
+    display: table-cell;
+}
+
+.Acheivements{
+    position: relative;
+    top: -140px;
+    left: 50px;
 }
