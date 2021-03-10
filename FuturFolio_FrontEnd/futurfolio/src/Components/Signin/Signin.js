@@ -19,13 +19,14 @@ class Signin extends React.Component {
     }
 
     onSubmitSignIn = () => {
-        /* fetch('http://localhost:3000/signin', { // Check with the server does the user exist
+         fetch('http://localhost:5000/auth/signin', { // Check with the server does the user exist
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ // Converts JavaScript object to JSON string
                 email: this.state.signInEmail,
                 password: this.state.signInPassword
-            })
+            }),
+            credentials: "include"
         })
             .then(response => response.json())
             .then(user => {
@@ -33,7 +34,7 @@ class Signin extends React.Component {
                     this.props.loadUser(user); // If user registration was successful then load app with this user account
                     this.props.onRouteChange('home');
                 }
-            }) */
+            }) 
         this.props.onRouteChange('home'); // SEND EVERYTHING TO HOME
     }
 
