@@ -138,11 +138,11 @@ export default class Table extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:5000/stocks/")
+    fetch("http://localhost:5000/stocks/",{method:'post',credentials:"include"})
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        this.setState({ users: data.results });
+        /*this.setState({ users: data.results });*/
       });
   }
 
