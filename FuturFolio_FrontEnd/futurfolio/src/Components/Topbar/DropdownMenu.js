@@ -96,7 +96,6 @@ export default function DropdownMenu(props){ //dropdownmenu function
                     <div onClick={props.DashChangeProfile}>
                         <DropdownItem 
                         leftIcon = {<ProfileIcon/>}
-                        
                         >
                             My Profile
                         </DropdownItem>

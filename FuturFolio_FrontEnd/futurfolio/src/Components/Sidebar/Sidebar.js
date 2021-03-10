@@ -4,7 +4,6 @@ import "./Sidebar.css";
 import Logo from './Futurfolio_logo.png';
 import PlusButton from './PlusButton';
 import SidebarItems from './SidebarItems';
-
 export default class Sidebar extends Component {
     constructor() {
         super();
