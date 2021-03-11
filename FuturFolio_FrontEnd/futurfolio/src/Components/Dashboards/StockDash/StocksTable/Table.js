@@ -39,15 +39,16 @@ class UserTableRow extends React.Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { stock, index } = this.props;
+
     return [
         <tr key="main" onClick={this.toggleExpander}>
           <td>
             <input className="uk-checkbox" type="checkbox" />
           </td>
-          <td className="uk-text-nowrap">{this.props.index}</td>
+          <td className="uk-text-nowrap">{stock.stockName}</td>
           <td>
-            <p>Merko Ehitus</p>
+            <p>Merko Ehitus{console.log(index)}</p>
           </td>
           <td>
             <p>£12.809</p>
@@ -65,16 +66,16 @@ class UserTableRow extends React.Component {
             <p>£0.83/8.08%</p>
           </td>
           <td>
-            {formatDate(user.registered)}
+            12/12/2021
           </td>
           <td>
             <p>1.02</p>
           </td>
           <td>
-            <p>231</p>
+            <p>{stock.amount}</p>
           </td>
           <td>
-            <p>£9.230</p>
+            <p>{stock.price}</p>
           </td>
           <td>
             <p>£161.80</p>
@@ -89,7 +90,7 @@ class UserTableRow extends React.Component {
             <p>+4.23%</p>
           </td>
           <td>
-            <p>£9.21/10.21</p>
+            <p>{stock.dividends}</p>
           </td>
         </tr>,
         this.state.expanded && (
@@ -99,29 +100,29 @@ class UserTableRow extends React.Component {
                 <div className="uk-width-1-4 uk-text-center">
                   <img
                     className="uk-preserve-width uk-border-circle"
-                    src={user.picture.large}
+                    src=""
                     alt="avatar"
                   />
                 </div>
                 <div className="uk-width-3-4">
-                  <h3>{capitalize(user.name.first + " " + user.name.last)}</h3>
+                  <h3>John Schumacher</h3>
                   <p>
                     Address:
                     <br />
                     <i>
-                      {capitalize(user.location.street)}
+                      Location: UK
                       <br />
-                      {user.location.postcode} {capitalize(user.location.city)}
+                       Location: Manchester
                       <br />
-                      {user.nat}
+                      239MRL
                     </i>
                   </p>
                   <p>
-                    E-mail: {user.email}
+                    E-mail: john@gmail.com
                     <br />
-                    Phone: {user.phone}
+                    Phone: +44 542132321
                   </p>
-                  <p>Date of birth: {formatDate(user.dob)}</p>
+                  <p>Date of birth: 21.10.1985</p>
                 </div>
               </div>
             </td>
@@ -133,8 +134,7 @@ class UserTableRow extends React.Component {
 
 export default class Table extends React.Component {
   state = { 
-    users: null,
-    ticker: "MRK1T"
+    stocks: null
   };
 
   componentDidMount() {
@@ -142,13 +142,14 @@ export default class Table extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        this.setState(Object.assign(this.state, { stocks: data}))
         /*this.setState({ users: data.results });*/
-      });
+      }); // Catch
   }
 
   render() {
-    const { users } = this.state;
-    const isLoading = users === null;
+    const { stocks } = this.state;
+    const isLoading = stocks === null;
     return (
       <main className="Table">
         <div className="table-container">
@@ -163,8 +164,8 @@ export default class Table extends React.Component {
                       </td>
                     </tr>
                   ) : (
-                    users.map((user, index) => (
-                        <UserTableRow key={index} index={this.state.ticker} user={user} />                 
+                    stocks.map((stock, index) => (
+                        <UserTableRow key={index} index={index+1} stock={stock} />                 
                     ))
                   )}
                 </tbody>

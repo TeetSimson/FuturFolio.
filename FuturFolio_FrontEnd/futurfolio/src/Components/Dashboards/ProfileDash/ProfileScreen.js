@@ -102,7 +102,7 @@ export default class ProfileScreen extends Component{
                     </div>
                    
                     <div>
-                        <div class="Row">
+                        <div class="Credentials">
                             <div class ="Column"><this.email/></div>
                             <div class ="Column"><this.location/></div>
                             <div class ="Column"><this.friends/></div>
