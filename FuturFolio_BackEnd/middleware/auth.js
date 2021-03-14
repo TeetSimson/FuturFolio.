@@ -4,7 +4,6 @@ function auth(req,res,next) {
 	try{
 		const token = req.body.token;
 		// Check for token
-		console.log(token);
 		if(!token)
 			return res.status(401).json({errorMessage: "Unauthorized! No token!"});
 
