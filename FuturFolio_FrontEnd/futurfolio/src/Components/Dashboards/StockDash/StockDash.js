@@ -2,8 +2,26 @@ import React, { Component } from 'react'
 import './StockDash.css';
 import NetWorth from './NetWorth/NetWorth';
 import StocksTable from './StocksTable/StocksTable';
+import Axios from 'axios';
 
 export default class StockDash extends Component {
+    constructor() {
+        super()
+        this.state = {
+            stockApi: null
+        };
+    }
+
+    componentDidMount() {
+        Axios.post("http://localhost:5000/APIstocks/allData",{
+            token: localStorage.getItem("token"),
+        })
+        .then((data) => {
+            console.log(data.data);
+            this.setState({ stockApi: data });
+        }).catch(err => console.log(err));
+    }
+
     render() {
         return (
             <div className="StockDash">

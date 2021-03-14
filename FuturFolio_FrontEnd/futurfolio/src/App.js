@@ -16,10 +16,9 @@ const initialState = {
     name: '',
     email: '',
     joined: '',
-    token: null
   },
   dashboard: 'Dashboard',
-  title: 'Dashboard',
+  title: 'Dashboard'
 }
 
 export default class App extends Component {

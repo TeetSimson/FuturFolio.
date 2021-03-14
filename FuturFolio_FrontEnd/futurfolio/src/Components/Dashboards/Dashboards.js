@@ -16,19 +16,11 @@ export default class Dashboards extends Component {
         // FETCHING STOCKS
     componentDidMount() {
     Axios.post("http://localhost:5000/stocks/",{
-        token: this.props.user.token,
+        token: localStorage.getItem("token"),
     })
         .then((data) => {
         this.setState({ stocks: data.data });
         }).catch(err => console.log(err));
-
-
-    Axios.post("http://localhost:5000/APIstocks/allData",{
-        token: this.props.user.token,
-    })
-    .then((data) => {
-        this.setState({ stockApi: data });
-    }).catch(err => console.log(err));
     }
 
     render() {
@@ -42,7 +34,6 @@ export default class Dashboards extends Component {
                     ? 
                         <StockDash 
                             stocks={this.state.stocks}
-                            stockApi={this.state.stockApi}
                         />
                     :
                         (this.props.dashboard === 'LoansDash'
