@@ -65,40 +65,54 @@ router.post("/register", async (req,res) => {
 
 
 router.post("/signin", async (req,res) => {
+
 	try{
 
 		const {email,password} =req.body;
-
+		const oneDayToSeconds = 24 * 60 * 60;
+		
 		if(!email || !password)
 			return res.status(400).json({errorMessage: "Please fill all required fileds."});
 
-		const existingUser = await User.findOne({email});
+		const existingUser = User.findOne({email});
+
 		if(!existingUser)
 			return res.status(401).json({errorMessage : "Please enter a valid email address."});
 
-		const passwordCorrect = await bcrypt.compare(password, existingUser.passwordHash);
+		const passwordCorrect = bcrypt.compare(password, existingUser.passwordHash);
 		if (!passwordCorrect)
 			return res.status(401).json({errorMessage: "Please enter a valid password."});
 
 		//sign token
-
-		const token = jwt.sign({
-			user: existingUser._id
+		
+		jwt.sign({
+			user: existingUser._id,
+			maxAge: oneDayToSeconds,
+			// Forces to use https in production
+			secure: process.env.NODE_ENV === 'production'? true: false
 		},
-		process.env.JWT_SECRET
-		);
+		process.env.JWT_SECRET,
+		(err, token) => {
+			if (err) throw err;
+			res.json({
+				auth: true,
+				token: token
+			})
+		})
 
-		//send token
-
-		res.cookie("token",token,{
+		/* res.cookie("token",token,{
 			httpOnly: true,
-		}).send();
+		}); */
+
+		/* .header(
+			"Access-Control-Allow-Headers",
+			"x-access-token, Origin, Content-Type, Accept"
+		  ).send("ok"); */
 
 	}catch (err){
 		console.error(err);
 		res.status(500).send();
 	}
-
 });
 
 router.get("/logout", (req,res) =>{

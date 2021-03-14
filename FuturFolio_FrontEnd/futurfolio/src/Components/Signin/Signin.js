@@ -1,5 +1,6 @@
 import React from 'react';
 import './Signin.css';
+import Axios from 'axios';
 
 class Signin extends React.Component {
     constructor(props) {
@@ -19,7 +20,14 @@ class Signin extends React.Component {
     }
 
     onSubmitSignIn = () => {
-         fetch('http://localhost:5000/auth/signin', { // Check with the server does the user exist
+        Axios.post("http://localhost:5000/auth/signin", {
+            email: this.state.signInEmail,
+            password: this.state.signInPassword
+        }).then(response => {
+            console.log(response);
+        });
+        
+        /*  fetch('http://localhost:5000/auth/signin', { // Check with the server does the user exist
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ // Converts JavaScript object to JSON string
@@ -28,15 +36,17 @@ class Signin extends React.Component {
             }),
             credentials: "include"
         })
-            .then(response => response.json())
-            .then(user => {
-                if (user.id) { // "user.id" cannot be empty list but just "user" can and would always return true
-                    this.props.loadUser(user); // If user registration was successful then load app with this user account
-                    this.props.onRouteChange('home');
+            .then(response => console.log(response.json()))
+                
+            .then(data => {
+                console.log(data);
+               /*  if (data) { // "user.id" cannot be empty list but just "user" can and would always return true
+                    console.log(data);
+                    //this.props.loadUser(user); // If user registration was successful then load app with this user account
+                    this.props.onRouteChange('dashboard');
                 }
-            }) 
-        this.props.onRouteChange('home'); // SEND EVERYTHING TO HOME
-    }
+            }  */
+    };
 
     render() {
         const { onRouteChange } = this.props;
