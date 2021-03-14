@@ -39,7 +39,7 @@ class UserTableRow extends React.Component {
           </td>
           <td className="uk-text-nowrap">{stock.stockName}</td>
           <td>
-            <p>Merko Ehitus{console.log(index)}</p>
+            <p>Merko Ehitus</p>
           </td>
           <td>
             <p>£12.809</p>
