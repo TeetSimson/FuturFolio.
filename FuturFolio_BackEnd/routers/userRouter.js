@@ -70,36 +70,40 @@ router.post("/signin", async (req,res) => {
 
 		const {email,password} =req.body;
 		const oneDayToSeconds = 24 * 60 * 60;
-		
+
 		if(!email || !password)
 			return res.status(400).json({errorMessage: "Please fill all required fileds."});
 
-		const existingUser = User.findOne({email});
+		User.findOne({email})
+		.then( existingUser => {
+			if(!existingUser)
+				return res.status(401).json({errorMessage : "Please enter a valid email address."});
 
-		if(!existingUser)
-			return res.status(401).json({errorMessage : "Please enter a valid email address."});
+			bcrypt.compare(password, existingUser.passwordHash)
+			.then(passwordCorrect => {
+				if (!passwordCorrect)
+					return res.status(401).json({errorMessage: "Please enter a valid password."});
 
-		const passwordCorrect = bcrypt.compare(password, existingUser.passwordHash);
-		if (!passwordCorrect)
-			return res.status(401).json({errorMessage: "Please enter a valid password."});
-
-		//sign token
-		
-		jwt.sign({
-			user: existingUser._id,
-			maxAge: oneDayToSeconds,
-			// Forces to use https in production
-			secure: process.env.NODE_ENV === 'production'? true: false
-		},
-		process.env.JWT_SECRET,
-		(err, token) => {
-			if (err) throw err;
-			res.json({
-				auth: true,
-				token: token
-			})
-		})
-
+				//sign token
+				
+				jwt.sign({
+					user: existingUser._id,
+					maxAge: oneDayToSeconds,
+					// Forces to use https in production
+					secure: process.env.NODE_ENV === 'production'? true: false
+				},
+				process.env.JWT_SECRET,
+				(err, token) => {
+					if (err) throw err;
+					res.json({
+						auth: true,
+						token: token,
+						userID: existingUser._id,
+						userName: existingUser._name
+					});
+				});
+			});
+		});
 		/* res.cookie("token",token,{
 			httpOnly: true,
 		}); */
