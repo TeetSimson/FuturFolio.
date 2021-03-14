@@ -134,9 +134,11 @@ class UserTableRow extends React.Component {
 
 export default class Table extends React.Component {
   state = { 
-    stocks: null
+    stocks: null,
+    api: null
   };
 
+  // FETCHING STOCKS
   componentDidMount() {
     fetch("http://localhost:5000/stocks/",{method:'post',credentials:"include"})
       .then((response) => response.json())
@@ -145,7 +147,16 @@ export default class Table extends React.Component {
         this.setState(Object.assign(this.state, { stocks: data}))
         /*this.setState({ users: data.results });*/
       }); // Catch
+    fetch("http://localhost:5000/APIstocks/allData",{method:'post',credentials:"include"})
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      this.setState(Object.assign(this.state, { api: data}))
+      /*this.setState({ users: data.results });*/
+    }); // Catch
   }
+
+
 
   render() {
     const { stocks } = this.state;
