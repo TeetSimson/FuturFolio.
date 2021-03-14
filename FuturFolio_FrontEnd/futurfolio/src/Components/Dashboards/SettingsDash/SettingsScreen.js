@@ -130,10 +130,9 @@ export default function SettingsScreen(){
         e.preventDefault();
         const value = e.target.value; //the input of the search box
 
-        console.log("value",value);
-
         if(value.trim().length === 0){
             setVisibleOptions(options);
+            return;
         }
 
         const returnedItems=[];
@@ -141,19 +140,30 @@ export default function SettingsScreen(){
         visibleOptions.forEach((option,index) => {
             const foundOptions=option.values.filter((item)=>{
                 return (
-                    item.name.toLocaleLowerCase().search(value.trim().toLowerCase()) !== -1);
-
+                    item.name.toLocaleLowerCase().search(value.trim().toLowerCase()) !== -1 
+                    ||
+                    item.description.toLocaleLowerCase().search(value.trim().toLocaleLowerCase()) !== -1
+                    );
             });
+
             returnedItems[index]={
                 header:{
                     name:option.header.name,
                 },
                 values:foundOptions,
             };
+            if(option.header.name.toLocaleLowerCase().search(value.trim().toLocaleLowerCase()) !== -1){
+                returnedItems[index]={
+                    header:{
+                        name:option.header.name,
+                    },
+                    values:options[index].values,
+                };
+            }
         });
 
         setVisibleOptions(returnedItems);
-    }
+    };
 
     return (
         <div className = "AppSettings">
