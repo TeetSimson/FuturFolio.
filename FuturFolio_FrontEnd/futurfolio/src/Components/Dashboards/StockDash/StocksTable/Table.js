@@ -4,18 +4,9 @@ import { slideDown, slideUp } from "./Animate";
 import "./Table.css";
 import Header from  './Header';
 
-function formatDate(str) {
+/* function formatDate(str) {
   return str.substr(0, 10);
-}
-
-function capitalize(str) {
-  return str
-    .split(" ")
-    .map((s) => {
-      return s.charAt(0).toUpperCase() + s.substr(1);
-    })
-    .join(" ");
-}
+} */
 
 class UserTableRow extends React.Component {
   state = { expanded: false };
@@ -133,22 +124,9 @@ class UserTableRow extends React.Component {
 }
 
 export default class Table extends React.Component {
-  state = { 
-    stocks: null
-  };
-
-  componentDidMount() {
-    fetch("http://localhost:5000/stocks/",{method:'post',credentials:"include"})
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState(Object.assign(this.state, { stocks: data}))
-        /*this.setState({ users: data.results });*/
-      }); // Catch
-  }
 
   render() {
-    const { stocks } = this.state;
+    const { stocks, stockApi } = this.props;
     const isLoading = stocks === null;
     return (
       <main className="Table">

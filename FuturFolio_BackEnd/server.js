@@ -15,10 +15,21 @@ app.listen(5000, () => console.log("App is running on port 5000"));
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
+/* app.use(cors({
 	origin: ["http://localhost:3000"],
 	credentials: true,
-}));
+})); */
+
+app.use(function(req, res, next) {
+	req.header("Access-Control-Allow-Origin", "*"); // dont leave *
+	req.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token");
+	req.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	res.header("Access-Control-Allow-Origin", "*"); // dont leave *
+	res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token");
+	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	
+	next();
+  });
 
 // connect to mongodb
 
