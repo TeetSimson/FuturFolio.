@@ -176,15 +176,15 @@ export default function SettingsScreen(){
                />
                <div>
                    {visibleOptions.map((option) => (
-                   <div key = {option.header.name}>
+                   <div className = "sett-item" key = {option.header.name}>
                         <h1>{option.header.name}</h1>
                         <div>
                             {option.values.map((value) => (
                             <div key={value.name}>
                                 <ul className = "list">
-                                    <li>
-                                        <h4>{value.name}</h4>
-                                        <p>{value.description}</p>
+                                    <li className = "sett-item">          
+                                    <h4>{value.name}</h4>
+                                    <p>{value.description}</p>
                                     </li>
                                 </ul>
                             </div>
