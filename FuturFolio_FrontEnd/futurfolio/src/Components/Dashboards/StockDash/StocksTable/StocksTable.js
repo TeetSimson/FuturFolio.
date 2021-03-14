@@ -22,7 +22,10 @@ export default class StocksTable extends Component {
                 </div>
 
                 <div className="TableBox">
-                        <Table />
+                        <Table 
+                            stocks={this.props.stocks}
+                            stockApi={this.props.stockApi}
+                        />
                 </div>
             </div>
         )

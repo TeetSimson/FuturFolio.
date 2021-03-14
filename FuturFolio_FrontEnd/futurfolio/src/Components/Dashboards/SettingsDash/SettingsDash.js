@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import './SettingsDash.css'
+import SettingsScreen from './SettingsScreen'
+
 
 export default class SettingsDash extends Component {
     render() {
         return (
-            <div>
-                <h1 className="Text">Settings</h1>
-            </div>
-        )
+            <SettingsScreen/>
+        );
     }
 }

@@ -15,7 +15,10 @@ export default class Dashboards extends Component {
                 :
                     (this.props.dashboard === 'StockDash'
                     ? 
-                        <StockDash />
+                        <StockDash 
+                            stocks={this.props.user.stocks}
+                            stockApi={this.props.user.stockApi}
+                        />
                     :
                         (this.props.dashboard === 'LoansDash'
                         ? 

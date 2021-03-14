@@ -21,7 +21,10 @@ export default class StockDash extends Component {
                     </div>
                 </div>
                 <div className="StocksPanel">
-                    <StocksTable />
+                    <StocksTable 
+                        stocks={this.props.stocks}
+                        stockApi={this.props.stockApi}
+                    />
                 </div>
             </div>
         )

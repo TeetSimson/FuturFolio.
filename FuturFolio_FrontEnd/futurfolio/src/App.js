@@ -15,10 +15,11 @@ const initialState = {
     id: '',
     name: '',
     email: '',
-    entries: 0,
     joined: '',
+    stocks: null,
     dashboard: 'Dashboard',
-    title: 'Dashboard'
+    title: 'Dashboard',
+    stockApi: null
   }
 }
 
@@ -26,6 +27,24 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = initialState;
+  }
+
+  // FETCHING STOCKS
+  componentDidMount() {
+    fetch("http://localhost:5000/stocks/",{method:'post',credentials:"include"})
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        this.setState(Object.assign(this.state.user, { stocks: data}))
+        /*this.setState({ users: data.results });*/
+      }); // Catch
+    fetch("http://localhost:5000/APIstocks/allData",{method:'post',credentials:"include"})
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      this.setState(Object.assign(this.state.user, { StockApi: data}))
+      /*this.setState({ users: data.results });*/
+    }); // Catch
   }
 
   // Functions to change Dashboards
@@ -63,7 +82,7 @@ export default class App extends Component {
   onRouteChange = (route) => {
     if (route === 'signout') {
       this.setState(initialState) // If user is not signed in clear state
-    } else if (route === 'home') {
+    } else if (route === 'dashboard') {
       this.setState({isSignedIn: true})
     }
     this.setState({route: route});
@@ -76,7 +95,7 @@ export default class App extends Component {
 
     return (
       <div>
-      { route === 'home' // If we are on "home" page
+      { route === 'dashboard' // If we are on "home" page
       ?  <div className="App">
           <Sidebar 
             DashChangeDash={this.DashChangeDash} // Sending functions to sidebar buttons
@@ -86,6 +105,7 @@ export default class App extends Component {
             />
           <Dashboards 
             dashboard={this.state.user.dashboard} // Sending which dashboard to display
+            user={this.state.user} // Sending user data
           />
           <Topbar 
             DashChangeProfile={this.DashChangeProfile}
