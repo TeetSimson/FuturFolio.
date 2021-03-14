@@ -35,3 +35,4 @@ mongoose.connect(process.env.MDB_CONNECT, {
 app.use("/auth", require("./routers/userRouter"));
 app.use("/stocks", require("./routers/stockRouter"));
 app.use("/APIstocks", require("./API_stock_call/stocks_API"));
+app.use("/APIstocks", require("./API_stock_call/Mstocks_API.js"));
