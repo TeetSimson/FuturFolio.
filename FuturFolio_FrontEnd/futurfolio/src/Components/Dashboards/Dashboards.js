@@ -19,25 +19,19 @@ export default class Dashboards extends Component {
         token: this.props.user.token,
     })
         .then((data) => {
-        console.log(data);
-        this.setState({ stocks: data });
-        }).catch(
-            console.log("Error getting user stocks!")
-        );
+        this.setState({ stocks: data.data });
+        }).catch(err => console.log(err));
+
 
     Axios.post("http://localhost:5000/APIstocks/allData",{
         token: this.props.user.token,
     })
     .then((data) => {
-        console.log(data);
         this.setState({ stockApi: data });
-    }).catch(
-        console.log("Error fetching API")
-    )
+    }).catch(err => console.log(err));
     }
 
     render() {
-        console.log(this.state.stocks + "??????");
         return (
             <div className="background"> {/* On which Dashboard */}
                 {this.props.dashboard === 'Dashboard'
