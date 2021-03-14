@@ -16,66 +16,47 @@ const initialState = {
     name: '',
     email: '',
     joined: '',
-    stocks: null,
-    dashboard: 'Dashboard',
-    title: 'Dashboard',
-    stockApi: null
-  }
+    token: null
+  },
+  dashboard: 'Dashboard',
+  title: 'Dashboard',
 }
 
 export default class App extends Component {
   constructor() {
-    super();
+    super()
     this.state = initialState;
-  }
-
-  // FETCHING STOCKS
-  componentDidMount() {
-    fetch("http://localhost:5000/stocks/",{method:'post',credentials:"include"})
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        this.setState(Object.assign(this.state.user, { stocks: data}))
-        /*this.setState({ users: data.results });*/
-      }); // Catch
-    fetch("http://localhost:5000/APIstocks/allData",{method:'post',credentials:"include"})
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      this.setState(Object.assign(this.state.user, { StockApi: data}))
-      /*this.setState({ users: data.results });*/
-    }); // Catch
   }
 
   // Functions to change Dashboards
   DashChangeDash = () => {
-    this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
-    this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
+    this.setState(Object.assign(this.state, { dashboard: 'Dashboard'}))
+    this.setState(Object.assign(this.state, { title: 'Dashboard'}))
   }
 
   DashChangeStock = () => {
-    this.setState(Object.assign(this.state.user, { dashboard: 'StockDash'}))
-    this.setState(Object.assign(this.state.user, { title: 'Stocks'}))
+    this.setState(Object.assign(this.state, { dashboard: 'StockDash'}))
+    this.setState(Object.assign(this.state, { title: 'Stocks'}))
   }
 
   DashChangeLoans = () => {
-    this.setState(Object.assign(this.state.user, { dashboard: 'LoansDash'}))
-    this.setState(Object.assign(this.state.user, { title: 'Loans'}))
+    this.setState(Object.assign(this.state, { dashboard: 'LoansDash'}))
+    this.setState(Object.assign(this.state, { title: 'Loans'}))
   }
 
   DashChangeRealEstate = () => {
-    this.setState(Object.assign(this.state.user, { dashboard: 'RealEstateDash'}))
-    this.setState(Object.assign(this.state.user, { title: 'Real Estate'}))
+    this.setState(Object.assign(this.state, { dashboard: 'RealEstateDash'}))
+    this.setState(Object.assign(this.state, { title: 'Real Estate'}))
   }
 
   DashChangeProfile = () => {
-    this.setState(Object.assign(this.state.user, { dashboard: 'ProfileDash'}))
-    this.setState(Object.assign(this.state.user, { title: 'Profile'}))
+    this.setState(Object.assign(this.state, { dashboard: 'ProfileDash'}))
+    this.setState(Object.assign(this.state, { title: 'Profile'}))
   }
 
   DashChangeSettings = () => {
-    this.setState(Object.assign(this.state.user, { dashboard: 'SettingsDash'}))
-    this.setState(Object.assign(this.state.user, { title: 'Settings'}))
+    this.setState(Object.assign(this.state, { dashboard: 'SettingsDash'}))
+    this.setState(Object.assign(this.state, { title: 'Settings'}))
   }
 
   // Route changes
@@ -84,10 +65,16 @@ export default class App extends Component {
       this.setState(initialState) // If user is not signed in clear state
     } else if (route === 'dashboard') {
       this.setState({isSignedIn: true})
+      this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
+      this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
     }
     this.setState({route: route});
   }
 
+  loadUser = (user) => {
+    this.setState(Object.assign(this.state.user, { id: user.id}))
+    this.setState(Object.assign(this.state.user, { token: user.data.token}))
+  }
 
   // RENDERING STARTS
   render() {
@@ -95,7 +82,7 @@ export default class App extends Component {
 
     return (
       <div>
-      { route === 'dashboard' // If we are on "home" page
+      { isSignedIn && route === 'dashboard' // If we are on "home" page
       ?  <div className="App">
           <Sidebar 
             DashChangeDash={this.DashChangeDash} // Sending functions to sidebar buttons
@@ -104,17 +91,17 @@ export default class App extends Component {
             DashChangeRealEstate={this.DashChangeRealEstate}
             />
           <Dashboards 
-            dashboard={this.state.user.dashboard} // Sending which dashboard to display
+            dashboard={this.state.dashboard} // Sending which dashboard to display
             user={this.state.user} // Sending user data
           />
           <Topbar 
             DashChangeProfile={this.DashChangeProfile}
             DashChangeSettings={this.DashChangeSettings}
-            title={this.state.user.title}
+            title={this.state.title}
             /> 
         </div>
       :  // Else if we are on "profile" page
-        route === 'profile' 
+        isSignedIn && route === 'profile' 
           ? <ProfileScreen />
 
       : ( // Else if we are on "signin" page

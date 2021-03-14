@@ -25,6 +25,11 @@ class Signin extends React.Component {
             password: this.state.signInPassword
         }).then(response => {
             console.log(response);
+            if (response.data.userID != null) {
+                this.props.loadUser(response); // If user registration was successful then load app with this user account
+                this.props.onRouteChange('dashboard');
+                localStorage.setItem("token", response.data.token);
+            }
         });
         
         /*  fetch('http://localhost:5000/auth/signin', { // Check with the server does the user exist
