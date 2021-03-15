@@ -49,6 +49,7 @@ export default class Topbar extends Component {
                 <NavItem icon={<ProfileIcon />}>
                     {/*Dropdown goes here*/}
                     <DropdownMenu 
+                        LogOut={this.props.LogOut}
                         DashChangeProfile={this.props.DashChangeProfile}
                         DashChangeSettings={this.props.DashChangeSettings}
                         />

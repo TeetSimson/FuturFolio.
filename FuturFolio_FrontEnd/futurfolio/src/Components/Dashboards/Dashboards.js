@@ -6,22 +6,7 @@ import SettingsDash from './SettingsDash/SettingsDash';
 import Axios from 'axios';
 
 export default class Dashboards extends Component {
-    constructor() {
-        super()
-        this.state = {
-            stocks: null,
-            stockApi: null
-        };
-      }
-        // FETCHING STOCKS
-    componentDidMount() {
-    Axios.post("http://localhost:5000/stocks/",{
-        token: localStorage.getItem("token"),
-    })
-        .then((data) => {
-        this.setState({ stocks: data.data });
-        }).catch(err => console.log(err));
-    }
+    
 
     render() {
         return (
@@ -33,7 +18,7 @@ export default class Dashboards extends Component {
                     (this.props.dashboard === 'StockDash'
                     ? 
                         <StockDash 
-                            stocks={this.state.stocks}
+                            stocks={this.props.user.stocks}
                         />
                     :
                         (this.props.dashboard === 'LoansDash'

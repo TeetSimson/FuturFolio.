@@ -1,5 +1,6 @@
 import React from 'react';
 import './Register';
+import Axios from 'axios';
 
 class Register extends React.Component {
     constructor(props) {
@@ -24,6 +25,20 @@ class Register extends React.Component {
     }
 
     onSubmitSignIn = () => {
+        Axios.post("http://localhost:5000/auth/register", {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+        }).then(response => {
+            console.log("NEW USER!")
+            console.log(response);
+        });
+            /* if (response.data.auth === true) {
+                this.props.loadUser(response); // If user registration was successful then load app with this user account
+                this.props.onRouteChange('dashboard');
+                localStorage.setItem("token", response.data.token);
+            }
+        }); */
         /* fetch('http://localhost:3000/register', {  // Send inputs to database through server as json with POST
             method: 'post',
             headers: {'Content-Type': 'application/json'},

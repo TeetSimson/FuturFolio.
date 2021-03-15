@@ -114,11 +114,13 @@ export default function DropdownMenu(props){ //dropdownmenu function
                     </DropdownItem>
 
                     {/*adds an item called Log Out*/}
-                    <DropdownItem
-                    leftIcon={<PowerIcon />}
-                    >
-                        Log Out
-                    </DropdownItem>
+                    <div onClick={props.LogOut}>
+                        <DropdownItem
+                        leftIcon={<PowerIcon />}
+                        >
+                            Log Out
+                        </DropdownItem>
+                    </div>
                 </div>
             </CSSTransition>
 

@@ -16,6 +16,7 @@ const initialState = {
     name: '',
     email: '',
     joined: '',
+    stocks: null
   },
   dashboard: 'Dashboard',
   title: 'Dashboard'
@@ -75,6 +76,15 @@ export default class App extends Component {
     this.setState(Object.assign(this.state.user, { token: user.data.token}))
   }
 
+  setUserStocks = (data) => {
+    this.setState(Object.assign(this.state.user, { stocks: data}))
+  }
+
+  LogOut = () => {
+    localStorage.clear();
+    this.setState(initialState);
+  }
+
   // RENDERING STARTS
   render() {
     const { isSignedIn, route } = this.state; // so we don´t have to do this.state.isSignedIN
@@ -94,6 +104,7 @@ export default class App extends Component {
             user={this.state.user} // Sending user data
           />
           <Topbar 
+            LogOut={this.LogOut}
             DashChangeProfile={this.DashChangeProfile}
             DashChangeSettings={this.DashChangeSettings}
             title={this.state.title}
@@ -105,7 +116,7 @@ export default class App extends Component {
 
       : ( // Else if we are on "signin" page
         route === 'signin' 
-          ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> // If on "signin" page
+          ? <Signin loadUser={this.loadUser} setUserStocks={this.setUserStocks} onRouteChange={this.onRouteChange}/> // If on "signin" page
           : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> // If on "register" page
         )
       
