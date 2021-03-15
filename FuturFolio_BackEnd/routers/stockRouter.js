@@ -6,8 +6,6 @@ router.post("/", auth, async (req,res) => {
 	try{
 
 		/*const {email} = req.body;*/
-
-
 		const userDetails = await User.findById(req.user);
 
 		const stocksList = await userDetails.stocks ;

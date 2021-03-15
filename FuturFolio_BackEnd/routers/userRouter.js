@@ -49,7 +49,7 @@ router.post("/register", async (req,res) => {
 	process.env.JWT_SECRET
 	);
 
-	//send the toke
+	//send the token
 
 	res.cookie("token",token,{
 		httpOnly:true,
@@ -104,14 +104,6 @@ router.post("/signin", async (req,res) => {
 				});
 			});
 		});
-		/* res.cookie("token",token,{
-			httpOnly: true,
-		}); */
-
-		/* .header(
-			"Access-Control-Allow-Headers",
-			"x-access-token, Origin, Content-Type, Accept"
-		  ).send("ok"); */
 
 	}catch (err){
 		console.error(err);
