@@ -77,6 +77,7 @@ export default class App extends Component {
   }
 
   setUserStocks = (data) => {
+    console.log(data);
     this.setState(Object.assign(this.state.user, { stocks: data}))
   }
 
