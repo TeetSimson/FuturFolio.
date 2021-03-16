@@ -15,22 +15,22 @@ const API_KEY="NNL94ZONNPS8XSPS";
 
 router.post('/updateJSON', async (req, res) => {
   var mergedJSON = [];
+  console.log(req.body.stocks);
+  let stocks = req.body.stocks;
 
-
-  async function update(mergedJSON)
+  async function update(stocks, mergedJSON)
   {
-    var JSONsList = req.body.data.stocks;
-    JSONsList = JSON.parse(JSONsList);
-
-
-    for (var item of JSONsList)
+    // var JSONsList = stocks;
+    // JSONsList = JSON.parse(JSONsList);
+    for (var item of stocks)
     {
-      stockName = item['stockName'];
-      API_call=`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${stockName}&outputsize=full&apikey=${API_KEY}`;
+      console.log(item.stockName + "===========");
+      StockName = item.stockName;
+      API_call=`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockName}&outputsize=full&apikey=${API_KEY}`;
 
       try{
         var response = await fetch(API_call);
-        jsonBlock = await response.text().json();
+        //jsonBlock = await response.text().json();
         /*
         fetch(API_call)
             .then(res => res.json())
@@ -38,7 +38,7 @@ router.post('/updateJSON', async (req, res) => {
                 res.json(text);
               });
         */
-        mergedJSON.append(jsonBlock);
+        mergedJSON.append(res);
       } catch (e){
         console.log('Ohh oh');
         console.error(e);
@@ -47,7 +47,7 @@ router.post('/updateJSON', async (req, res) => {
     //res.json(mergedJSON);
   }
 
-  res.json(update(mergedJSON));
+  res.json(update(stocks, mergedJSON));
 })
 
 module.exports = router;
