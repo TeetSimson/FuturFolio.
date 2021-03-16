@@ -36,6 +36,7 @@ app.use(function(req, res, next) {
 mongoose.connect(process.env.MDB_CONNECT, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
 }, (err) =>{
 	if (err) return console.error(err);
 	console.log("Connected to MongoDB")
@@ -45,5 +46,6 @@ mongoose.connect(process.env.MDB_CONNECT, {
 
 app.use("/auth", require("./routers/userRouter"));
 app.use("/stocks", require("./routers/stockRouter"));
+app.use("/userProfile", require("./routers/userDetailsRouter"))
 app.use("/APIstocks", require("./API_stock_call/stocks_API"));
 app.use("/APIstocks", require("./API_stock_call/Mstocks_API.js"));
