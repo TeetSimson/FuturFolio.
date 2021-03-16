@@ -29,7 +29,7 @@ router.post("/register", async (req,res) => {
 		return res.status(400).json({errorMessage : "An account with this email address already exists"});
 
 	// hash the password
-
+	// WE NEED PEPPER
 	const salt = await bcrypt.genSalt();
 	const passwordHash = await bcrypt.hash(password, salt);
 
