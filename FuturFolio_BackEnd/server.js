@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*"); // dont leave *
 	res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Auth-Token");
 	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-	
+
 	next();
   });
 
@@ -49,3 +49,4 @@ app.use("/stocks", require("./routers/stockRouter"));
 app.use("/userProfile", require("./routers/userDetailsRouter"))
 app.use("/APIstocks", require("./API_stock_call/stocks_API"));
 app.use("/APIstocks", require("./API_stock_call/Mstocks_API.js"));
+app.use("/APIstocks", require("./API_stock_call/stocks_update.js"));
