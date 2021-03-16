@@ -1,5 +1,19 @@
 import React, { Component, useState } from 'react'
 import './SettingsDash.css'
+import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
+import { ReactComponent as PasswordIcon } from './Icons/passwordIcon.svg';
+import { ReactComponent as CloseIcon } from './Icons/closeIcon.svg';
+import { ReactComponent as LanguageIcon } from './Icons/languageIcon.svg';
+import { ReactComponent as LocationIcon } from './Icons/locationIcon.svg';
+import { ReactComponent as CurrencyIcon } from './Icons/currencyIcon.svg';
+import { ReactComponent as AppearanceIcon } from './Icons/appearanceIcon.svg';
+import { ReactComponent as BackgroundIcon } from './Icons/backgroundIcon.svg';
+import { ReactComponent as HelpIcon } from './Icons/helpIcon.svg';
+import { ReactComponent as FAQIcon } from './Icons/faqIcon.svg';
+import { ReactComponent as ContactIcon } from './Icons/contactIcon.svg';
+import { ReactComponent as ReportIcon } from './Icons/reportIcon.svg';
+import { ReactComponent as InfoIcon } from './Icons/infoIcon.svg';
+
 
 export default function SettingsScreen(){
     const options = [
@@ -12,17 +26,20 @@ export default function SettingsScreen(){
                 {
                     name: "Profile",
                     description: "Edit your profile settings",
-                    tags: ["name", "account", "profile", "email"]
+                    tags: ["name", "account", "profile", "email"],
+                    icon: <ProfileIcon/>
                 },
                 {
                     name: "Password",
                     description: "Change your password",
-                    tags: ["password"]
+                    tags: ["password"],
+                    icon: <PasswordIcon/>
                 },
                 {
                     name: "Close Account",
                     description: "Warning: Closing your account is irreversible",
-                    tags: ["delete", "close", "remove"]
+                    tags: ["delete", "close", "remove"],
+                    icon: <CloseIcon/>
                 },
             ]
         },
@@ -36,12 +53,14 @@ export default function SettingsScreen(){
                 {
                     name: "Language",
                     description: "Change your language",
-                    tags: ["language"]
+                    tags: ["language"],
+                    icon: <LanguageIcon/>
                 },
                 {
                     name: "Location",
                     description: "Change your location",
-                    tags: ["location", "country"]
+                    tags: ["location", "country"],
+                    icon: <LocationIcon/>
                 },
             ]
         },
@@ -55,7 +74,8 @@ export default function SettingsScreen(){
                 {
                     name: "Currency Settings",
                     description: "Change which currency you want to view",
-                    tags: ["currency", "money"]
+                    tags: ["currency", "money"],
+                    icon: <CurrencyIcon/>
                 }
             ]
         },
@@ -69,12 +89,14 @@ export default function SettingsScreen(){
                 {
                     name: "Theme",
                     description: "Change the theme of Futurfolio.",
-                    tags: ["appearance", "theme"]
+                    tags: ["appearance", "theme"],
+                    icon: <AppearanceIcon/>
                 },
                 {
                     name: "Background",
                     description: "Change the background of Futurfolio.",
-                    tags: ["appearance", "background"]
+                    tags: ["appearance", "background"],
+                    icon: <BackgroundIcon/>
                 }
             ]
         },
@@ -87,23 +109,27 @@ export default function SettingsScreen(){
             values:[
                 {
                     name: "Help",
-                    description: "Having trouble",
-                    tags: ["help", "problems"]
+                    description: "Having trouble? Check here to see what could be going wrong",
+                    tags: ["help", "problems"],
+                    icon: <HelpIcon/>
                 },
                 {
                     name: "FAQ",
                     description: "View our frequently asked questions",
-                    tags: ["help", "questions"]
+                    tags: ["help", "questions"],
+                    icon: <FAQIcon/>
                 },
                 {
                     name: "Contact us",
                     description: "Contact our support team, offer limited to premium users",
-                    tags: ["help", "contact", "support"]
+                    tags: ["help", "contact", "support"],
+                    icon: <ContactIcon/>
                 },
                 {
                     name: "Report an issue",
                     description: "Report whats not working well, so we can fix it",
-                    tags: ["report", "problem", "issue"]
+                    tags: ["report", "problem", "issue"],
+                    icon: <ReportIcon/>
                 },
     
             ]
@@ -118,7 +144,8 @@ export default function SettingsScreen(){
                 {
                     name: "Information",
                     description: "Information of Futurfolio.",
-                    tags: ["about", "Futurfolio"]
+                    tags: ["about", "Futurfolio"],
+                    icon: <InfoIcon/>
                 }
             ]
         },
@@ -182,9 +209,14 @@ export default function SettingsScreen(){
                             {option.values.map((value) => (
                             <div key={value.name}>
                                 <ul className = "list">
-                                    <li className = "sett-item">          
-                                    <h4>{value.name}</h4>
-                                    <p>{value.description}</p>
+                                    <li className = "sett-item">
+                                        <div className = "sett-content">
+                                            <h2>{value.name}</h2>
+                                            <h4>{value.description}</h4>
+                                        </div>          
+                                        <div className = "SettIcon">
+                                            {value.icon}
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
