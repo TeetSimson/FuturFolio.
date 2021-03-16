@@ -32,3 +32,26 @@
 .sett-item :hover{
     background-color: #bbbbbb09;
 }
+
+.sett-content{
+	position: relative;
+	top: 25px;
+	left: 100px;
+}
+
+.SettIcon{
+	position: relative;
+	top: -50px;
+	left: 20px;
+	
+}
+
+
+.SettIcon svg {
+    fill: #000000;
+    width: 40px;
+    height: 40px;
+	background-color: #e3e5eb41;
+    border-radius: 15px;
+    padding: 8px;
+}
