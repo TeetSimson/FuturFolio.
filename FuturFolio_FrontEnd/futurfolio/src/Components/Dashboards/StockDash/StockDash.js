@@ -12,8 +12,10 @@ export default class StockDash extends Component {
         };
     }
 
+    // UPDATE STOCKS 
     componentDidMount() {
-        Axios.post("http://localhost:5000/APIstocks/allData",{
+        Axios.post("http://localhost:5000/APIstocks/updateJSON",{
+            stocks: this.props.stocks,
             token: localStorage.getItem("token"),
         })
         .then((data) => {
