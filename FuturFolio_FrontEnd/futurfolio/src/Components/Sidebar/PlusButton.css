@@ -1,8 +1,8 @@
 .Checkboxes {
     background-color: rgb(255, 255, 255);
     box-shadow: ;
-    width: 6vw;
-    height: 12vh;
+    width: 8vw;
+    height: 13vh;
     position: fixed;
     border-radius: 8px;
     -webkit-box-shadow: 10px 10px 64px 0px rgba(0,0,0,0.15);
@@ -18,7 +18,8 @@ h3 {
 }
 
 label {
-    font-size: 18px;
+    font-size: 16px;
+    padding-left: 6px;
 }
 
 button {
