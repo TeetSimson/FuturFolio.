@@ -22,8 +22,4 @@ locationIcon.svg - Icon by Free Preloaders on freeicons.io
 
 advancedIcon.svg - Icon by Raj Dev on freeicons.io
                                 
-
-                                
-
-                                
-
+switchIcon.svg - Icon by MD Badsha Meah on freeicons.io

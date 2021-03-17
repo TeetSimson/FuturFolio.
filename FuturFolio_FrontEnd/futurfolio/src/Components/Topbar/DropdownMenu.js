@@ -11,6 +11,7 @@ import { ReactComponent as AppearanceIcon } from './Icons/appearanceIcon.svg';
 import { ReactComponent as LanguageIcon } from './Icons/languageIcon.svg';
 import { ReactComponent as LocationIcon } from './Icons/locationIcon.svg';
 import { ReactComponent as AdvancedIcon } from './Icons/advancedIcon.svg';
+import { ReactComponent as SwitchIcon } from './Icons/switchIcon.svg';
 
 var name = "Elon Musk"; // A variable for profile name
 
@@ -112,6 +113,14 @@ export default function DropdownMenu(props){ //dropdownmenu function
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </p>
                     </DropdownItem>
+
+                    <div onClick={props.Switch}>
+                        <DropdownItem
+                        leftIcon={<SwitchIcon />}
+                        >
+                            Switch Account
+                        </DropdownItem>
+                    </div>
 
                     {/*adds an item called Log Out*/}
                     <div onClick={props.LogOut}>
