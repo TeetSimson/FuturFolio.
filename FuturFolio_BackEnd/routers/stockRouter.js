@@ -23,34 +23,64 @@ router.post("/", auth, async (req,res) => {
 router.post("/newStock", auth, async (req,res) => {
 	try{
 		const id = req.user;
-		const {stockName,amount,date,price,dividends} = req.body;
+		const {stockName,stockSymbol,amount,date,price,fees} = req.body;
 
-		if(!stockName||!amount||!date||!price||!dividends)
-			return res.status(400).json({errorMessage: "Please fill in all fields"});
+		if(!stockName||!stockSymbol||!amount||!date||!price||!fees)
+			return res.status(400).json({errorMessage: "Please fill in infromation!"});
+
+		if(stockName && stockSymbol && amount && (!date || !price))
+			return res.status(400).json({errorMessage: "Please fill in price and date"});
+
+		if(stockName && stockSymbol && (!amount||!date) && price)
+			return res.status(400).json({errorMessage: "Please fill in amount and date"});
+
 
 		const userDetails = await User.findById(id);
-
+		console.log("user found");
 		const stocksList = await userDetails.stocks;
-
+		console.log("user details found");
 		const existingStock = await stocksList.find(obj =>{
-			return obj.stockName === stockName ;
+			return obj.stockName === stockName;
 		});
 
-		if(existingStock)
-			return res.status(400).json({errorMessage : "You have already invested in this stock"});
+		await console.log("user stock check: ", existingStock);
+		if(existingStock) {
+			
+			var updateStock = {
+				"transactions": {
+					"amount": amount,
+					"date": date,
+					"price": price,
+					"fees": fees
+				}
+			};
 
-		var newStock = {
-			"stockName":stockName,
-			"amount":amount,
-			"date":date,
-			"price":price,
-			"dividends":dividends
-		};
+			await User.findByIdAndUpdate(
+				id,
+				{ $push: { stocks: updateStock } }
+				);
+			console.log("DONE");
+			return res.json({Message : "You have added an transaction"});
+		} else {
+			var newStock = {
+				"stockName": stockName,
+				"stockSymbol": stockSymbol,
+				"transactions": {
+					"amount": amount,
+					"date": date,
+					"price":price,
+					"fees": fees
+				},
+				"divTransactions" : [{
+					
+				}]
+			};
 
-		User.findByIdAndUpdate(
-			id,
-			{ $push: { stocks: newStock  } }
-			);
+			await User.findByIdAndUpdate(
+				id,
+				{ $push: { stocks: newStock  } }
+				);
+		}
 
 	}catch (err){
 		console.error(err);
