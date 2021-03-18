@@ -3,6 +3,8 @@ import Axios from 'axios';
 import './AddStockMenu.css';
 
 export default function AddStockMenu(props) {
+    const [Buy, setBuy] = useState(true); 
+    
     // Add stock
     const [Ticker, setTicker] = useState(''); 
     const [Transaction, setTransaction] = useState('');
@@ -19,8 +21,11 @@ export default function AddStockMenu(props) {
         setTicker(event.target.value);
     }
 
-    function onTransactionChange(event) {
-        setTransaction(event.target.value);
+    function onTransactionChange() {
+        console.log("Change");
+        let date = document.getElementById("TransactionDate").value;
+        console.log(date);
+        setTransaction(date);
     }
 
     function onAmountChange(event) {
@@ -48,36 +53,64 @@ export default function AddStockMenu(props) {
         setDivAmount(event.target.value);
     }
 
+    function onBuyChange() {
+        setBuy(true);
+    }
+
+    function onSellChange() {
+        setBuy(false);
+    }
+
     function onSubmitData() {
         if (Ticker != '') {
-            Axios.post("http://localhost:5000/APIstocks/SearchYahoo",{
-            stocks: Ticker,
-            token: localStorage.getItem("token"),
-            })
-            .then((data) => {
-                console.log(data.data.ResultSet.Result[0].name);
-                console.log(data.data.ResultSet.Result[0].symbol);
-
-                // ADDING transaction to database
-                Axios.post("http://localhost:5000/stocks/newStock",{
-                    stockName: console.log(data.data.ResultSet.Result[0].name),
-                    amount: Amount,
-                    date: Transaction,
-                    price: Price,
+            if (Buy === true) {
+                Axios.post("http://localhost:5000/APIstocks/SearchYahoo",{
+                    stocks: Ticker,
                     token: localStorage.getItem("token"),
                 })
-                .then(() => {
-                    console.log("Data added to database!")
+                .then((data) => {
+                    console.log(data.data.ResultSet.Result[0].name);
+                    console.log(data.data.ResultSet.Result[0].symbol);
+
+                    console.log(Transaction);
+                    console.log(Price);
+                    // ADDING transaction to database NEEDS WORKING
+                    Axios.post("http://localhost:5000/stocks/newStock",{
+                        stockName: data.data.ResultSet.Result[0].name,
+                        stockSymbol: data.data.ResultSet.Result[0].symbol,
+                        amount: Amount,
+                        date: Transaction,
+                        price: Price,
+                        fees: Fees,
+                        token: localStorage.getItem("token"),
+                    })
+                    .then(() => {
+                        console.log("Data added to database!")
+
+                    }).catch(err => {
+                        console.log(err)
+                        console.log("Database error")
+                    });
 
                 }).catch(err => {
                     console.log(err)
                     console.log("No such stock")
                 });
 
-            }).catch(err => {
-                console.log(err)
-                console.log("No such stock")
-            });
+            } else {
+                for (let i=0; i<props.Stocks.length; i++) {
+                    if (Ticker === props.Stocks[i].stockName) {
+                        console.log("Match");
+    
+                        // AXIOS ADD DIVIDEND TRANSACTION POST HERE
+    
+                    } else {
+                        console.log("Not found");
+                    }
+                }
+            }
+            
+            
         } else {
             console.log("User does not want to add stock")
         }
@@ -96,6 +129,16 @@ export default function AddStockMenu(props) {
         } else {
             console.log("User does not want to add dividends")
         }
+
+        setAmount(0);
+        setBuy(0);
+        setFees(0);
+        setTicker('');
+        setTransaction('');
+        setDivTicker('');
+        setDivTransaction('')
+        setDivAmount(0);
+        
     }
 
     return (
@@ -104,9 +147,35 @@ export default function AddStockMenu(props) {
                 ? 
                   <div className="AddStockPanel">
                     <div className="AddStocksForm">
-                        <p className="Title">Add Stock</p>
+                        <div className="SwitchBox">
+                            
+                            <div class="BuySellSwitch">
+                                <p className="Title">Add Transaction</p>
+                                <input type="radio" 
+                                id="BuyBtn" 
+                                name="TransactionBtn" 
+                                value="Buy"
+                                onChange={onBuyChange} 
+                                checked
+                                />
+                                <label for="BuyBtn"><p className="BuySwitchTitle">Buy</p></label>
+
+                                <input type="radio" 
+                                id="SellBtn" 
+                                name="TransactionBtn" 
+                                value="Sell"
+                                onChange={onSellChange} 
+                                />
+                                <label for="SellBtn"><p className="BuySwitchTitle">Sell</p></label>
+                            </div>
+                        </div>
+                        <datalist id="UserSellStocks">
+                            {props.Stocks.map(item => (
+                                <option value={item.stockName}/>
+                            ))}
+                        </datalist> 
                         <input className="AddStockInput"
-                        type="search"
+                        list="UserSellStocks"
                         name="StockName"
                         id="StockName"
                         placeholder="Ticker/name"
@@ -142,7 +211,7 @@ export default function AddStockMenu(props) {
                     </div>
 
                     <div className="AddStocksForm">
-                        <p className="Title">Add Dividends</p>
+                        <p className="Title NoMargin">Add Dividends</p>
                         <datalist id="UserStocks">
                             {props.Stocks.map(item => (
                                 <option value={item.stockName}/>
