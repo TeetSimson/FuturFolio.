@@ -70,27 +70,22 @@ class Signin extends React.Component {
                 <main>
                     <div className="SigninWindow">
                         <fieldset id="sign_up" className="SigninForm">
-                            <legend className="CaptionLabel">
-                            </legend>
+                            <p>Sign in</p>
                             <div>
-                                <label className="emailLabel" htmlFor="email-address">
-                                    Email
-                                </label>
-                                <input className="Email"
+                                <input className="RegisterInput"
                                     type="email"
                                     name="email-address"
                                     id="email-address"
+                                    placeholder="Email"
                                     onChange={this.onEmailChange} // Passing input to function to get the value
                                 />
                             </div>
                             <div>
-                                <label className="passwordLabel" htmlFor="password">
-                                    Password
-                                </label>
-                                <input className="Password"
+                                <input className="RegisterInput"
                                 type="password"
                                 name="password"
                                 id="password"
+                                placeholder="Password"
                                 onChange={this.onPasswordChange}
                                 />
                             </div>
