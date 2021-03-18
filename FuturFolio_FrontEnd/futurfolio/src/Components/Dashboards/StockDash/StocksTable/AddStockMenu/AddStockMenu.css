@@ -60,7 +60,7 @@
 .AddStockButton:hover {
     background: linear-gradient(0.55turn, rgb(0, 153, 255), rgba(2, 154, 255, 0.712) );
     color: white;
-    cursor: pointer;;
+    cursor: pointer;
 }
 
 #DivTransactionDate{
