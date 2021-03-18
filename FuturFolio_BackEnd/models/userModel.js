@@ -14,7 +14,9 @@ const userSchema = new mongoose.Schema({
 			amount : {type: Number},
 			date : {type : String},
 			price : {type : Number},
-			fees: {type: Number}
+			fees: {type: Number},
+			reinvested: {type: Number},
+			addReserve: {type: Number}
 		}],
 		divTransactions : [{
 			date: {type : String},

@@ -23,9 +23,79 @@ router.post("/", auth, async (req,res) => {
 router.post("/newStock", auth, async (req,res) => {
 	try{
 		const id = req.user;
-		const {stockName,stockSymbol,amount,date,price,fees} = req.body;
+		const {stockName,stockSymbol,amount,date,price,fees,reinvest} = req.body;
 
-		if(!stockName||!stockSymbol||!amount||!date||!price||!fees)
+		if(!stockName)
+			return res.status(400).json({errorMessage: "Please fill in infromation!"});
+
+		if(stockName && stockSymbol && amount && (!date || !price))
+			return res.status(400).json({errorMessage: "Please fill in price and date"});
+
+		if(stockName && stockSymbol && (!amount||!date) && price)
+			return res.status(400).json({errorMessage: "Please fill in amount and date"});
+
+
+		const userDetails = await User.findById(id);
+		const stocksList = await userDetails.stocks;
+		const existingStock = await stocksList.find(obj =>{
+			return obj.stockName === stockName;
+		});
+
+		console.log("user stock check: ", existingStock);
+		if(existingStock) {
+			
+			let updateStock = {
+				"transactions": {
+					"amount": amount,
+					"date": date,
+					"price": price,
+					"fees": fees,
+					"reinvested": reinvest
+				}
+			};
+
+			const Pushed = await User.findByIdAndUpdate(
+				id,
+				{ $push: { stocks: updateStock } }
+				);
+
+			return res.json({Message : "You have added an transaction"});
+
+		} else {
+
+			let newStock = {
+				"stockName": stockName,
+				"stockSymbol": stockSymbol,
+				"transactions": {
+					"amount": amount,
+					"date": date,
+					"price":price,
+					"fees": -fees,
+					"reinvested": reinvest
+				}
+			};
+			
+			const Pushed = await User.findByIdAndUpdate(
+				id,
+				{ $push: { stocks: newStock  } }
+				);
+
+			return res.json({Message : "You have added an transaction"});
+		}
+
+	}catch (err){
+		console.error(err);
+		res.status(500).send();
+	}
+});
+
+
+router.post("/stockSell", auth, async (req,res) => {
+	try{
+		const id = req.user;
+		const {stockName,stockSymbol,amount,date,price,fees,reserve} = req.body;
+
+		if(!stockName)
 			return res.status(400).json({errorMessage: "Please fill in infromation!"});
 
 		if(stockName && stockSymbol && amount && (!date || !price))
@@ -43,43 +113,31 @@ router.post("/newStock", auth, async (req,res) => {
 			return obj.stockName === stockName;
 		});
 
-		await console.log("user stock check: ", existingStock);
+		console.log("user stock check: ", existingStock);
 		if(existingStock) {
 			
-			var updateStock = {
+			const updateStock = {
 				"transactions": {
-					"amount": amount,
+					"amount": -amount,
 					"date": date,
 					"price": price,
-					"fees": fees
+					"fees": -fees,
+					"addReserve": reserve
 				}
 			};
 
-			await User.findByIdAndUpdate(
-				id,
-				{ $push: { stocks: updateStock } }
-				);
+			const options = { upsert: true };
+			const filter = { stockName: stockName };
+			const result = await User.findById(id).updateOne(filter, updateStock, options);
+
+			/* const Pushed = await User.findById(id).findOneAndUpdate()(
+				filter,
+				{ $push: { stocksName: updateStock } }
+				); */
 			console.log("DONE");
 			return res.json({Message : "You have added an transaction"});
 		} else {
-			var newStock = {
-				"stockName": stockName,
-				"stockSymbol": stockSymbol,
-				"transactions": {
-					"amount": amount,
-					"date": date,
-					"price":price,
-					"fees": fees
-				},
-				"divTransactions" : [{
-					
-				}]
-			};
-
-			await User.findByIdAndUpdate(
-				id,
-				{ $push: { stocks: newStock  } }
-				);
+			return res.json({Message : "Can´t sell a stock You don´t have"});
 		}
 
 	}catch (err){
