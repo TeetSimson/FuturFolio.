@@ -66,8 +66,8 @@ export default class App extends Component {
       this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
       this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
       this.setState({route: route});
-    } else {
-      console.log("Error on route change")
+    } else if (route=== 'register') {
+      this.setState({route: route});
     }
   }
 
