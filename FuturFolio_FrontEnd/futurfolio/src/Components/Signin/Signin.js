@@ -70,7 +70,7 @@ class Signin extends React.Component {
                 <main>
                     <div className="SigninWindow">
                         <fieldset id="sign_up" className="SigninForm">
-                            <p>Sign in</p>
+                            <p className = "title">Sign In</p>
                             <div>
                                 <input className="RegisterInput"
                                     type="email"
