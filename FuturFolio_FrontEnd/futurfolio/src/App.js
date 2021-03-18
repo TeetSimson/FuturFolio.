@@ -61,14 +61,14 @@ export default class App extends Component {
 
   // Route changes
   onRouteChange = (route) => {
-    if (route === 'signout') {
-      this.setState(initialState) // If user is not signed in clear state
-    } else if (route === 'dashboard') {
+    if (route === 'dashboard') {
       this.setState({isSignedIn: true})
       this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
       this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
+      this.setState({route: route});
+    } else {
+      console.log("Error on route change")
     }
-    this.setState({route: route});
   }
 
   loadUser = (user) => {

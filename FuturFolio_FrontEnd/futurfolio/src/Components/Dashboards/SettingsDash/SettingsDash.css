@@ -14,7 +14,6 @@
 	max-width: 60%;
 	box-sizing: border-box;
 	margin: 0;
-	backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.178);
 	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
 	border-radius: .5em;
@@ -23,7 +22,6 @@
 
 .sett-item{
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
-    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.178);
     border-radius: 20px;
     padding: 1rem;

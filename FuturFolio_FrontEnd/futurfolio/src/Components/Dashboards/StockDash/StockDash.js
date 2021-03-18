@@ -13,7 +13,7 @@ export default class StockDash extends Component {
     }
 
     // UPDATE STOCKS 
-    componentDidMount() {
+    /* componentDidMount() {
         Axios.post("http://localhost:5000/APIstocks/updateJSON",{
             stocks: this.props.stocks,
             token: localStorage.getItem("token"),
@@ -22,7 +22,7 @@ export default class StockDash extends Component {
             console.log(data.data);
             this.setState({ stockApi: data });
         }).catch(err => console.log(err));
-    }
+    } */
 
     render() {
         return (
@@ -40,7 +40,7 @@ export default class StockDash extends Component {
 
                     </div>
                 </div>
-                <div className="StocksPanel">
+                <div id="StocksPanelID" className="StocksPanel">
                     <StocksTable 
                         stocks={this.props.stocks}
                         stockApi={this.props.stockApi}
