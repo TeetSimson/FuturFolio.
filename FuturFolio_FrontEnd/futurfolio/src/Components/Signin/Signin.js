@@ -39,9 +39,9 @@ class Signin extends React.Component {
                     this.props.setUserStocks(data.data);
 
                     }).catch(err => console.log(err));
-                
+
         });
-        
+
         /*  fetch('http://localhost:5000/auth/signin', { // Check with the server does the user exist
             method: 'post',
             headers: {'Content-Type': 'application/json'},
@@ -52,7 +52,7 @@ class Signin extends React.Component {
             credentials: "include"
         })
             .then(response => console.log(response.json()))
-                
+
             .then(data => {
                 console.log(data);
                /*  if (data) { // "user.id" cannot be empty list but just "user" can and would always return true
@@ -68,12 +68,12 @@ class Signin extends React.Component {
         return(
             <article>
                 <main>
-                    <div className="Window">
-                        <fieldset id="sign_up" className="Form">
+                    <div className="SigninWindow">
+                        <fieldset id="sign_up" className="SigninForm">
                             <legend className="CaptionLabel">
                             </legend>
                             <div>
-                                <label className="Label" htmlFor="email-address">
+                                <label className="emailLabel" htmlFor="email-address">
                                     Email
                                 </label>
                                 <input className="Email"
@@ -84,7 +84,7 @@ class Signin extends React.Component {
                                 />
                             </div>
                             <div>
-                                <label className="Label" htmlFor="password">
+                                <label className="passwordLabel" htmlFor="password">
                                     Password
                                 </label>
                                 <input className="Password"
