@@ -31,7 +31,7 @@ export default class Dashboards extends Component {
                             :
                                 (this.props.dashboard === 'ProfileDash'
                                 ? 
-                                    <ProfileDash />
+                                    <ProfileDash DashChangeSettings={this.props.DashChangeSettings}/>
                                 :
                                     (this.props.dashboard === 'SettingsDash'
                                     ? 

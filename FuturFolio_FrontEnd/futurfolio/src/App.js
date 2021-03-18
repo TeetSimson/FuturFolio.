@@ -101,6 +101,7 @@ export default class App extends Component {
             DashChangeRealEstate={this.DashChangeRealEstate}
             />
           <Dashboards 
+            DashChangeSettings={this.DashChangeSettings}
             dashboard={this.state.dashboard} // Sending which dashboard to display
             user={this.state.user} // Sending user data
           />

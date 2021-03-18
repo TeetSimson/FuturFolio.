@@ -12,8 +12,8 @@ export default class ProfileScreen extends Component{
     Settings(props){
         function Profsetbutton(props){//settings button
             return(
-                <div className="profsetitem" onClick={props.DashChangeSettings}>
-                    <a href="#" className = "profsetbutton" >
+                <div className="profsetitem">
+                    <a href="#" className = "profsetbutton" onClick={props.DashChangeSettings}>
                     <span className="leftIcon">{props.leftIcon}</span>{/*Icon on the left*/}
                         {props.children}
                     </a>
@@ -22,7 +22,7 @@ export default class ProfileScreen extends Component{
         }
         return(
                 <div>
-                    <Profsetbutton 
+                    <Profsetbutton DashChangeSettings={props.DashChangeSettings}
                         leftIcon={<CogIcon />}
                         >
                         Profile Settings
@@ -35,7 +35,7 @@ export default class ProfileScreen extends Component{
     nameInfo(){
         const name = "Elon Musk";
         return(
-            <div className = "Name"><h1>{name}</h1></div>  
+            <div className="Name"><h1>{name}</h1></div>  
         );
     }
 
@@ -102,13 +102,13 @@ export default class ProfileScreen extends Component{
                     </div>
                    
                     <div>
-                        <div class="Credentials">
-                            <div class ="Column"><this.email/></div>
-                            <div class ="Column"><this.location/></div>
-                            <div class ="Column"><this.friends/></div>
+                        <div className="Credentials">
+                            <div className="Column"><this.email/></div>
+                            <div className="Column"><this.location/></div>
+                            <div className="Column"><this.friends/></div>
                         </div>
                         <div>
-                            <div class="Acheivements">
+                            <div className="Acheivements">
                                 <h1>Acheivements</h1>
                             </div>
                         </div>
