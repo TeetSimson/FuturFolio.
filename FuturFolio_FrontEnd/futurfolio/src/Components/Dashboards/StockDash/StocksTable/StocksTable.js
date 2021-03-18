@@ -16,14 +16,14 @@ export default class StocksTable extends Component {
     AddStockClick = () => {
         // Have to disable scale because absolute add stock panel not scaling properly
         if (this.state.Scale === true) {
-            document.getElementById("AddStockMenuShowBtn").innerHTML = "Close";
+            document.getElementById("AddStockMenuShowBtn").textContent = "Close";
             document.getElementById("StocksPanelID").style.transform = "scale(1)";
             document.getElementById("TableBox").style.zIndex = "0";
             this.setState({Scale: false});
             
         } else {
             // Removing the temporary style which disabled the scale
-            document.getElementById("AddStockMenuShowBtn").innerHTML = "Add +";
+            document.getElementById("AddStockMenuShowBtn").textContent = "Add +";
             document.getElementById("StocksPanelID").style.transform = null;
             document.getElementById("TableBox").style.zIndex = "2";
             this.setState({Scale: true});

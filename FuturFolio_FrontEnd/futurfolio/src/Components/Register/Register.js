@@ -65,38 +65,31 @@ class Register extends React.Component {
                 <main className="RegisterWindow">
                     <div className="InnerForm">
                         <fieldset id="sign_up" className="RegisterForm">
-                            <legend className="CaptionLabel">
-                            </legend>
+                            <p>Register</p>
                             <div className="mt3">
-                                <label className="nameLabel" htmlFor="name">
-                                    Full Name
-                                </label>
-                                <input className="Name"
+                                <input className="RegisterInput"
                                 type="text"
                                 name="name"
                                 id="name"
+                                placeholder="Full Name"
                                 onChange={this.onNameChange} // Passing input to function to get the value
                                 />
                             </div>
                             <div className="mt3">
-                                <label className="email2Label" htmlFor="email-address">
-                                    Email
-                                </label>
-                                <input className="Email2"
+                                <input className="RegisterInput"
                                 type="email"
                                 name="email-address"
                                 id="email-address"
+                                placeholder="Email"
                                 onChange={this.onEmailChange}
                                 />
                             </div>
-                            <div>
-                                <label className="password2Label" htmlFor="password">
-                                    Password
-                                </label>
-                                <input className="Password2"
+                            <div className="mt3">
+                                <input className="RegisterInput"
                                 type="password"
                                 name="password"
                                 id="password"
+                                placeholder="Password"
                                 onChange={this.onPasswordChange}
                                 />
                             </div>

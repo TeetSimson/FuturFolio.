@@ -142,3 +142,18 @@ body {
   float: left;
   margin-top: 50px;
 }
+
+.RegisterInput {
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 25px;
+    text-shadow: 5px 5px 20px rgba(31, 31, 31, 0.308);
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 10px;
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 10px 10px 44px -6px rgba(0, 0, 0, 0.151);
+
+}
