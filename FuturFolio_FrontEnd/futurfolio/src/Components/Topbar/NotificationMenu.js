@@ -27,7 +27,7 @@ export default function NotificationMenu(){//dropdownmenu function
                 {props.children}
 
                 <span className="icon-right">{props.rightIcon}</span>{/*Icon on the right*/}
-                
+
             </a>
         );
     }
@@ -36,7 +36,7 @@ export default function NotificationMenu(){//dropdownmenu function
     return(
         <div className="dropdown" style={{height: menuHeight}}>
             {/*if activeMenu is main then show children*/}
-            <CSSTransition 
+            <CSSTransition
               in={activeMenu === 'main'}
               unmountOnExit // unmountOnExit removes the children when main is not active
               timeout={500} //duration of animation
@@ -45,30 +45,30 @@ export default function NotificationMenu(){//dropdownmenu function
               >
                 <div className="menu">
                     {/*adds an item called My Profile*/}
-                    
-                        <NotificationItem 
+
+                        <NotificationItem
                         leftIcon = {<ProfileIcon/>}
                         >
-                            Notification 1
+                            &nbsp; Notification 1
                         </NotificationItem>
 
-                        <NotificationItem 
+                        <NotificationItem
                         leftIcon = {<ProfileIcon/>}
                         >
-                            Notification 2
+                            &nbsp; Notification 2
                         </NotificationItem>
 
-                        <NotificationItem 
+                        <NotificationItem
                         leftIcon = {<ProfileIcon/>}
                         >
-                            Notification 3
+                            &nbsp; Notification 3
                         </NotificationItem>
-                    
-                   
+
+
                 </div>
             </CSSTransition>
 
-           
+
         </div>
     );
 }
