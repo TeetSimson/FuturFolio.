@@ -39,3 +39,6 @@ app.use("/userProfile", require("./routers/userDetailsRouter"))
 app.use("/APIstocks", require("./API_stock_call/stocks_API"));
 app.use("/APIstocks", require("./API_stock_call/Mstocks_API.js"));
 app.use("/APIstocks", require("./API_stock_call/stocks_update.js"));
+
+// In good usage
+app.use("/APIstocks", require("./API_stock_call/SearchYahooStock.js"));
