@@ -1,5 +1,5 @@
 import React from 'react';
-import './Register';
+import './Register.css';
 import Axios from 'axios';
 
 class Register extends React.Component {
@@ -11,13 +11,13 @@ class Register extends React.Component {
           name: ''
         }
     }
-    
+
     onNameChange = (event) => {
         this.setState({name: event.target.value}) // Get user name input
     }
 
     onEmailChange = (event) => {
-        this.setState({email: event.target.value}) // Get user email input 
+        this.setState({email: event.target.value}) // Get user email input
     }
 
     onPasswordChange = (event) => {
@@ -57,69 +57,68 @@ class Register extends React.Component {
             }) */
         this.props.onRouteChange('dashboard'); // SEND EVERYTHING TO HOME
     }
-    
+
     render() {
         const { onRouteChange } = this.props;
         return(
             <article>
-                <main className="Window">
+                <main className="RegisterWindow">
                     <div className="InnerForm">
-                        <fieldset id="sign_up" className="Form">
+                        <fieldset id="sign_up" className="RegisterForm">
                             <legend className="CaptionLabel">
-                                Register
                             </legend>
                             <div className="mt3">
-                                <label className="Label" htmlFor="name">
-                                    Full name
+                                <label className="nameLabel" htmlFor="name">
+                                    Full Name
                                 </label>
-                                <input className="Name" 
-                                type="text" 
-                                name="name"  
-                                id="name" 
+                                <input className="Name"
+                                type="text"
+                                name="name"
+                                id="name"
                                 onChange={this.onNameChange} // Passing input to function to get the value
                                 />
                             </div>
                             <div className="mt3">
-                                <label className="Label" htmlFor="email-address">
+                                <label className="email2Label" htmlFor="email-address">
                                     Email
                                 </label>
-                                <input className="Email"
-                                type="email" 
-                                name="email-address"  
-                                id="email-address" 
+                                <input className="Email2"
+                                type="email"
+                                name="email-address"
+                                id="email-address"
                                 onChange={this.onEmailChange}
                                 />
                             </div>
                             <div>
-                                <label className="Label" htmlFor="password">
+                                <label className="password2Label" htmlFor="password">
                                     Password
                                 </label>
-                                <input className="Password"
-                                type="password" 
-                                name="password"  
-                                id="password" 
+                                <input className="Password2"
+                                type="password"
+                                name="password"
+                                id="password"
                                 onChange={this.onPasswordChange}
                                 />
                             </div>
                         </fieldset>
                         <div>
-                            <input 
+                            <input
                                 onClick={this.onSubmitSignIn} // When clicked sign in function will check with the server
-                                className="SignUpButton" 
-                                type="submit" 
+                                className="SignUpButton"
+                                type="submit"
                                 value="Sign up"
                             />
                         </div>
-                        <div> 
+                        <div>
                         <button onClick={() => onRouteChange('signin')} // Go to signin page
-                            className="RegisterButton">Back</button>
+                            className="BackButton">Back</button>
                         </div>
                     </div>
                 </main>
             </article>
         )
-                
+
     }
-} 
+}
 
 export default Register;
