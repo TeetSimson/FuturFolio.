@@ -6,7 +6,7 @@ import { ReactComponent as CogIcon } from './Icons/cogIcon.svg';
 import { ReactComponent as RightChevron } from './Icons/chevronRight.svg';
 import { ReactComponent as LeftChevron } from './Icons/chevronLeft.svg';
 import { ReactComponent as PowerIcon } from './Icons/powerIcon.svg';
-import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
+/*import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';*/
 import { ReactComponent as AppearanceIcon } from './Icons/appearanceIcon.svg';
 import { ReactComponent as LanguageIcon } from './Icons/languageIcon.svg';
 import { ReactComponent as LocationIcon } from './Icons/locationIcon.svg';
@@ -20,7 +20,7 @@ export default function DropdownMenu(props){ //dropdownmenu function
     const [activeMenu, setActiveMenu] = useState('main'); //state of the menu
     const [menuHeight, setMenuHeight] = useState(null);
 
-
+    const ProfileIcon = localStorage.getItem("profileImage");
 
 
     function calcHeight(el){
@@ -87,7 +87,7 @@ export default function DropdownMenu(props){ //dropdownmenu function
               >
                 <div className="menu">
                     <ProfileDropItem //The top bit of the menu
-                    Icon = {<ProfileIcon/>}
+                    Icon = {<img src = {ProfileIcon} height ="75px" width = "75px" />}
                     >
                         {name} {/* The profile's name */}
                     </ProfileDropItem>
@@ -96,7 +96,7 @@ export default function DropdownMenu(props){ //dropdownmenu function
                     {/*adds an item called My Profile*/}
                     <div onClick={props.DashChangeProfile}>
                         <DropdownItem 
-                        leftIcon = {<ProfileIcon/>}
+                        leftIcon = {<img src = {ProfileIcon} height ="30px" width = "30px" />}
                         >
                             My Profile
                         </DropdownItem>

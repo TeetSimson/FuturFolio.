@@ -4,7 +4,10 @@ const userSchema = new mongoose.Schema({
 	name : {type: String, required: true},
 	email : {type: String, required: true},
 	passwordHash : {type: String, required: true},
-	profile_img : {data: Buffer, contentType: String},
+	profile_img : {
+		imageBuffer: {data: Buffer, contentType: String},
+		imageType : {type: String}
+	},
 	moneyReserve: {type: Number},
 	stocks : [{
 		_id:false,

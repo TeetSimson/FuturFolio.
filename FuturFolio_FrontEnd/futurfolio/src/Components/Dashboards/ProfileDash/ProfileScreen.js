@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import "./ProfileScreen.css"
-import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
+/*import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';*/
 import { ReactComponent as CogIcon } from './Icons/cogIcon.svg';
 
 
@@ -9,6 +9,14 @@ import { ReactComponent as CogIcon } from './Icons/cogIcon.svg';
 
 
 export default class ProfileScreen extends Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            ProfileIcon: localStorage.getItem("profileImage")
+        };
+    };
+
     Settings(props){
         function Profsetbutton(props){//settings button
             return(
@@ -80,12 +88,13 @@ export default class ProfileScreen extends Component{
 
 
     render(){
+        const {ProfileIcon} = this.state;
         return(
                 <div>
                     <div>
                         <div className="ProfilePos">
                             <div className="ProfileIcon">
-                                <ProfileIcon/>
+                                <img src = {ProfileIcon} height = "200px" width = "200px"/>
                             </div>
                             <div>
                                 <this.nameInfo/>

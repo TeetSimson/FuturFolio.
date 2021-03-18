@@ -99,7 +99,9 @@ router.post("/signin", async (req,res) => {
 						auth: true,
 						token: token,
 						userID: existingUser._id,
-						userName: existingUser._name
+						userName: existingUser._name,
+						imageBuffer: existingUser.profile_img.imageBuffer,
+						imageType: existingUser.profile_img.imageType
 					});
 				});
 			});

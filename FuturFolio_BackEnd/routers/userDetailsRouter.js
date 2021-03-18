@@ -4,25 +4,32 @@ const auth = require("../middleware/auth");
 const multer = require("multer");
 const upload = multer();
 
-router.post("/profileImage", auth,upload.single("image"), async (req,res) =>{
+router.post("/profileImage",upload.array("image","token"), auth, async (req,res) =>{
 	try{
-		const image = req.file.buffer;
+		const id = req.user;
+		const imageBuffer = req.files[0].buffer;
+		const imageType = req.files[0].mimetype
 
-		if(!image)
+		/*console.log(req.user);
+		console.log(req.files[0]);
+
+		console.log(image);*/
+
+		if(!imageBuffer)
 			return res.status(400).json({errorMessage: "No image detected"});
 
-		const userDetails = await User.findById(id);
+		/*if(!(imageType == 'image/jpeg'))
+			return res.status(400).json({errorMessage: "Please use a jpg image"});*/
 
-		User.findByIdAndUpdate(id,{profile_img : image}, function(err, result){
+		/*const userDetails = await User.findById(id);*/
 
-        if(err){
-            res.send(err)
-        }
-        else{
-            res.send(result)
-        }
-    });
-		console.log("sent");
+		const image = {
+			"imageBuffer" : imageBuffer,
+			"imageType" : imageType
+		}
+
+		User.findByIdAndUpdate(id,{profile_img : image});
+		
 
 	}catch (err){
 		console.error(err);
@@ -30,15 +37,18 @@ router.post("/profileImage", auth,upload.single("image"), async (req,res) =>{
 	}
 });
 
-router.get("/profileImageRetrieve", auth,upload.single("image"), async (req,res) =>{
+router.post("/profileImageRetrieve", auth, async (req,res) =>{
 	try{
 		
-		userDetails = await User.findById(id);
+		const id = req.user;
 
-		console.log(userDetails);
+		userDetails = await User.findById(id);
 
 		image = await userDetails.profile_img;
 
+		console.log(userDetails);
+		console.log(image);
+		
 
 		res.send(image);
 
