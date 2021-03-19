@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
 	email : {type: String, required: true},
 	passwordHash : {type: String, required: true},
 	profile_img : {
+		_id:false,
 		imageBuffer: {data: Buffer, contentType: String},
 		imageType : {type: String}
 	},
@@ -14,6 +15,7 @@ const userSchema = new mongoose.Schema({
 		stockName : {type: String},
 		stockSymbol: {type: String},
 		transactions: [{
+			_id:false,
 			amount : {type: Number},
 			date : {type : String},
 			price : {type : Number},
@@ -22,6 +24,7 @@ const userSchema = new mongoose.Schema({
 			addReserve: {type: Number}
 		}],
 		divTransactions : [{
+			_id:false,
 			date: {type : String},
 			total : {type: Number},
 			fees: {type: Number}

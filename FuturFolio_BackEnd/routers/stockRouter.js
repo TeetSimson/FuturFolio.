@@ -44,38 +44,42 @@ router.post("/newStock", auth, async (req,res) => {
 		console.log("user stock check: ", existingStock);
 		if(existingStock) {
 			
-			let updateStock = {
-				"transactions": {
+			const newTransaction = {
 					"amount": amount,
 					"date": date,
 					"price": price,
-					"fees": fees,
+					"fees": -fees,
 					"reinvested": reinvest
-				}
 			};
 
-			const Pushed = await User.findByIdAndUpdate(
-				id,
-				{ $push: { stocks: updateStock } }
-				);
+			existingStock.transactions.push(newTransaction);
+
+			await User.findOneAndUpdate(
+				{"_id":id,"stocks.stockName": existingStock.stockName},
+				{$set:{"stocks.$.transactions" : existingStock.transactions}}
+			);	
+
 
 			return res.json({Message : "You have added an transaction"});
 
 		} else {
 
-			let newStock = {
+			const newStock = {
 				"stockName": stockName,
 				"stockSymbol": stockSymbol,
-				"transactions": {
+				"transactions": [{
 					"amount": amount,
 					"date": date,
 					"price":price,
 					"fees": -fees,
 					"reinvested": reinvest
-				}
+				}],
+				"divTransactions":[]
 			};
+
+			console.log(newStock);
 			
-			const Pushed = await User.findByIdAndUpdate(
+			await User.findByIdAndUpdate(
 				id,
 				{ $push: { stocks: newStock  } }
 				);
@@ -90,7 +94,7 @@ router.post("/newStock", auth, async (req,res) => {
 });
 
 
-router.post("/stockSell", auth, async (req,res) => {
+router.post("/sellStock", auth, async (req,res) => {
 	try{
 		const id = req.user;
 		const {stockName,stockSymbol,amount,date,price,fees,reserve} = req.body;
@@ -116,24 +120,21 @@ router.post("/stockSell", auth, async (req,res) => {
 		console.log("user stock check: ", existingStock);
 		if(existingStock) {
 			
-			const updateStock = {
-				"transactions": {
+			const newTransaction = {
 					"amount": -amount,
 					"date": date,
 					"price": price,
 					"fees": -fees,
 					"addReserve": reserve
-				}
 			};
 
-			const options = { upsert: true };
-			const filter = { stockName: stockName };
-			const result = await User.findById(id).updateOne(filter, updateStock, options);
+			existingStock.transactions.push(newTransaction);
 
-			/* const Pushed = await User.findById(id).findOneAndUpdate()(
-				filter,
-				{ $push: { stocksName: updateStock } }
-				); */
+
+			await User.findOneAndUpdate(
+				{"_id":id,"stocks.stockName": existingStock.stockName},
+				{$set:{"stocks.$.transactions" : existingStock.transactions}}
+			);	
 			console.log("DONE");
 			return res.json({Message : "You have added an transaction"});
 		} else {
