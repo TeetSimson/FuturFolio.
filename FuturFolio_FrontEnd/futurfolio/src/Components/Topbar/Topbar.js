@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState} from 'react';
 import '../../App.css';
 import "./Topbar.css";
-import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';
+/*import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';*/
 import { ReactComponent as BellIcon } from './Icons/bellIcon.svg';
 import DropdownMenu from './DropdownMenu'
 import NotificationMenu from './NotificationMenu';
@@ -38,7 +38,10 @@ function NavItem(props){//function for the items within the navbar
 
 export default class Topbar extends Component {
 
+    
+
     render() {
+        const ProfileIcon = localStorage.getItem("profileImage");
         return (
             <Navbar>
                 <h1 className="DashboardTitle">{this.props.title}</h1>
@@ -46,7 +49,7 @@ export default class Topbar extends Component {
                 <NavItem icon={<BellIcon />}>
                     <NotificationMenu/>
                 </NavItem>
-                <NavItem icon={<ProfileIcon />}>
+                <NavItem icon={<img src = {ProfileIcon} height ="30px" width = "30px" />}>
                     {/*Dropdown goes here*/}
                     <DropdownMenu 
                         LogOut={this.props.LogOut}
