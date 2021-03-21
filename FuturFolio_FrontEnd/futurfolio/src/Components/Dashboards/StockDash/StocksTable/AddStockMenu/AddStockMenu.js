@@ -22,9 +22,7 @@ export default function AddStockMenu(props) {
     }
 
     function onTransactionChange() {
-        console.log("Change");
         let date = document.getElementById("TransactionDate").value;
-        console.log(date);
         setTransaction(date);
     }
 
@@ -63,17 +61,14 @@ export default function AddStockMenu(props) {
 
     function onSubmitData() {
         if (Ticker != '') {
+            console.log('Buy is ' + Buy);
             if (Buy === true) {
                 Axios.post("http://localhost:5000/APIstocks/SearchYahoo",{
                     stocks: Ticker,
                     token: localStorage.getItem("token"),
                 })
                 .then((data) => {
-                    console.log(data.data.ResultSet.Result[0].name);
-                    console.log(data.data.ResultSet.Result[0].symbol);
-
-                    console.log(Transaction);
-                    console.log(Price);
+                    console.log(data.data);
                     // ADDING transaction to database NEEDS WORKING
                     Axios.post("http://localhost:5000/stocks/newStock",{
                         stockName: data.data.ResultSet.Result[0].name,
@@ -82,10 +77,11 @@ export default function AddStockMenu(props) {
                         date: Transaction,
                         price: Price,
                         fees: Fees,
-                        token: localStorage.getItem("token"),
+                        token: localStorage.getItem("token")
                     })
                     .then(() => {
                         console.log("Data added to database!")
+                        updateStock()
 
                     }).catch(err => {
                         console.log(err)
@@ -100,12 +96,29 @@ export default function AddStockMenu(props) {
             } else {
                 for (let i=0; i<props.Stocks.length; i++) {
                     if (Ticker === props.Stocks[i].stockName) {
-                        console.log("Match");
-    
+                        console.log("Sell Match");
                         
+                        Axios.post("http://localhost:5000/stocks/sellStock",{
+                            stockName: props.Stocks[i].stockName,
+                            stockSymbol: props.Stocks[i].stockSymbol,
+                            amount: Amount,
+                            date: Transaction,
+                            price: Price,
+                            fees: Fees,
+                            token: localStorage.getItem("token")
+                        })
+                        .then(() => {
+                            console.log("Data added to database!")
+                            updateStock()
+
+                        }).catch(err => {
+                            console.log(err)
+                            console.log("Database error")
+                        });
+                            
     
                     } else {
-                        console.log("Not found");
+                        console.log("Not found to sell");
                     }
                 }
             }
@@ -123,22 +136,23 @@ export default function AddStockMenu(props) {
                     // AXIOS ADD DIVIDEND TRANSACTION POST HERE
 
                 } else {
-                    console.log("Not found");
+                    console.log("Not found to add dividend");
                 }
             }
         } else {
             console.log("User does not want to add dividends")
         }
-
-        setAmount(0);
-        setBuy(0);
-        setFees(0);
-        setTicker('');
-        setTransaction('');
-        setDivTicker('');
-        setDivTransaction('')
-        setDivAmount(0);
         
+    }
+
+    function updateStock(){
+        Axios.post("http://localhost:5000/stocks/",{
+            token: localStorage.getItem("token"),
+        })
+        .then((data) => {
+            props.setNewUserStock(data.data);
+
+            }).catch(err => console.log(err));
     }
 
     return (
@@ -155,8 +169,8 @@ export default function AddStockMenu(props) {
                                 id="BuyBtn" 
                                 name="TransactionBtn" 
                                 value="Buy"
-                                onChange={onBuyChange} 
-                                checked
+                                onChange={onBuyChange}
+                                onClick={onBuyChange}
                                 />
                                 <label for="BuyBtn"><p className="BuySwitchTitle">Buy</p></label>
 
@@ -164,7 +178,8 @@ export default function AddStockMenu(props) {
                                 id="SellBtn" 
                                 name="TransactionBtn" 
                                 value="Sell"
-                                onChange={onSellChange} 
+                                onChange={onSellChange}
+                                onClick={onSellChange}  
                                 />
                                 <label for="SellBtn"><p className="BuySwitchTitle">Sell</p></label>
                             </div>
@@ -242,10 +257,10 @@ export default function AddStockMenu(props) {
                         onChange={onDivAmountChange}
                         />
                         <input 
-                        onClick={onSubmitData} // When clicked sign in function will check with the server
                         className="AddStockButton" 
                         type="submit" 
                         value="Submit"
+                        onClick={onSubmitData} // When clicked sign in function will check with the server
                         />
                     </div>
 

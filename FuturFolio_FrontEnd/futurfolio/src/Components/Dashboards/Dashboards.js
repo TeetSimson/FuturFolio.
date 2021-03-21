@@ -6,7 +6,17 @@ import SettingsDash from './SettingsDash/SettingsDash';
 import Axios from 'axios';
 
 export default class Dashboards extends Component {
-    
+    constructor() {
+        super()
+        this.state = {
+            
+        };
+    }
+
+    setNewUserStock = (data) => {
+        this.props.user.stocks = data;
+        this.setState({});
+    }
 
     render() {
         return (
@@ -19,6 +29,7 @@ export default class Dashboards extends Component {
                     ? 
                         <StockDash 
                             stocks={this.props.user.stocks}
+                            setNewUserStock={this.setNewUserStock}
                         />
                     :
                         (this.props.dashboard === 'LoansDash'
@@ -31,7 +42,9 @@ export default class Dashboards extends Component {
                             :
                                 (this.props.dashboard === 'ProfileDash'
                                 ? 
-                                    <ProfileDash DashChangeSettings={this.props.DashChangeSettings}/>
+                                    <ProfileDash 
+                                        DashChangeSettings={this.props.DashChangeSettings}
+                                    />
                                 :
                                     (this.props.dashboard === 'SettingsDash'
                                     ? 

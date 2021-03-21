@@ -44,6 +44,7 @@ export default class StockDash extends Component {
                     <StocksTable 
                         stocks={this.props.stocks}
                         stockApi={this.props.stockApi}
+                        setNewUserStock={this.props.setNewUserStock}
                     />
                 </div>
             </div>

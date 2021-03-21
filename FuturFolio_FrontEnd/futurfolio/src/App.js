@@ -79,7 +79,6 @@ export default class App extends Component {
   }
 
   setUserStocks = (data) => {
-    console.log(data);
     this.setState(Object.assign(this.state.user, { stocks: data}))
   }
 
@@ -106,6 +105,7 @@ export default class App extends Component {
             DashChangeSettings={this.DashChangeSettings}
             dashboard={this.state.dashboard} // Sending which dashboard to display
             user={this.state.user} // Sending user data
+            setUserStocks={this.setUserStocks} // For updating stocks
           />
           <Topbar 
             LogOut={this.LogOut}

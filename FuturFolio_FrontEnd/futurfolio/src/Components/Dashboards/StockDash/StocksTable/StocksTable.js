@@ -34,7 +34,11 @@ export default class StocksTable extends Component {
     render() {
         return (
             <div className="StocksBox">
-                <AddStockMenu Stocks={this.props.stocks} Show={this.state.Show} />
+                <AddStockMenu 
+                    Stocks={this.props.stocks} 
+                    Show={this.state.Show} 
+                    setNewUserStock={this.props.setNewUserStock}
+                />
                 <div className="TopBar">
                     <p className="Title">Stocks</p>
                     <div className="TopBarBox">
