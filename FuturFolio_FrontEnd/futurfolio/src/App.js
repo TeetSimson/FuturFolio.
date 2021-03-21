@@ -66,7 +66,9 @@ export default class App extends Component {
       this.setState(Object.assign(this.state.user, { dashboard: 'Dashboard'}))
       this.setState(Object.assign(this.state.user, { title: 'Dashboard'}))
       this.setState({route: route});
-    } else if (route=== 'register') {
+    } else if (route === 'register') {
+      this.setState({route: route});
+    } else if (route === 'signin') {
       this.setState({route: route});
     }
   }

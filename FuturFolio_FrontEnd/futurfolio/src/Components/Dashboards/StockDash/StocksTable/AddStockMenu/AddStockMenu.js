@@ -102,7 +102,7 @@ export default function AddStockMenu(props) {
                     if (Ticker === props.Stocks[i].stockName) {
                         console.log("Match");
     
-                        // AXIOS ADD DIVIDEND TRANSACTION POST HERE
+                        
     
                     } else {
                         console.log("Not found");
@@ -192,6 +192,7 @@ export default function AddStockMenu(props) {
                         name="Amount"
                         id="StockAmount"
                         placeholder="Amount"
+                        min='0'
                         onChange={onAmountChange}
                         />
                         <input className="AddStockInput"
@@ -199,6 +200,7 @@ export default function AddStockMenu(props) {
                         name="StockTotalPrice"
                         id="StockTotalPrice"
                         placeholder="Total Price"
+                        min='0'
                         onChange={onPriceChange}
                         />
                         <input className="AddStockInput"
@@ -206,6 +208,7 @@ export default function AddStockMenu(props) {
                         name="StockFees"
                         id="StockFees"
                         placeholder="Fees"
+                        min='0'
                         onChange={onFeesChange}
                         />
                     </div>
@@ -235,6 +238,7 @@ export default function AddStockMenu(props) {
                         name="Total Dividends"
                         id="TotalDiv"
                         placeholder="Total Dividends"
+                        min='0'
                         onChange={onDivAmountChange}
                         />
                         <input 
