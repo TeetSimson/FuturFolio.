@@ -16,6 +16,24 @@ import { ReactComponent as InfoIcon } from './Icons/infoIcon.svg';
 
 
 export default function SettingsScreen(){
+
+    function ProfileSettings(){
+        return(
+            <div>
+            <h2>Change your Name</h2>
+            <form action="/action_page.php">
+                <label for="fname">First name:</label>
+                <input type="text" id="fname" name="fname"/><br></br>
+                <label for="lname">Last name:</label>
+                <input type="text" id="lname" name="lname"/><br></br>
+                <input type="submit" value="Submit"/>
+            </form>
+            </div>
+            
+        );
+    }
+
+
     const options = [
         {
             header: {
@@ -27,7 +45,8 @@ export default function SettingsScreen(){
                     name: "Profile",
                     description: "Edit your profile settings",
                     tags: ["name", "account", "profile", "email"],
-                    icon: <ProfileIcon/>
+                    icon: <ProfileIcon/>,
+                    content: <ProfileSettings/>
                 },
                 {
                     name: "Password",
@@ -192,6 +211,25 @@ export default function SettingsScreen(){
         setVisibleOptions(returnedItems);
     };
 
+    function SettDrop(props){//function for the items within the navbar
+
+        //returns two values in an array
+        //first value is state called open, boolean which tells us if menu is open
+        //second value is function that changes state
+        const [open, setOpen] = useState(false); //closed by default, so parameter set to false
+    
+    
+        return(
+            <li className="sett-drop">
+                <a href="#" className = "sett-cont" onClick={() => setOpen(!open)}>{/*changes state on a click, toggles the boolean*/}
+                    {props.cont}
+                </a>
+    
+                {open && props.children} {/* if open is true then it will show the children*/ }
+            </li>
+        );
+    }
+
     return (
         <div className = "AppSettings">
             <div>
@@ -210,13 +248,20 @@ export default function SettingsScreen(){
                             <div key={value.name}>
                                 <ul className = "list">
                                     <li className = "sett-item">
-                                        <div className = "sett-content">
-                                            <h2>{value.name}</h2>
-                                            <h4>{value.description}</h4>
-                                        </div>          
-                                        <div className = "SettIcon">
-                                            {value.icon}
-                                        </div>
+                                        <SettDrop cont = {
+                                            <div>
+                                                 <div className = "sett-content">
+                                                    <h2>{value.name}</h2>
+                                                    <h4>{value.description}</h4>
+                                                </div>          
+                                                <div className = "SettIcon">
+                                                    {value.icon}
+                                                </div> 
+                                            </div>
+                                        }>
+                                                {value.content /*displays the contents of the settings chosen*/}
+                                        </SettDrop>
+                                        
                                     </li>
                                 </ul>
                             </div>
