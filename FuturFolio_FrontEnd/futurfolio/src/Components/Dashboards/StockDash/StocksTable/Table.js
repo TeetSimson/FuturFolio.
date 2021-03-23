@@ -29,17 +29,19 @@ class UserTableRow extends React.Component {
     }
   };
 
+
   render() {
     const { stock, index } = this.props;
 
+    
     return [
         <tr key="main" onClick={this.toggleExpander}>
           <td>
-            <input className="uk-checkbox" type="checkbox" />
+            <input className="uk-checkbox" type="checkbox" value={stock.stockName}/>
           </td>
-          <td className="uk-text-nowrap">{stock.stockName}</td>
+          <td className="uk-text-nowrap">{stock.stockSymbol}</td>
           <td>
-            <p>Merko Ehitus</p>
+            <p>{stock.stockName}</p>
           </td>
           <td>
             <p>£12.809</p>
@@ -63,7 +65,9 @@ class UserTableRow extends React.Component {
             <p>1.02</p>
           </td>
           <td>
-            <p>{stock.amount}</p>
+            <p>
+              {stock.transactions[0].amount}
+            </p>
           </td>
           <td>
             <p>{stock.price}</p>
@@ -133,7 +137,7 @@ export default class Table extends React.Component {
         <div className="table-container">
             <div id="div2" className="uk-overflow-auto">
               <table className="uk-table uk-table-hover uk-table-middle Row">
-                <tbody className="Row">
+                <tbody id="GetRows" className="Row">
                   <Header />
                   {isLoading ? (
                     <tr>

@@ -61,7 +61,6 @@ export default function AddStockMenu(props) {
 
     function onSubmitData() {
         if (Ticker != '') {
-            console.log('Buy is ' + Buy);
             if (Buy === true) {
                 Axios.post("http://localhost:5000/APIstocks/SearchYahoo",{
                     stocks: Ticker,
@@ -80,12 +79,12 @@ export default function AddStockMenu(props) {
                         token: localStorage.getItem("token")
                     })
                     .then(() => {
-                        console.log("Data added to database!")
+                        console.log("Buy data added to database!")
                         updateStock()
 
                     }).catch(err => {
                         console.log(err)
-                        console.log("Database error")
+                        console.log("Database error for buy")
                     });
 
                 }).catch(err => {
@@ -108,12 +107,12 @@ export default function AddStockMenu(props) {
                             token: localStorage.getItem("token")
                         })
                         .then(() => {
-                            console.log("Data added to database!")
+                            console.log("Sell data added to database!")
                             updateStock()
 
                         }).catch(err => {
                             console.log(err)
-                            console.log("Database error")
+                            console.log("Database error for selling")
                         });
                             
     
@@ -131,9 +130,21 @@ export default function AddStockMenu(props) {
         if (DivTicker != '') {
             for (let i=0; i<props.Stocks.length; i++) {
                 if (DivTicker === props.Stocks[i].stockName) {
-                    console.log("Match");
 
-                    // AXIOS ADD DIVIDEND TRANSACTION POST HERE
+                    Axios.post("http://localhost:5000/stocks//addDividend",{
+                        stockName: props.Stocks[i].stockName,
+                        date: DivTransaction,
+                        total: DivAmount,
+                        token: localStorage.getItem("token")
+                    })
+                    .then(() => {
+                        console.log("Dividends added to database!")
+                        updateStock()
+
+                    }).catch(err => {
+                        console.log(err)
+                        console.log("Database error for adding dividends")
+                    });
 
                 } else {
                     console.log("Not found to add dividend");
@@ -163,7 +174,7 @@ export default function AddStockMenu(props) {
                     <div className="AddStocksForm">
                         <div className="SwitchBox">
                             
-                            <div class="BuySellSwitch">
+                            <div className="BuySellSwitch">
                                 <p className="Title">Add Transaction</p>
                                 <input type="radio" 
                                 id="BuyBtn" 
@@ -172,7 +183,7 @@ export default function AddStockMenu(props) {
                                 onChange={onBuyChange}
                                 onClick={onBuyChange}
                                 />
-                                <label for="BuyBtn"><p className="BuySwitchTitle">Buy</p></label>
+                                <label htmlFor="BuyBtn"><p className="BuySwitchTitle">Buy</p></label>
 
                                 <input type="radio" 
                                 id="SellBtn" 
@@ -181,12 +192,12 @@ export default function AddStockMenu(props) {
                                 onChange={onSellChange}
                                 onClick={onSellChange}  
                                 />
-                                <label for="SellBtn"><p className="BuySwitchTitle">Sell</p></label>
+                                <label htmlFor="SellBtn"><p className="BuySwitchTitle">Sell</p></label>
                             </div>
                         </div>
                         <datalist id="UserSellStocks">
-                            {props.Stocks.map(item => (
-                                <option value={item.stockName}/>
+                            {props.Stocks.map((item, index) => (
+                                <option key={index} value={item.stockName}/>
                             ))}
                         </datalist> 
                         <input className="AddStockInput"
@@ -231,8 +242,8 @@ export default function AddStockMenu(props) {
                     <div className="AddStocksForm">
                         <p className="Title NoMargin">Add Dividends</p>
                         <datalist id="UserStocks">
-                            {props.Stocks.map(item => (
-                                <option value={item.stockName}/>
+                            {props.Stocks.map((item, index) => (
+                                <option key={index} value={item.stockName}/>
                             ))}
                         </datalist> 
                         <input className="AddStockInput" 

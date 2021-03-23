@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './StocksTable.css'
 import Table from './Table';
 import AddStockMenu from './AddStockMenu/AddStockMenu';
+import TrashIcon from './delete.png';
+import Axios from 'axios';
 
 export default class StocksTable extends Component {
     constructor() {
@@ -30,6 +32,39 @@ export default class StocksTable extends Component {
         }
         this.setState({Show: !this.state.Show}); 
     }
+
+    removeStock = () => {
+        let tableFields = document.getElementById("GetRows");
+        let currentStocks = tableFields.children;
+        for (var i = 1; i < currentStocks.length; i++) {
+            let checkbox = currentStocks[i].children[0].children[0];
+            if (checkbox.checked) {
+
+                Axios.post("http://localhost:5000/stocks/removeStock",{
+                        stockName: checkbox.value,
+                        token: localStorage.getItem("token")
+                    })
+                    .then(() => {
+                        console.log("Stock Removed")
+                        this.updateStock();
+
+                    }).catch(err => {
+                        console.log(err)
+                        console.log("Database error for adding dividends")
+                    });
+            }
+        }
+    }
+
+    updateStock = () => {
+        Axios.post("http://localhost:5000/stocks/",{
+            token: localStorage.getItem("token"),
+        })
+        .then((data) => {
+            this.props.setNewUserStock(data.data);
+            
+        }).catch(err => console.log(err));
+    }
     
     render() {
         return (
@@ -41,6 +76,9 @@ export default class StocksTable extends Component {
                 />
                 <div className="TopBar">
                     <p className="Title">Stocks</p>
+                    <button id="TrashButton" onClick={this.removeStock}>
+                        <img id="TrashIcon" src={TrashIcon} alt="" />
+                    </button>
                     <div className="TopBarBox">
                         <div className="TimerBox">
                             <p className="Market">Market open</p>

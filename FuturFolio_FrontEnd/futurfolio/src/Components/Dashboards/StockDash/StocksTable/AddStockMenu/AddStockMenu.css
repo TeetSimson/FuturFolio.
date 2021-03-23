@@ -135,14 +135,16 @@
 }
 
 .BuySellSwitch input[type="radio"]:checked + label {
-    background-color:rgb(20, 211, 20);
+    background-color: rgba(255, 255, 255, 0.315);
+    color:rgb(20, 211, 20);
     border-color: rgba(255, 255, 255, 0.13);
     border-radius: 15px;
     color: white;
 }
 
 #SellBtn:checked + label{
-    background-color:rgba(255, 0, 0, 0.87);
+    background-color: rgba(255, 255, 255, 0.699);
+    color: red;
     border-color: rgba(255, 255, 255, 0.199);
     border-radius: 15px;
     color: white;
@@ -154,7 +156,8 @@
 }
 
 .BuySellSwitch input[type="radio"]:focus + label {
-    background-color:rgb(20, 211, 20);
+    background-color: rgba(255, 255, 255, 0.315);
+    color:rgb(20, 211, 20);
     cursor: pointer;
 }
 
@@ -164,7 +167,8 @@
 }
 
 #SellBtn:focus + label {
-    background-color:rgba(255, 0, 0, 0.87);
+    background-color: rgba(255, 255, 255, 0.699);
+    color: red;
     cursor: pointer;
 }
 
