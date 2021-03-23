@@ -4,10 +4,6 @@ import { slideDown, slideUp } from "./Animate";
 import "./Table.css";
 import Header from  './Header';
 
-/* function formatDate(str) {
-  return str.substr(0, 10);
-} */
-
 class UserTableRow extends React.Component {
   state = { expanded: false };
 
@@ -32,7 +28,8 @@ class UserTableRow extends React.Component {
 
   render() {
     const { stock, index } = this.props;
-
+    const currency = stock.marketData.price.currencySymbol
+    console.log(stock.marketData);
     
     return [
         <tr key="main" onClick={this.toggleExpander}>
@@ -44,7 +41,7 @@ class UserTableRow extends React.Component {
             <p>{stock.stockName}</p>
           </td>
           <td>
-            <p>£12.809</p>
+            <p>{stock.marketData.financialData.currentPrice.fmt}</p>
           </td>
           <td>
             <p>+£12.80/2.34%</p>
@@ -56,10 +53,10 @@ class UserTableRow extends React.Component {
             <p>___---_|=</p>
           </td>
           <td>
-            <p>£0.83/8.08%</p>
+            <p>{currency}{stock.marketData.summaryDetail.dividendRate.fmt}/{stock.marketData.summaryDetail.dividendYield.fmt}</p>
           </td>
           <td>
-            12/12/2021
+            {stock.marketData.summaryDetail.exDividendDate.fmt}
           </td>
           <td>
             <p>1.02</p>
@@ -130,7 +127,7 @@ class UserTableRow extends React.Component {
 export default class Table extends React.Component {
 
   render() {
-    const { stocks, stockApi } = this.props;
+    const { stocks } = this.props;
     const isLoading = stocks === null;
     return (
       <main className="Table">

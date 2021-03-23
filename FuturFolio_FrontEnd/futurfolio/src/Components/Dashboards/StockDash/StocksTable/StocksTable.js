@@ -10,8 +10,7 @@ export default class StocksTable extends Component {
         super();
         this.state = {
             Show: false,
-            Scale: true,
-            CSS: ".StocksPanel:hover{transform: scale(1.015);}"
+            Scale: true
         };
       }
 
@@ -62,11 +61,11 @@ export default class StocksTable extends Component {
         })
         .then((data) => {
             this.props.setNewUserStock(data.data);
-            
         }).catch(err => console.log(err));
     }
     
     render() {
+
         return (
             <div className="StocksBox">
                 <AddStockMenu 
@@ -94,7 +93,6 @@ export default class StocksTable extends Component {
                 <div id="TableBox">
                         <Table 
                             stocks={this.props.stocks}
-                            stockApi={this.props.stockApi}
                         />
                 </div>
             </div>

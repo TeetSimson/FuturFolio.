@@ -16,7 +16,8 @@ const initialState = {
     name: '',
     email: '',
     joined: '',
-    stocks: null
+    stocks: null,
+    stocksData: null
   },
   dashboard: 'Dashboard',
   title: 'Dashboard'
@@ -74,12 +75,13 @@ export default class App extends Component {
   }
 
   loadUser = (user) => {
-    this.setState(Object.assign(this.state.user, { id: user.id}))
-    this.setState(Object.assign(this.state.user, { token: user.data.token}))
+    this.setState(Object.assign(this.state.user, { id: user.id}));
+    this.setState(Object.assign(this.state.user, { token: user.data.token}));
   }
 
-  setUserStocks = (data) => {
-    this.setState(Object.assign(this.state.user, { stocks: data}))
+  setStockMarketData = (data) => {
+    this.setState(Object.assign(this.state.user, { stocks: data}));
+    console.log(data);
   }
 
   LogOut = () => {
@@ -105,7 +107,6 @@ export default class App extends Component {
             DashChangeSettings={this.DashChangeSettings}
             dashboard={this.state.dashboard} // Sending which dashboard to display
             user={this.state.user} // Sending user data
-            setUserStocks={this.setUserStocks} // For updating stocks
           />
           <Topbar 
             LogOut={this.LogOut}
@@ -120,7 +121,10 @@ export default class App extends Component {
 
       : ( // Else if we are on "signin" page
         route === 'signin' 
-          ? <Signin loadUser={this.loadUser} setUserStocks={this.setUserStocks} onRouteChange={this.onRouteChange}/> // If on "signin" page
+          ? <Signin loadUser={this.loadUser} 
+            setStockMarketData={this.setStockMarketData} // For updating stocks data
+            setUserStocks={this.setUserStocks} 
+            onRouteChange={this.onRouteChange}/> // If on "signin" page
           : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> // If on "register" page
         )
       

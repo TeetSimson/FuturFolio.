@@ -19,6 +19,7 @@ export default class Dashboards extends Component {
     }
 
     render() {
+        
         return (
             <div className="background"> {/* On which Dashboard */}
                 {this.props.dashboard === 'Dashboard'

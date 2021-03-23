@@ -8,23 +8,12 @@ export default class StockDash extends Component {
     constructor() {
         super()
         this.state = {
-            stockApi: null
+
         };
     }
 
-    // UPDATE STOCKS 
-    /* componentDidMount() {
-        Axios.post("http://localhost:5000/APIstocks/updateJSON",{
-            stocks: this.props.stocks,
-            token: localStorage.getItem("token"),
-        })
-        .then((data) => {
-            console.log(data.data);
-            this.setState({ stockApi: data });
-        }).catch(err => console.log(err));
-    } */
-
     render() {
+
         return (
             <div className="StockDash">
                 <div className="NetWorthPanel">
@@ -43,7 +32,6 @@ export default class StockDash extends Component {
                 <div id="StocksPanelID" className="StocksPanel">
                     <StocksTable 
                         stocks={this.props.stocks}
-                        stockApi={this.props.stockApi}
                         setNewUserStock={this.props.setNewUserStock}
                     />
                 </div>
