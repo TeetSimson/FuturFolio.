@@ -14,7 +14,7 @@ export default class Dashboards extends Component {
     }
 
     setNewUserStock = (data) => {
-        this.props.user.stocks = data;
+        this.props.user.stocks[0] = data; // NEEDS WORKING
         this.setState({});
     }
 

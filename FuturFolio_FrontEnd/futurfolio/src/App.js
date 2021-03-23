@@ -16,8 +16,7 @@ const initialState = {
     name: '',
     email: '',
     joined: '',
-    stocks: null,
-    stocksData: null
+    stocks: null
   },
   dashboard: 'Dashboard',
   title: 'Dashboard'
@@ -80,7 +79,7 @@ export default class App extends Component {
   }
 
   setStockMarketData = (data) => {
-    this.setState(Object.assign(this.state.user, { stocks: data}));
+    this.setState(Object.assign(this.state.user, { stocks: data }));
     console.log(data);
   }
 

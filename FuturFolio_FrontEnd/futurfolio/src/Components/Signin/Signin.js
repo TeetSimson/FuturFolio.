@@ -64,7 +64,7 @@ class Signin extends React.Component {
                 .then((data) => {
                     this.props.setStockMarketData(data.data);
                 
-            })
+                })
             })
             .catch(err => console.log(err));
 

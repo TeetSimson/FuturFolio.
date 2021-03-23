@@ -28,7 +28,12 @@ class UserTableRow extends React.Component {
 
   render() {
     const { stock, index } = this.props;
-    const currency = stock.marketData.price.currencySymbol
+    let dividend = parseFloat(stock.marketData.trailingAnnualDividendYield);
+    let dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield);
+    let currency = "£"
+    if (stock.marketData.currency === 'USD') currency = '$';
+    else if (stock.marketData.currency === 'EUR') currency = '€';
+    
     console.log(stock.marketData);
     
     return [
@@ -41,22 +46,22 @@ class UserTableRow extends React.Component {
             <p>{stock.stockName}</p>
           </td>
           <td>
-            <p>{stock.marketData.financialData.currentPrice.fmt}</p>
+            <p>{stock.marketData.bid}</p>
           </td>
           <td>
-            <p>+£12.80/2.34%</p>
+            <p>{currency}{stock.marketData.regularMarketChange}/{stock.marketData.regularMarketChangePercent.toFixed(2)}%</p>
           </td>
           <td>
-            <p>£9.63</p>
+            <p>{currency}{stock.marketData.fiftyTwoWeekLow}</p>
           </td>
           <td>
             <p>___---_|=</p>
           </td>
           <td>
-            <p>{currency}{stock.marketData.summaryDetail.dividendRate.fmt}/{stock.marketData.summaryDetail.dividendYield.fmt}</p>
+            <p>{currency}{dividend.toFixed(2)}/{dividendYield.toFixed(2)}%</p>
           </td>
           <td>
-            {stock.marketData.summaryDetail.exDividendDate.fmt}
+            {stock.marketData.dividendDate}
           </td>
           <td>
             <p>1.02</p>
