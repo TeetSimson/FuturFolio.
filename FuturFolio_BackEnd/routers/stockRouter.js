@@ -150,9 +150,9 @@ router.post("/sellStock", auth, async (req,res) => {
 router.post("/addDividend", auth, async (req,res) => {
 	try{
 		const id = req.user;
-		const {stockName,date,total,fees} = req.body;
+		const {stockName,date,total} = req.body;
 
-		if(!stockName||!date||!total||!fees)
+		if(!stockName||!date||!total)
 			return res.status(400).json({errorMessage: "Please fill in all fields!"});
 
 
@@ -167,8 +167,7 @@ router.post("/addDividend", auth, async (req,res) => {
 			
 		const newDividend = {
 				"date": date,
-				"total": total,
-				"fees": -fees
+				"total": total
 		};
 
 		existingStock.divTransactions.push(newDividend);
@@ -205,18 +204,16 @@ router.post("/removeStock", auth, async (req,res) => {
 		if(!existingStock)
 			return res.json({errorMessage: "You cannot remove a stock you do not own."});
 
-		
 		const updatedStocksList = stocksList.filter(function(value, index, arr){ 
         	return value != existingStock;
         });
-
-        
 
         await User.findByIdAndUpdate(
         	id,
         	{$set:{stocks:updatedStocksList}}
         );
-
+		
+		return res.json({Message : "You have removed stock"});
 
 	}catch(err){
 		console.error(err);
