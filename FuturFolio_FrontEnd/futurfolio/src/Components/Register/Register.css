@@ -13,131 +13,69 @@ body {
     justify-content: center;
 }
 
-/* Name and its label */
-
-.Name{
-    height: 20px;
-    width: 250px;
-    display: inline-block;
-    text-align: left;
-    float: right;
-    margin-bottom: 15px;
-}
-
-.nameLabel {
-  font-size: 20px;
-  margin-left: 5px;
-  display: inline-block;
-  text-align: right;
-  float: left;
-}
-
-/* Email box and its label */
-
-.Email2{
-    height: 20px;
-    width: 250px;
-    display: inline-block;
-    text-align: left;
-    float: right;
-}
-
-.email2Label {
-  font-size: 20px;
-  margin-left: 20px;
-  display: inline-block;
-  text-align: .Email2;
-  float: left;
-  /* margin-top: 60px; */
-}
-
-/* Password box and its label */
-
-.Password2{
-    height: 20px;
-    width: 250px;
-    display: inline-block;
-    text-align: left;
-    float: right;
-    margin-top: 15px;
-}
-
-.password2Label {
-  font-size: 20px;
-  display: inline-block;
-  text-align: right;
-  float: left;
-  margin-bottom: 10px;
-}
-
 /* Register form */
 
 .RegisterForm {
     width: 30vw;
-    height: 23vh;
-    background-color: aqua;
-    color: white;
-    text-decoration: none;
-    background-color: rgba(0,0,0, .2);
-    border-radius: 2px;
-    border: 0px;
-    outline: none;
-    /* display: inline-block; */
-    padding: 8px 22px;
-    margin-bottom: 0;
-    /* font-size: 15px; */
-    font-weight: normal;
-    letter-spacing: .12rem;
-    line-height: 1.428571429;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
+    height: 33vh;
+    border-radius: 25px;
+    background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+    border: 0.1em solid rgba(255, 255, 255, 0.123);
+    transition: all 100ms;
 }
 
-/* Sign up button */
+/* New Sign up button */
 
 .SignUpButton {
-  color: white;
-  text-decoration: none;
-  background-color: rgba(0,0,0, .2);
-  border-radius: 2px;
-  border: 0px;
-  outline: none;
-  display: inline-block;
-  padding: 8px 22px;
-  margin-bottom: 0;
+  padding: 8px;
+  width: 100px;
   font-size: 15px;
-  font-weight: normal;
+  text-shadow: 5px 5px 20px rgba(31, 31, 31, 0.308);
+  background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 10px;
+  color: black;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 10px 10px 44px -6px rgba(0, 0, 0, 0.151);
   letter-spacing: .12rem;
   line-height: 1.428571429;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: center;
   cursor: pointer;
+  margin-top: 30px;
+  margin-left: 175px;
 }
 
-/* Back button (return to sign in page) */
+/* New Back button */
 
 .BackButton {
-  color: white;
-  text-decoration: none;
-  background-color: rgba(0,0,0, .2);
-  border-radius: 2px;
-  border: 0px;
-  outline: none;
-  display: inline-block;
-  padding: 8px 22px;
-  margin-bottom: 0;
+  padding: 8px;
+  width: 100px;
   font-size: 15px;
-  font-weight: normal;
+  text-shadow: 5px 5px 20px rgba(31, 31, 31, 0.308);
+  background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 10px;
+  color: black;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  box-shadow: 10px 10px 44px -6px rgba(0, 0, 0, 0.151);
   letter-spacing: .12rem;
   line-height: 1.428571429;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
   cursor: pointer;
+  margin-top: 30px;
+  margin-left: 175px;
 }
+
+/* Title for register form */
+
+.title{
+  margin-left: 180px;
+  letter-spacing: .12rem;
+  font-size: 15px;
+  line-height: 1.428571429;
+}
+
+/* Input boxes */
 
 .RegisterInput {
     margin-top: 10px;

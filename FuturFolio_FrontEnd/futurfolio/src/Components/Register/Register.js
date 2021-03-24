@@ -65,7 +65,7 @@ class Register extends React.Component {
                 <main className="RegisterWindow">
                     <div className="InnerForm">
                         <fieldset id="sign_up" className="RegisterForm">
-                            <p>Register</p>
+                            <p className = "title">Register</p>
                             <div className="mt3">
                                 <input className="RegisterInput"
                                 type="text"
