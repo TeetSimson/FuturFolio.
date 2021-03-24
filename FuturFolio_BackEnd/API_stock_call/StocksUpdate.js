@@ -25,7 +25,8 @@ router.post('/updateJSON', async (req, res) => {
     .then(res => res.json())
     .then(text => {
       TextAPI = text;
-      return fetch("https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/AAPL?interval=5m&range=5y&comparisons=MSFT%2CTSLA&events=div%2Csplit", {
+      arrayAPI = arrayAPI.toString().replace(/,/g, "%2C");
+      return fetch(`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/AAPL?interval=1d&range=10y&comparisons=${arrayAPI}&events=div%2Csplit`, {
         "method": "GET",
         "headers": {
           "x-rapidapi-key": "7cc3ae701amshf93e4f7eed74bebp16d5aejsnbae90ef4635c",
@@ -35,9 +36,9 @@ router.post('/updateJSON', async (req, res) => {
       .then(res => res.json())
       .then(data => {
 
-        let bigChart = data;
+        let bigChart = data.chart.result[0];
         let i = 0;
-        let j = 1;
+
         for (var item of stocks) {
           StocksWithData.push({
             stockName: item.stockName,
@@ -45,10 +46,11 @@ router.post('/updateJSON', async (req, res) => {
             marketData: TextAPI[i],
             transactions: item.transactions,
             divTransactions: item.divTransactions,
-            chart: [0],//data.chart[0].comparisons[j],
-            chartTime: [0] //data.chart[0].timestamp
+            chart: data.chart.result[0].comparisons[i],
+            chartTime: data.chart.result[0].timestamp
           });
           i++;
+
         }
         
 
