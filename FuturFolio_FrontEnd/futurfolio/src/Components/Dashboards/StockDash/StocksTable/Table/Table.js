@@ -25,17 +25,63 @@ class UserTableRow extends React.Component {
     }
   };
 
+  stockAmount = () => {
+    let amountTotal = this.props.stock.transactions.reduce(function(prev, cur) {
+      return prev + cur.amount;
+    }, 0);
+
+    return (amountTotal);
+  }
+
+  investmentAmount = () => {
+    let totalTotal = this.props.stock.transactions.reduce(function(prev, cur) {
+      return prev + cur.price;
+    }, 0);
+
+    let feesTotal = this.props.stock.transactions.reduce(function(prev, cur) {
+      return prev + cur.fees;
+    }, 0);
+
+    return (totalTotal + feesTotal);
+  }
+
+  dividendAmount = () => {
+    let divTotal = this.props.stock.divTransactions.reduce(function(prev, cur) {
+      return prev + cur.total;
+    }, 0);
+
+    return (divTotal);
+  }
+
 
   render() {
     const { stock, index } = this.props;
-    let dividend = parseFloat(stock.marketData.trailingAnnualDividendYield);
-    let dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield);
-    let currency = "£"
+    let dividend = parseFloat(stock.marketData.trailingAnnualDividendRate);
+    let dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield*100);
+    let dividendData = '';
+    let currency = "£";
+    let divDate = 'NaN';
+    let stockAmount = stock.marketData.marketCap/stock.marketData.regularMarketPrice;
+    let DCR = stock.marketData.epsTrailingTwelveMonths*stockAmount/(dividend*stockAmount);
+    let ROE = stock.marketData.epsTrailingTwelveMonths*stockAmount/(stock.marketData.bookValue*stockAmount)*100;    
     if (stock.marketData.currency === 'USD') currency = '$';
     else if (stock.marketData.currency === 'EUR') currency = '€';
     
-    console.log(stock.marketData);
+    let stockAmountValue = this.stockAmount();
+    let investmentValue = this.investmentAmount();
+    let currentInvestValue = stockAmountValue*stock.marketData.regularMarketPrice;
     
+    if (stock.marketData.dividendDate != null) divDate = stock.marketData.dividendDate; 
+    let dividendsTotal = '-';
+
+    if (dividend.toString() === 'NaN') {
+      dividendData = '-';
+    } else {
+      dividendData = currency + dividend.toFixed(2) + "/" + dividendYield.toFixed(2) + "%";
+      dividendsTotal = this.dividendAmount();
+      dividendsTotal = dividendsTotal + "/" + (dividend*stockAmountValue).toFixed(2)
+    }
+
     return [
         <tr key="main" onClick={this.toggleExpander}>
           <td>
@@ -46,10 +92,10 @@ class UserTableRow extends React.Component {
             <p>{stock.stockName}</p>
           </td>
           <td>
-            <p>{stock.marketData.bid}</p>
+            <p>{currency}{stock.marketData.bid}</p>
           </td>
           <td>
-            <p>{currency}{stock.marketData.regularMarketChange}/{stock.marketData.regularMarketChangePercent.toFixed(2)}%</p>
+            <p>{stock.marketData.regularMarketChange.toFixed(2)}/{stock.marketData.regularMarketChangePercent.toFixed(2)}%</p>
           </td>
           <td>
             <p>{currency}{stock.marketData.fiftyTwoWeekLow}</p>
@@ -58,36 +104,43 @@ class UserTableRow extends React.Component {
             <p>___---_|=</p>
           </td>
           <td>
-            <p>{currency}{dividend.toFixed(2)}/{dividendYield.toFixed(2)}%</p>
+            <p>{stock.marketData.trailingPE.toFixed(2)}</p>
           </td>
           <td>
-            {stock.marketData.dividendDate}
+            <p>{stock.marketData.priceToBook.toFixed(2)}</p>
           </td>
           <td>
-            <p>1.02</p>
+            <p>{ROE.toFixed(2)}%</p>
           </td>
           <td>
-            <p>
-              {stock.transactions[0].amount}
-            </p>
+            <p>{dividendData}</p>
           </td>
           <td>
-            <p>{stock.price}</p>
+            {divDate}
           </td>
           <td>
-            <p>£161.80</p>
+            <p>{DCR.toFixed(3)}</p>
           </td>
           <td>
-            <p>£181.80</p>
+            <p>{stockAmountValue}</p>
           </td>
           <td>
-            <p>+£19.32</p>
+            <p>{currency}{(investmentValue/stockAmountValue).toFixed(2)}</p>
           </td>
           <td>
-            <p>+4.23%</p>
+            <p>{currency}{investmentValue}</p>
           </td>
           <td>
-            <p>{stock.dividends}</p>
+            <p>{currency}{(currentInvestValue).toFixed(2)}</p>
+          </td>
+          <td>
+            <p>{(currentInvestValue-investmentValue).toFixed(2)}</p>
+          </td>
+          <td>
+            <p>{(((currentInvestValue-investmentValue)/investmentValue)*100).toFixed(2)}</p>
+          </td>
+          <td>
+            <p>{dividendsTotal}</p>
           </td>
         </tr>,
         this.state.expanded && (

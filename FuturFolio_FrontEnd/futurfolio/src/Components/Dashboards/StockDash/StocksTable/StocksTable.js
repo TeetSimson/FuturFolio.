@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './StocksTable.css'
-import Table from './Table';
+import Table from './Table/Table';
 import AddStockMenu from './AddStockMenu/AddStockMenu';
 import TrashIcon from './delete.png';
 import Axios from 'axios';
