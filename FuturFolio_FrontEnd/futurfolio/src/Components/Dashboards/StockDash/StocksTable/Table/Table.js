@@ -173,7 +173,7 @@ class UserTableRow extends React.Component {
       } else {
         dividendData = currency + dividend.toFixed(2) + "/" + dividendYield.toFixed(2) + "%";
         dividendsTotal = this.dividendAmount();
-        dividendsTotal = dividendsTotal + "/" + (dividend*stockAmountValue).toFixed(2)
+        dividendsTotal = dividendsTotal + "/" + (dividend*stockAmountValue).toFixed(2);
       }
     } else {
       console.log("didnt load");
@@ -181,63 +181,63 @@ class UserTableRow extends React.Component {
     }
 
     return [
-        <tr key="main" onClick={this.toggleExpander}>
-          <td>
+        <tr class="RowShadow" key="main" onClick={this.toggleExpander}>
+          <td className="TableTab">
             <input className="uk-checkbox" type="checkbox" value={stock.stockName}/>
           </td>
-          <td className="uk-text-nowrap">{stock.stockSymbol}</td>
-          <td>
+          <td className="TableTab uk-text-nowrap">{stock.stockSymbol}</td>
+          <td className="TableTab">
             <p>{stock.stockName}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{currency}{currentPrice}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{marketChange}/{marketChangePerc}%</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{currency}{lowestPrice}</p>
           </td>
-          <td>
+          <td className="TableTab">
             {this.MyResponsiveLine(stockSmallChart)}
           </td>
-          <td>
+          <td className="TableTab">
             <p>{PE}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{PB}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{ROE.toFixed(2)}%</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{dividendData}</p>
           </td>
-          <td>
+          <td className="TableTab">
             {divDate}
           </td>
-          <td>
+          <td className="TableTab">
             <p>{DCR.toFixed(3)}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{stockAmountValue}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{currency}{(investmentValue/stockAmountValue).toFixed(2)}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{currency}{investmentValue}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{currency}{(currentInvestValue).toFixed(2)}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{(currentInvestValue-investmentValue).toFixed(2)}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{(((currentInvestValue-investmentValue)/investmentValue)*100).toFixed(2)}</p>
           </td>
-          <td>
+          <td className="TableTab">
             <p>{dividendsTotal}</p>
           </td>
         </tr>,

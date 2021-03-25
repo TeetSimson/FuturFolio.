@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './StockDash.css';
 import NetWorth from './NetWorth/NetWorth';
 import StockPie from './Panel2/StockPie';
+import DividendMeter from './Panel1/DividendMeter';
 import StocksTable from './StocksTable/StocksTable';
 
 export default class StockDash extends Component {
@@ -20,8 +21,8 @@ export default class StockDash extends Component {
         return (amountTotal);
     }
 
-    render() {
 
+    render() {
         return (
             <div className="StockDash">
                 <div className="NetWorthPanel">
@@ -31,7 +32,10 @@ export default class StockDash extends Component {
                 </div>
                 <div className="CustomPanels">
                     <div className="CustomPanel">
-
+                        <DividendMeter
+                            stockAmount={this.stockAmount}
+                            stocks={this.props.stocks[0]}
+                        />
                     </div>
                     <div className="CustomPanel2">
                         <StockPie

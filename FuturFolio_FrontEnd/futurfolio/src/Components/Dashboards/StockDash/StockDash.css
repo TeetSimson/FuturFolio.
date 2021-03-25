@@ -19,6 +19,9 @@
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
     border: 0.1em solid rgba(255, 255, 255, 0.123);
     transition: all 100ms;
+    -webkit-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    -moz-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
 }
 
 .CustomPanels {
@@ -35,6 +38,9 @@
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
     border: 0.1em solid rgba(255, 255, 255, 0.123);
     transition: all 100ms;
+    -webkit-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    -moz-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
 }
 
 .CustomPanel2 {
@@ -45,6 +51,9 @@
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
     border: 0.1em solid rgba(255, 255, 255, 0.123);
     transition: all 200ms;
+    -webkit-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    -moz-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
 }
 
 .StocksPanel {
@@ -57,6 +66,9 @@
     border: 0.1em solid rgba(255, 255, 255, 0.123);
     will-change: contents;
     transition: all 200ms;
+    -webkit-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    -moz-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
+    box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
 }
 
 .NetWorthPanelInner:hover{

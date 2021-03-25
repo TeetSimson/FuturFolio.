@@ -2,34 +2,39 @@ import { ResponsivePie } from '@nivo/pie';
 import React from 'react';
 import './StockPie.css';
 
-export default function StockPie(props) {    
-    
+export default function StockPie(props) {   
     let PieData = [];
     let colors = ['#01ABC1','#3f80ED','#3A4AA5']
     let i = 0;
     let amount = 0;
-    let totalAmount = 0;
+    let totalAmount = 0; 
+    const isLoading = props.stocks === null;
+    console.log(props.stocks);
+    console.log(isLoading);
 
-    // Get total stocks amount
-    for (var item of props.stocks) {
-        amount = props.stockAmount(item)
-        totalAmount += amount; 
-    }
+    if (!isLoading) {
 
-    // Get data per each stock for pie chart
-    for (var item of props.stocks) {
-        amount = props.stockAmount(item)
-        PieData.push({
-          id:(amount/totalAmount*100).toFixed(2) + '%',
-          label: item.stockSymbol,
-          value: amount,
-          color: colors[i]
-        });
-        i++
+        // Get total stocks amount
+        for (var item of props.stocks) {
+            amount = props.stockAmount(item);
+            totalAmount += amount; 
+        }
+
+        // Get data per each stock for pie chart
+        for (var item of props.stocks) {
+            amount = props.stockAmount(item);
+            PieData.push({
+                id:(amount/totalAmount*100).toFixed(2) + '%',
+                label: item.stockSymbol,
+                value: amount,
+                color: colors[i]
+            });
+            i++
+        }
     }
-    
     const MyResponsivePie = (data) => (
         <ResponsivePie
+            className="Pie"
             data={data}
             margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
             startAngle={360}
@@ -74,11 +79,20 @@ export default function StockPie(props) {
         />
     )
     
-
     return (
-        <div className="PieBox">
-            <p className="Panel2Title">Allocation</p>
-            {MyResponsivePie(PieData)}
+        <div className="LoadingBox2">
+        {isLoading ? (
+            <div className="PieBox">
+                <p className="Panel2Title">Allocation</p>
+            </div>
+        ) : (
+            <div className="PieBox">
+                <p className="Panel2Title">Allocation</p>
+                
+                {MyResponsivePie(PieData)}
+
+            </div>
+        )}
         </div>
     )
 }

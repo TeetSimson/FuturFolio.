@@ -8,8 +8,9 @@
 }
 
 .background {
-  background: rgb(165,220,249);
-  background: linear-gradient(159deg, rgba(165,220,249,1) 0%, rgba(167,144,237,1) 41%, rgba(235,127,153,1) 73%, rgba(246,228,213,1) 100%);
+  background: linear-gradient(217deg, rgba(11,5,190,.3), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(155,255,255,.6), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(321,5,0,.5), rgba(0,0,255,0) 70.71%);
   height: 100%;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
