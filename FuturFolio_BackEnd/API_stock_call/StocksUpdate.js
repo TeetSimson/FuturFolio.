@@ -46,8 +46,10 @@ router.post('/updateJSON', async (req, res) => {
             marketData: TextAPI[i],
             transactions: item.transactions,
             divTransactions: item.divTransactions,
-            chart: data.chart.result[0].comparisons[i],
-            chartTime: data.chart.result[0].timestamp
+            chart: {
+              data: data.chart.result[0].comparisons[i],
+              time: data.chart.result[0].timestamp
+            }
           });
           i++;
 
