@@ -75,11 +75,11 @@ class Signin extends React.Component {
     render() {
         const { onRouteChange } = this.props;
         return(
-            <article>
-                <main>
-                    <div className="SigninWindow">
-                        <fieldset id="sign_up" className="SigninForm">
-                            <p className = "title">Sign In</p>
+            <main className="WhiteBox">
+                <div className="SigninWindow">
+                    <fieldset id="sign_up" className="SigninForm">
+                        <p className = "SignInTitle">Sign In</p>
+                        <div className="SignInInputs">
                             <div>
                                 <input className="RegisterInput"
                                     type="email"
@@ -98,22 +98,24 @@ class Signin extends React.Component {
                                 onChange={this.onPasswordChange}
                                 />
                             </div>
-                        </fieldset>
-                        <div>
-                            <input
-                                onClick={this.onSubmitSignIn} // When clicked sign in function will check with the server
-                                className="SigninButton"
-                                type="submit"
-                                value="Sign in"
-                            />
                         </div>
-                        <div>
-                        <button onClick={() => onRouteChange('register')} // Go to register page
-                            className="RegisterButton">Register</button>
+                        <div className="SignInButtons">
+                            <div className="SignInButtonBox">
+                                <input
+                                    onClick={this.onSubmitSignIn} // When clicked sign in function will check with the server
+                                    className="SignInButton"
+                                    type="submit"
+                                    value="Sign in"
+                                />
+                            </div>
+                            <div className="SignInButtonBox">
+                                <button onClick={() => onRouteChange('register')} // Go to register page
+                                id="RegisterButton">Register</button>
+                            </div>
                         </div>
-                    </div>
-                </main>
-            </article>
+                    </fieldset>
+                </div>
+            </main>
         )
     }
 }

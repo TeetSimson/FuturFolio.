@@ -61,54 +61,58 @@ class Register extends React.Component {
     render() {
         const { onRouteChange } = this.props;
         return(
-            <article>
-                <main className="RegisterWindow">
-                    <div className="InnerForm">
-                        <fieldset id="sign_up" className="RegisterForm">
-                            <p className = "title">Register</p>
-                            <div className="mt3">
-                                <input className="RegisterInput"
-                                type="text"
-                                name="name"
-                                id="name"
-                                placeholder="Full Name"
-                                onChange={this.onNameChange} // Passing input to function to get the value
-                                />
-                            </div>
-                            <div className="mt3">
-                                <input className="RegisterInput"
-                                type="email"
-                                name="email-address"
-                                id="email-address"
-                                placeholder="Email"
-                                onChange={this.onEmailChange}
-                                />
-                            </div>
-                            <div className="mt3">
-                                <input className="RegisterInput"
-                                type="password"
-                                name="password"
-                                id="password"
-                                placeholder="Password"
-                                onChange={this.onPasswordChange}
-                                />
-                            </div>
-                        </fieldset>
-                        <div>
-                            <input
-                                onClick={this.onSubmitSignIn} // When clicked sign in function will check with the server
-                                className="SignUpButton"
-                                type="submit"
-                                value="Sign up"
+            <main className="RegisterWindow">
+                <div className="InnerForm">
+                    <fieldset id="sign_up" className="RegisterForm">
+                        <p className = "SignInTitle">Register</p>
+                        <div className="mt3">
+                            <input className="RegisterInput"
+                            type="text"
+                            name="name"
+                            id="name"
+                            placeholder="Full Name"
+                            onChange={this.onNameChange} // Passing input to function to get the value
                             />
                         </div>
-                        <div>
-                        <button onClick={() => onRouteChange('signin')} // Go to signin page
-                            className="BackButton">Back</button>
+                        <div className="mt3">
+                            <input className="RegisterInput"
+                            type="email"
+                            name="email-address"
+                            id="email-address"
+                            placeholder="Email"
+                            onChange={this.onEmailChange}
+                            />
                         </div>
-                    </div>
-                </main>
-            </article>
+                        <div className="mt3">
+                            <input className="RegisterInput"
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            onChange={this.onPasswordChange}
+                            />
+                        </div>
+                        <div className="SignInButtons">
+                            <div className="SignInButtonBox">
+                                <input
+                                    onClick={this.onSubmitSignIn} // When clicked sign in function will check with the server
+                                    className="SignInButton"
+                                    type="submit"
+                                    value="Sign up"
+                                />
+                            </div>
+                            <div className="SignInButtonBox">
+                                <button onClick={() => onRouteChange('signin')} // Go to signin page
+                                className="BackButton">
+                                    Back
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                   
+                </div>
+            </main>
+
         )
 
     }

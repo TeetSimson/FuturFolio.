@@ -36,8 +36,9 @@ export default function DividendMeter(props) {
 
     }
 
-    divList.push(totalEstimateDiv);
-    console.log(legendList);
+    if (totalEstimateDiv > 0) divList.push(totalEstimateDiv);
+    if (isNaN(totalEstimateDiv)) totalEstimateDiv = totalDivAmount;
+    console.log(totalEstimateDiv);
     
     return (
         <div className="DivMeterLoadingBox">
