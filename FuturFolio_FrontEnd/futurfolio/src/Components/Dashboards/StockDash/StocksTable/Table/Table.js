@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { slideDown, slideUp } from "./Animate";
+import { ResponsiveLine } from '@nivo/line';
 import "./Table.css";
 import Header from  './Header';
 
@@ -53,9 +54,78 @@ class UserTableRow extends React.Component {
     return (divTotal);
   }
 
+  
+
+  MyResponsiveLine = (data) => (
+    <ResponsiveLine
+        data={data}
+        height={40}
+        width={160}
+        margin={{ top: 15, right: 1, bottom: 5, left: 1 }}
+        xScale={{ type: 'point' }}
+        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
+        yFormat=" >-.2f"
+        curve="linear"
+        axisTop={null}
+        axisRight={null}
+        axisBottom={null}
+        axisLeft={null}
+        enableGridX={false}
+        enableGridY={false}
+        colors={{datum: 'color'}}
+        lineWidth={2}
+        enablePoints={false}
+        isInteractive={false}
+        enableCrosshair={false}
+        legends={[
+            {
+                anchor: 'bottom-right',
+                direction: 'column',
+                justify: false,
+                translateX: 100,
+                translateY: 0,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 80,
+                itemHeight: 20,
+                itemOpacity: 0.75,
+                symbolSize: 12,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                    {
+                        on: 'hover',
+                        style: {
+                            itemBackground: 'rgba(0, 0, 0, .03)',
+                            itemOpacity: 1
+                        }
+                    }
+                ]
+            }
+        ]}
+        motionConfig="molasses"
+    />
+  )
+
 
   render() {
     const { stock, index } = this.props;
+    let chartData = [];
+    let stockSmallChart = [];
+    let timelength = parseInt((stock.chart.time.length)/5); // Get 1y graph
+    for (let i=timelength*4; i<stock.chart.time.length; i++) {
+      chartData.push({
+        x: stock.chart.time[i],
+        y: stock.chart.data.close[i]
+      });
+    }
+
+    stockSmallChart.push({
+      id: stock.stockSymbol,
+      color: '#3f80ED',
+      data: chartData
+    });
+
     let currentPrice = 0;
     let marketChange = 0;
     let marketChangePerc = 0;
@@ -79,7 +149,7 @@ class UserTableRow extends React.Component {
       currentPrice = stock.marketData.regularMarketPrice.toFixed(2);
       marketChange = stock.marketData.regularMarketChange.toFixed(2);
       marketChangePerc = stock.marketData.regularMarketChangePercent.toFixed(2)
-      lowestPrice = stock.marketData.fiftyTwoWeekLow;
+      lowestPrice = stock.marketData.fiftyTwoWeekLow.toFixed(2);
       dividend = parseFloat(stock.marketData.trailingAnnualDividendRate);
       dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield*100);
       currency = "£";
@@ -129,7 +199,7 @@ class UserTableRow extends React.Component {
             <p>{currency}{lowestPrice}</p>
           </td>
           <td>
-            <p>___---_|=</p>
+            {this.MyResponsiveLine(stockSmallChart)}
           </td>
           <td>
             <p>{PE}</p>
