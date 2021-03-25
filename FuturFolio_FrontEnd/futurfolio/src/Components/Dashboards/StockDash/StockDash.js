@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './StockDash.css';
 import NetWorth from './NetWorth/NetWorth';
+import StockPie from './Panel2/StockPie';
 import StocksTable from './StocksTable/StocksTable';
-import Axios from 'axios';
 
 export default class StockDash extends Component {
     constructor() {
@@ -10,6 +10,14 @@ export default class StockDash extends Component {
         this.state = {
 
         };
+    }
+
+    stockAmount = (stock) => {
+        let amountTotal = stock.transactions.reduce(function(prev, cur) {
+          return prev + cur.amount;
+        }, 0);
+    
+        return (amountTotal);
     }
 
     render() {
@@ -26,7 +34,10 @@ export default class StockDash extends Component {
 
                     </div>
                     <div className="CustomPanel2">
-
+                        <StockPie
+                            stockAmount={this.stockAmount}
+                            stocks={this.props.stocks[0]}
+                        />
                     </div>
                 </div>
                 <div id="StocksPanelID" className="StocksPanel">

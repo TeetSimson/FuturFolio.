@@ -56,30 +56,58 @@ class UserTableRow extends React.Component {
 
   render() {
     const { stock, index } = this.props;
-    let dividend = parseFloat(stock.marketData.trailingAnnualDividendRate);
-    let dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield*100);
+    let currentPrice = 0;
+    let marketChange = 0;
+    let marketChangePerc = 0;
+    let lowestPrice = 0;
+    let dividend = '-'
+    let dividendYield = '-'
     let dividendData = '';
-    let currency = "£";
+    let currency = '€';
     let divDate = 'NaN';
-    let stockAmount = stock.marketData.marketCap/stock.marketData.regularMarketPrice;
-    let DCR = stock.marketData.epsTrailingTwelveMonths*stockAmount/(dividend*stockAmount);
-    let ROE = stock.marketData.epsTrailingTwelveMonths*stockAmount/(stock.marketData.bookValue*stockAmount)*100;    
-    if (stock.marketData.currency === 'USD') currency = '$';
-    else if (stock.marketData.currency === 'EUR') currency = '€';
-    
-    let stockAmountValue = this.stockAmount();
-    let investmentValue = this.investmentAmount();
-    let currentInvestValue = stockAmountValue*stock.marketData.regularMarketPrice;
-    
-    if (stock.marketData.dividendDate != null) divDate = stock.marketData.dividendDate; 
-    let dividendsTotal = '-';
+    let stockAmount = 0; 
+    let DCR = 0;
+    let PE = 0;
+    let PB = 0;
+    let ROE = 0;
+    let stockAmountValue = 0;
+    let investmentValue = 0;
+    let currentInvestValue = 0;
+    let dividendsTotal = 0;
 
-    if (dividend.toString() === 'NaN') {
-      dividendData = '-';
+    if (stock.marketData != null) {
+      currentPrice = stock.marketData.regularMarketPrice.toFixed(2);
+      marketChange = stock.marketData.regularMarketChange.toFixed(2);
+      marketChangePerc = stock.marketData.regularMarketChangePercent.toFixed(2)
+      lowestPrice = stock.marketData.fiftyTwoWeekLow;
+      dividend = parseFloat(stock.marketData.trailingAnnualDividendRate);
+      dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield*100);
+      currency = "£";
+      stockAmount = stock.marketData.marketCap/stock.marketData.regularMarketPrice;
+      DCR = stock.marketData.epsTrailingTwelveMonths*stockAmount/(dividend*stockAmount);
+      if(stock.marketData.trailingPE != null) PE = stock.marketData.trailingPE.toFixed(2);
+      PB = stock.marketData.priceToBook.toFixed(2);
+      ROE = stock.marketData.epsTrailingTwelveMonths*stockAmount/(stock.marketData.bookValue*stockAmount)*100;    
+      if (stock.marketData.currency === 'USD') currency = '$';
+      else if (stock.marketData.currency === 'EUR') currency = '€';
+      
+      stockAmountValue = this.stockAmount();
+      investmentValue = this.investmentAmount();
+      currentInvestValue = stockAmountValue*stock.marketData.regularMarketPrice;
+      
+      if (stock.marketData.dividendDate != null) divDate = stock.marketData.dividendDate; 
+      dividendsTotal = '-';
+
+      if (dividend.toString() === 'NaN') {
+        dividendData = '-';
+      } else {
+        dividendData = currency + dividend.toFixed(2) + "/" + dividendYield.toFixed(2) + "%";
+        dividendsTotal = this.dividendAmount();
+        dividendsTotal = dividendsTotal + "/" + (dividend*stockAmountValue).toFixed(2)
+      }
     } else {
-      dividendData = currency + dividend.toFixed(2) + "/" + dividendYield.toFixed(2) + "%";
+      console.log("didnt load");
       dividendsTotal = this.dividendAmount();
-      dividendsTotal = dividendsTotal + "/" + (dividend*stockAmountValue).toFixed(2)
     }
 
     return [
@@ -92,22 +120,22 @@ class UserTableRow extends React.Component {
             <p>{stock.stockName}</p>
           </td>
           <td>
-            <p>{currency}{stock.marketData.bid}</p>
+            <p>{currency}{currentPrice}</p>
           </td>
           <td>
-            <p>{stock.marketData.regularMarketChange.toFixed(2)}/{stock.marketData.regularMarketChangePercent.toFixed(2)}%</p>
+            <p>{marketChange}/{marketChangePerc}%</p>
           </td>
           <td>
-            <p>{currency}{stock.marketData.fiftyTwoWeekLow}</p>
+            <p>{currency}{lowestPrice}</p>
           </td>
           <td>
             <p>___---_|=</p>
           </td>
           <td>
-            <p>{stock.marketData.trailingPE.toFixed(2)}</p>
+            <p>{PE}</p>
           </td>
           <td>
-            <p>{stock.marketData.priceToBook.toFixed(2)}</p>
+            <p>{PB}</p>
           </td>
           <td>
             <p>{ROE.toFixed(2)}%</p>
