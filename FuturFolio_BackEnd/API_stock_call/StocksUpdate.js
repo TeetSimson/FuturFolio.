@@ -26,7 +26,7 @@ router.post('/updateJSON', async (req, res) => {
     .then(text => {
       TextAPI = text;
       arrayAPI = arrayAPI.toString().replace(/,/g, "%2C");
-      return fetch(`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/AAPL?interval=1d&range=10y&comparisons=${arrayAPI}&events=div%2Csplit`, {
+      return fetch(`https://yahoo-finance-low-latency.p.rapidapi.com/v8/finance/chart/AAPL?interval=1d&range=5y&comparisons=${arrayAPI}&events=div%2Csplit`, {
         "method": "GET",
         "headers": {
           "x-rapidapi-key": "7cc3ae701amshf93e4f7eed74bebp16d5aejsnbae90ef4635c",
