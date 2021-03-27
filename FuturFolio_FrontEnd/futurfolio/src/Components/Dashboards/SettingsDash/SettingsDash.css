@@ -7,7 +7,7 @@
 	font-size: 16px;
 	font-family: sans-serif;
 	font-weight: 700;
-	color: #dadce1;
+	color: #000000;
 	line-height: 1.3;
 	padding: .6em 1.4em .5em .8em;
 	width: 100%;
@@ -28,11 +28,15 @@
 }
 
 .sett-item :hover{
-    background-color: #bbbbbb09;
+    background-color: #ebebeb09;
 }
 
 .sett-content{
 	position: relative;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
 	top: 25px;
 	left: 100px;
 }
@@ -52,4 +56,129 @@
 	background-color: #e3e5eb41;
     border-radius: 15px;
     padding: 8px;
+}
+
+.fname{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+.lname{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+
+.change{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+
+.oldpass{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+
+.newpass{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+
+.conpass{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #000000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(255, 255, 255, 0.178);
+	box-shadow: 1px solid rgba(255, 255, 255, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
+}
+
+.close{
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #cf0000;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 60%;
+	box-sizing: border-box;
+	margin: 0;
+    border: 1px solid rgba(248, 0, 0, 0.432);
+	box-shadow: 1px solid rgba(255, 0, 0, 0.178);;
+	border-radius: .5em;
+	background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.205), rgba(255, 255, 255, 0) );
 }

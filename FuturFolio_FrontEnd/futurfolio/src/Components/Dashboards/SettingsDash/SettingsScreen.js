@@ -21,16 +21,42 @@ export default function SettingsScreen(){
         return(
             <div>
             <h2>Change your Name</h2>
-            <form action="/action_page.php">
-                <label for="fname">First name:</label>
-                <input type="text" id="fname" name="fname"/><br></br>
-                <label for="lname">Last name:</label>
-                <input type="text" id="lname" name="lname"/><br></br>
-                <input type="submit" value="Submit"/>
+            <form className="CName">
+                <label for="fname">First Name:</label>
+                <input type="text" className="fname" name="fname"/><br></br>
+                <label for="lname">Last Name:</label>
+                <input type="text" className="lname" name="lname"/><br></br>
+                <input type="submit" className = "change" value="Change"/>
             </form>
             </div>
             
         );
+    }
+
+    function PasswordSettings(){
+        return(
+            <div>
+                <h2>Change Password</h2>
+                <form>
+                    <label for="oldpass">Old Password:</label>
+                    <input type="text" className="oldpass" name="oldpass"/><br></br>
+                    <label for="newpass">New Password:</label>
+                    <input type="text" className="newpass" name="newpass"/><br></br>
+                    <label for="conpass">Confirm New Password:</label>
+                    <input type="text" className="conpass" name="conpass"/><br></br>
+                    <input type="submit" className = "change" value="Change"/>
+                </form>
+            </div>
+        )
+    }
+
+    function CloseAccount(){
+        return(
+            <div>
+                <h2 className="closewarn">Are you sure you want to close this account?</h2>
+                <input type="submit" className = "close" value="Close Account"/>
+            </div>
+        )
     }
 
 
@@ -52,13 +78,15 @@ export default function SettingsScreen(){
                     name: "Password",
                     description: "Change your password",
                     tags: ["password"],
-                    icon: <PasswordIcon/>
+                    icon: <PasswordIcon/>,
+                    content: <PasswordSettings/>
                 },
                 {
                     name: "Close Account",
                     description: "Warning: Closing your account is irreversible",
                     tags: ["delete", "close", "remove"],
-                    icon: <CloseIcon/>
+                    icon: <CloseIcon/>,
+                    content: <CloseAccount/>
                 },
             ]
         },
