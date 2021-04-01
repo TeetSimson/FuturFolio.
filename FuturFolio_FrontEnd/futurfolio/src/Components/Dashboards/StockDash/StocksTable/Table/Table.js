@@ -56,7 +56,7 @@ class UserTableRow extends React.Component {
 
   
 
-  MyResponsiveLine = (data) => (
+  generateSmallGraph = (data) => (
     <ResponsiveLine
         data={data}
         height={40}
@@ -112,20 +112,6 @@ class UserTableRow extends React.Component {
     const { stock, index } = this.props;
     let chartData = [];
     let stockSmallChart = [];
-    let timelength = parseInt((stock.chart.time.length)/5); // Get 1y graph
-    for (let i=timelength*4; i<stock.chart.time.length; i++) {
-      chartData.push({
-        x: stock.chart.time[i],
-        y: stock.chart.data.close[i]
-      });
-    }
-
-    stockSmallChart.push({
-      id: stock.stockSymbol,
-      color: '#3f80ED',
-      data: chartData
-    });
-
     let currentPrice = 0;
     let marketChange = 0;
     let marketChangePerc = 0;
@@ -134,7 +120,7 @@ class UserTableRow extends React.Component {
     let dividendYield = '-'
     let dividendData = '';
     let currency = '€';
-    let divDate = 'NaN';
+    let divDate = '-';
     let stockAmount = 0; 
     let DCR = 0;
     let PE = 0;
@@ -145,26 +131,56 @@ class UserTableRow extends React.Component {
     let currentInvestValue = 0;
     let dividendsTotal = 0;
 
-    if (stock.marketData != null) {
+    if (stock.marketData != null) { // If we have market data then change values
+
+      ///////// Small Stock Graph /////////
+      for (let i=(parseInt((stock.chart.time.length)/5))*4; i<stock.chart.time.length; i++) { // Get 1y graph
+        try {
+          chartData.push({
+            x: stock.chart.time[i],
+            y: stock.chart.data.close[i]
+          });
+        }
+        catch {
+          console.log("undefined");
+        }
+      }
+  
+      stockSmallChart.push({
+        id: stock.stockSymbol,
+        color: '#3f80ED',
+        data: chartData
+      });
+
+      if (stockSmallChart[0].data.length === 0) stockSmallChart[0] = "Error";
+
+      ////// First 4 columns ////// 
       currentPrice = stock.marketData.regularMarketPrice.toFixed(2);
       marketChange = stock.marketData.regularMarketChange.toFixed(2);
       marketChangePerc = stock.marketData.regularMarketChangePercent.toFixed(2)
       lowestPrice = stock.marketData.fiftyTwoWeekLow.toFixed(2);
+
+      ////// Dividends /////
       dividend = parseFloat(stock.marketData.trailingAnnualDividendRate);
       dividendYield = parseFloat(stock.marketData.trailingAnnualDividendYield*100);
-      currency = "£";
-      stockAmount = stock.marketData.marketCap/stock.marketData.regularMarketPrice;
-      DCR = stock.marketData.epsTrailingTwelveMonths*stockAmount/(dividend*stockAmount);
+
+      //// DCR Calculation ////
+      stockAmount = stock.marketData.marketCap/stock.marketData.regularMarketPrice; 
+      if(dividend !== "-") DCR = "-";
+      else DCR = (stock.marketData.epsTrailingTwelveMonths*stockAmount/(dividend*stockAmount)).toFixed(3);
+
+      //// Other Key Ratios ////
       if(stock.marketData.trailingPE != null) PE = stock.marketData.trailingPE.toFixed(2);
       PB = stock.marketData.priceToBook.toFixed(2);
-      ROE = stock.marketData.epsTrailingTwelveMonths*stockAmount/(stock.marketData.bookValue*stockAmount)*100;    
+      ROE = (stock.marketData.epsTrailingTwelveMonths*stockAmount/(stock.marketData.bookValue*stockAmount)*100).toFixed(2);    
       if (stock.marketData.currency === 'USD') currency = '$';
       else if (stock.marketData.currency === 'EUR') currency = '€';
       
+      //// User stock values ////
       stockAmountValue = this.stockAmount();
       investmentValue = this.investmentAmount();
-      currentInvestValue = stockAmountValue*stock.marketData.regularMarketPrice;
-      
+      currentInvestValue = (stockAmountValue*stock.marketData.regularMarketPrice).toFixed(2);
+
       if (stock.marketData.dividendDate != null) divDate = stock.marketData.dividendDate; 
       dividendsTotal = '-';
 
@@ -181,7 +197,7 @@ class UserTableRow extends React.Component {
     }
 
     return [
-        <tr class="RowShadow" key="main" onClick={this.toggleExpander}>
+        <tr className="RowShadow" key="main" onClick={this.toggleExpander}>
           <td className="TableTab">
             <input className="uk-checkbox" type="checkbox" value={stock.stockName}/>
           </td>
@@ -199,7 +215,11 @@ class UserTableRow extends React.Component {
             <p>{currency}{lowestPrice}</p>
           </td>
           <td className="TableTab">
-            {this.MyResponsiveLine(stockSmallChart)}
+            {
+              (stockSmallChart[0] !== 'Error') 
+              ? (this.generateSmallGraph(stockSmallChart))
+              : (<p>Error</p>)
+            }
           </td>
           <td className="TableTab">
             <p>{PE}</p>
@@ -208,7 +228,7 @@ class UserTableRow extends React.Component {
             <p>{PB}</p>
           </td>
           <td className="TableTab">
-            <p>{ROE.toFixed(2)}%</p>
+            <p>{ROE}%</p>
           </td>
           <td className="TableTab">
             <p>{dividendData}</p>
@@ -217,7 +237,7 @@ class UserTableRow extends React.Component {
             {divDate}
           </td>
           <td className="TableTab">
-            <p>{DCR.toFixed(3)}</p>
+            <p>{DCR}</p>
           </td>
           <td className="TableTab">
             <p>{stockAmountValue}</p>
@@ -229,7 +249,7 @@ class UserTableRow extends React.Component {
             <p>{currency}{investmentValue}</p>
           </td>
           <td className="TableTab">
-            <p>{currency}{(currentInvestValue).toFixed(2)}</p>
+            <p>{currency}{currentInvestValue}</p>
           </td>
           <td className="TableTab">
             <p>{(currentInvestValue-investmentValue).toFixed(2)}</p>
@@ -300,7 +320,11 @@ export default class Table extends React.Component {
                     </tr>
                   ) : (
                     stocks.map((stock, index) => (
-                        <UserTableRow key={index} index={index+1} stock={stock} />                 
+                        <UserTableRow 
+                          key={index} 
+                          index={index+1} 
+                          stock={stock} 
+                          />                 
                     ))
                   )}
                 </tbody>

@@ -6,20 +6,41 @@ import SettingsDash from './SettingsDash/SettingsDash';
 import Axios from 'axios';
 
 export default class Dashboards extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            
+            stocks: props.user.stocks
         };
     }
 
-    setNewUserStock = (data) => {
-        this.props.user.stocks[0] = data; // NEEDS WORKING
-        this.setState({});
+    setStockMarketData = () => {
+        Axios.post("http://localhost:5000/stocks/",{
+            token: localStorage.getItem("token"),
+        })
+        .then((data) => {
+            // Fetching stock market data
+            Axios.post("http://localhost:5000/APIstocks/updateJSON",{
+                stocks: data.data,
+                token: localStorage.getItem("token"),
+            })
+            .then((data) => {
+                this.setState({ stocks: data.data });
+            })
+        })
+        .catch(err => console.log(err));
+
+      }
+
+    // DOESNT WORK
+    removeStockFromTable = (numberOfStock) => {
+        //newStocksArray = newStocksArray.concat(this.state.stocks[0]);
+/*         newStocksArray.splice(numberOfStock-1,1, undefined);
+        console.log(newStocksArray); */
+        this.setState({stocks: [this.state.stocks[0].splice(numberOfStock-1,1, undefined), this.state.stocks[1]]});
     }
 
     render() {
-        
+        console.log(this.state.stocks)
         return (
             <div className="background"> {/* On which Dashboard */}
                 {this.props.dashboard === 'Dashboard'
@@ -29,8 +50,9 @@ export default class Dashboards extends Component {
                     (this.props.dashboard === 'StockDash'
                     ? 
                         <StockDash 
-                            stocks={this.props.user.stocks}
-                            setNewUserStock={this.setNewUserStock}
+                            stocks={this.state.stocks}
+                            removeStockFromTable={this.removeStockFromTable}
+                            setStockMarketData={this.setStockMarketData} // For updating stocks data
                         />
                     :
                         (this.props.dashboard === 'LoansDash'

@@ -16,7 +16,7 @@ const initialState = {
     name: '',
     email: '',
     joined: '',
-    stocks: null
+    stocks: [null, null]
   },
   dashboard: 'Dashboard',
   title: 'Dashboard'
@@ -74,8 +74,11 @@ export default class App extends Component {
   }
 
   loadUser = (user) => {
-    this.setState(Object.assign(this.state.user, { id: user.id}));
+    console.log(user)
+    this.setState(Object.assign(this.state.user, { id: user.data.userID}));
+    this.setState(Object.assign(this.state.user, { email: user.data.email}));
     this.setState(Object.assign(this.state.user, { token: user.data.token}));
+    console.log(this.state.user)
   }
 
   setStockMarketData = (data) => {
@@ -122,7 +125,6 @@ export default class App extends Component {
         route === 'signin' 
           ? <Signin loadUser={this.loadUser} 
             setStockMarketData={this.setStockMarketData} // For updating stocks data
-            setUserStocks={this.setUserStocks} 
             onRouteChange={this.onRouteChange}/> // If on "signin" page
           : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/> // If on "register" page
         )

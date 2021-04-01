@@ -44,8 +44,8 @@ export default class StocksTable extends Component {
                         token: localStorage.getItem("token")
                     })
                     .then(() => {
-                        console.log("Stock Removed")
-                        this.updateStock();
+                        console.log("Stock Removed");
+                        this.props.removeStockFromTable(i);
 
                     }).catch(err => {
                         console.log(err)
@@ -53,15 +53,6 @@ export default class StocksTable extends Component {
                     });
             }
         }
-    }
-
-    updateStock = () => {
-        Axios.post("http://localhost:5000/stocks/",{
-            token: localStorage.getItem("token"),
-        })
-        .then((data) => {
-            this.props.setNewUserStock(data.data);
-        }).catch(err => console.log(err));
     }
     
     render() {
@@ -71,7 +62,8 @@ export default class StocksTable extends Component {
                 <AddStockMenu 
                     Stocks={this.props.stocks} 
                     Show={this.state.Show} 
-                    setNewUserStock={this.props.setNewUserStock}
+                    //setNewUserStock={this.props.setNewUserStock}
+                    setStockMarketData={this.props.setStockMarketData} // For updating stocks data
                 />
                 <div className="TopBar">
                     <p className="Title">Stocks</p>

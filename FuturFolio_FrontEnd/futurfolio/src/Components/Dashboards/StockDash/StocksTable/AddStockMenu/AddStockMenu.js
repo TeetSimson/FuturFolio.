@@ -80,7 +80,7 @@ export default function AddStockMenu(props) {
                     })
                     .then(() => {
                         console.log("Buy data added to database!")
-                        updateStock()
+                        props.setStockMarketData();
 
                     }).catch(err => {
                         console.log(err)
@@ -108,7 +108,7 @@ export default function AddStockMenu(props) {
                         })
                         .then(() => {
                             console.log("Sell data added to database!")
-                            updateStock()
+                            props.setStockMarketData();
 
                         }).catch(err => {
                             console.log(err)
@@ -139,7 +139,7 @@ export default function AddStockMenu(props) {
                     })
                     .then(() => {
                         console.log("Dividends added to database!")
-                        updateStock()
+                        props.setStockMarketData();
 
                     }).catch(err => {
                         console.log(err)
@@ -155,16 +155,15 @@ export default function AddStockMenu(props) {
         }
         
     }
-
+/* 
     function updateStock(){
-        Axios.post("http://localhost:5000/stocks/",{
-            token: localStorage.getItem("token"),
-        })
-        .then((data) => {
+        
+
+/*         .then((data) => {
             props.setNewUserStock(data.data);
 
-            }).catch(err => console.log(err));
-    }
+            }).catch(err => console.log(err)); 
+    } */
 
     return (
         <div className="AddStockBox">
