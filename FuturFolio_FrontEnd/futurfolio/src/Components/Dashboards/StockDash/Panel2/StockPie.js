@@ -9,8 +9,6 @@ export default function StockPie(props) {
     let amount = 0;
     let totalAmount = 0; 
     const isLoading = props.stocks === null;
-    console.log(props.stocks);
-    console.log(isLoading);
 
     if (!isLoading) {
 
@@ -32,7 +30,8 @@ export default function StockPie(props) {
             i++
         }
     }
-    const MyResponsivePie = (data) => (
+
+    const generateStockPie = (data) => (
         <ResponsivePie
             className="Pie"
             data={data}
@@ -83,13 +82,13 @@ export default function StockPie(props) {
         <div className="LoadingBox2">
         {isLoading ? (
             <div className="PieBox">
-                <p className="Panel2Title">Allocation</p>
+                <div className="loader">Loading...</div>
             </div>
         ) : (
             <div className="PieBox">
                 <p className="Panel2Title">Allocation</p>
                 
-                {MyResponsivePie(PieData)}
+                {generateStockPie(PieData)}
 
             </div>
         )}

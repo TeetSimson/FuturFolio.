@@ -11,6 +11,7 @@ export default class NetWorth extends Component {
       }
 
     render() {
+
         return (
             <div>
                 <NetWorthTab 

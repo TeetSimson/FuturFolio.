@@ -9,7 +9,7 @@ export default class StockDash extends Component {
     constructor() {
         super()
         this.state = {
-
+            stocksTotalInvestment: 0
         };
     }
 
@@ -21,13 +21,14 @@ export default class StockDash extends Component {
         return (amountTotal);
     }
 
-
     render() {
         return (
             <div className="StockDash">
                 <div className="NetWorthPanel">
                     <div className="NetWorthPanelInner">
-                        <NetWorth />
+                        <NetWorth 
+                            stocksTotalInvestment={this.state.stocksTotalInvestment}
+                        />
                     </div>
                 </div>
                 <div className="CustomPanels">
@@ -47,7 +48,8 @@ export default class StockDash extends Component {
                 <div id="StocksPanelID" className="StocksPanel">
                     <StocksTable 
                         stocks={this.props.stocks[0]}
-                        setNewUserStock={this.props.setNewUserStock}
+                        removeStockFromTable={this.props.removeStockFromTable}
+                        setStockMarketData={this.props.setStockMarketData} // For updating stocks data
                     />
                 </div>
             </div>
