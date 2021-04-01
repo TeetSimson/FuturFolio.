@@ -394,6 +394,14 @@ export default function SettingsScreen(){
         )
     }
 
+    function CurrencySettings(){
+        return(
+            <div>
+                
+            </div>
+        )
+    }
+
 
     const options = [
         {
