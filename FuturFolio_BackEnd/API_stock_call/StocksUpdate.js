@@ -60,8 +60,8 @@ router.post('/updateJSON', async (req, res) => {
         return [StocksWithData, bigChart]; 
       })
       .catch(e => {
-        
-        return console.log(e);
+        console.log(e);
+        return "Stock Server Error";
       });
     });    
   }

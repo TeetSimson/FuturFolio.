@@ -99,6 +99,7 @@ router.post("/signin", async (req,res) => {
 						auth: true,
 						token: token,
 						userID: existingUser._id,
+						email: email,
 						userName: existingUser._name,
 						imageBuffer: existingUser.profile_img.imageBuffer,
 						imageType: existingUser.profile_img.imageType
