@@ -10,10 +10,6 @@
 .PieBox {
     height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;    
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .Panel2Title {
@@ -24,6 +20,11 @@
     font-size: larger;
     color: #303030;
 }
+
+.LoadingDiv {
+    margin-top: 170px;
+}
+
 .Panel2Loading {
     text-align: center;
     font-size: 24px;

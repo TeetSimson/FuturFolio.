@@ -12,15 +12,15 @@ export default function StockPie(props) {
 
     if (!isLoading) {
 
-        // Get total stocks amount
+        // Get total stocks value
         for (var item of props.stocks) {
-            amount = props.stockAmount(item);
+            amount = props.stockValue(item);
             totalAmount += amount; 
         }
 
-        // Get data per each stock for pie chart
+        // Get data per each stock for pie chart sectors
         for (var item of props.stocks) {
-            amount = props.stockAmount(item);
+            amount = props.stockValue(item);
             PieData.push({
                 id:(amount/totalAmount*100).toFixed(2) + '%',
                 label: item.stockSymbol,
@@ -82,7 +82,9 @@ export default function StockPie(props) {
         <div className="LoadingBox2">
         {isLoading ? (
             <div className="PieBox">
-                <div className="loader">Loading...</div>
+                <div className="LoadingDiv">
+                    <div className="loader">Loading...</div>
+                </div>
             </div>
         ) : (
             <div className="PieBox">

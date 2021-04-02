@@ -74,16 +74,13 @@ export default class App extends Component {
   }
 
   loadUser = (user) => {
-    console.log(user)
     this.setState(Object.assign(this.state.user, { id: user.data.userID}));
     this.setState(Object.assign(this.state.user, { email: user.data.email}));
     this.setState(Object.assign(this.state.user, { token: user.data.token}));
-    console.log(this.state.user)
   }
 
   setStockMarketData = (data) => {
     this.setState(Object.assign(this.state.user, { stocks: data }));
-    console.log(data);
   }
 
   LogOut = () => {

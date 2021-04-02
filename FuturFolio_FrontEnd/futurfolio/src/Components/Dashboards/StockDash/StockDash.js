@@ -14,11 +14,23 @@ export default class StockDash extends Component {
     }
 
     stockAmount = (stock) => {
-        let amountTotal = stock.transactions.reduce(function(prev, cur) {
+        const amountTotal = stock.transactions.reduce(function(prev, cur) {
           return prev + cur.amount;
         }, 0);
     
         return (amountTotal);
+    }
+
+    stockValue = (stock) => {
+        const valueTotal = stock.transactions.reduce(function(prev, cur) {
+          return prev + cur.price;
+        }, 0);
+
+        const feesTotal = stock.transactions.reduce(function(prev, cur) {
+            return prev + cur.fees;
+          }, 0);
+
+        return (valueTotal+feesTotal);
     }
 
     render() {
@@ -40,7 +52,7 @@ export default class StockDash extends Component {
                     </div>
                     <div className="CustomPanel2">
                         <StockPie
-                            stockAmount={this.stockAmount}
+                            stockValue={this.stockValue}
                             stocks={this.props.stocks[0]}
                         />
                     </div>
