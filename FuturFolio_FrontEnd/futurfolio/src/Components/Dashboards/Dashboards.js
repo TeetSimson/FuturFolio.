@@ -9,7 +9,8 @@ export default class Dashboards extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            stocks: props.user.stocks
+            stocks: props.user.stocks,
+            firstTime: true
         };
     }
 
@@ -31,16 +32,21 @@ export default class Dashboards extends Component {
 
       }
 
-    // DOESNT WORK
-    removeStockFromTable = (numberOfStock) => {
-        //newStocksArray = newStocksArray.concat(this.state.stocks[0]);
-/*         newStocksArray.splice(numberOfStock-1,1, undefined);
-        console.log(newStocksArray); */
-        this.setState({stocks: [this.state.stocks[0].splice(numberOfStock-1,1, undefined), this.state.stocks[1]]});
+    // When the stock market data arrives update current component state as well
+    componentDidUpdate(){
+        if (this.state.stocks !== this.props.user.stocks && this.state.firstTime) {
+            this.setState({stocks: this.props.user.stocks});
+            this.setState({firstTime: false})
+        }
+        console.log("UPDATE");
+    }
+
+    removeStockFromTable = (Name) => {
+        const newArray = this.state.stocks[0].filter((item) => item.stockName !== Name);
+        this.setState({stocks: [newArray, this.state.stocks[1]]});
     }
 
     render() {
-        console.log(this.state.stocks)
         return (
             <div className="background"> {/* On which Dashboard */}
                 {this.props.dashboard === 'Dashboard'

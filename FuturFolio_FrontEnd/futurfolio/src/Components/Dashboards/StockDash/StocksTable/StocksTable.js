@@ -38,14 +38,14 @@ export default class StocksTable extends Component {
         for (var i = 1; i < currentStocks.length; i++) {
             let checkbox = currentStocks[i].children[0].children[0];
             if (checkbox.checked) {
-
+                
                 Axios.post("http://localhost:5000/stocks/removeStock",{
                         stockName: checkbox.value,
                         token: localStorage.getItem("token")
                     })
                     .then(() => {
                         console.log("Stock Removed");
-                        this.props.removeStockFromTable(i);
+                        this.props.removeStockFromTable(checkbox.value);
 
                     }).catch(err => {
                         console.log(err)
