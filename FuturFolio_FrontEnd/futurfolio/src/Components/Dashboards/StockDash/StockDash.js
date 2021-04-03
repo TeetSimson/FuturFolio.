@@ -39,6 +39,7 @@ export default class StockDash extends Component {
                 <div className="NetWorthPanel">
                     <div className="NetWorthPanelInner">
                         <NetWorth 
+                            stocks={this.props.stocks}
                             stocksTotalInvestment={this.state.stocksTotalInvestment}
                         />
                     </div>

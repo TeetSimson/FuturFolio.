@@ -155,15 +155,6 @@ export default function AddStockMenu(props) {
         }
         
     }
-/* 
-    function updateStock(){
-        
-
-/*         .then((data) => {
-            props.setNewUserStock(data.data);
-
-            }).catch(err => console.log(err)); 
-    } */
 
     return (
         <div className="AddStockBox">
@@ -244,27 +235,28 @@ export default function AddStockMenu(props) {
                             {props.Stocks.map((item, index) => (
                                 <option key={index} value={item.stockName}/>
                             ))}
-                        </datalist> 
+                        </datalist>
                         <input className="AddStockInput" 
-                        list="UserStocks"
-                        name="DivStockName"
-                        id="DivStockName"
-                        placeholder="Ticker"
-                        onChange={onDivTickerChange}
+                            list="UserStocks"
+                            name="DivStockName"
+                            id="DivStockName"
+                            placeholder="Ticker"
+                            onChange={onDivTickerChange}
                         /> 
                         <input className="AddStockInput"
-                        type="date"
-                        name="Dividend Transaction Date"
-                        id="DivTransactionDate"
-                        onChange={onDivTransactionChange}
+                            type="date"
+                            name="Dividend Transaction Date"
+                            id="DivTransactionDate"
+                            placeholder="yyyy-mm-dd"
+                            onChange={onDivTransactionChange}
                         />
                         <input className="AddStockInput"
-                        type="number"
-                        name="Total Dividends"
-                        id="TotalDiv"
-                        placeholder="Total Dividends"
-                        min='0'
-                        onChange={onDivAmountChange}
+                            type="number"
+                            name="Total Dividends"
+                            id="TotalDiv"
+                            placeholder="Total Dividends"
+                            min='0'
+                            onChange={onDivAmountChange}
                         />
                         <input 
                         className="AddStockButton" 

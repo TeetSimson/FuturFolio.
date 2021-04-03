@@ -80,7 +80,7 @@ class Signin extends React.Component {
                     <fieldset id="sign_up" className="SigninForm">
                         <p className = "SignInTitle">Sign In</p>
                         <div className="SignInInputs">
-                            <div>
+                            <label>
                                 <input className="RegisterInput"
                                     type="email"
                                     name="email-address"
@@ -88,8 +88,8 @@ class Signin extends React.Component {
                                     placeholder="Email"
                                     onChange={this.onEmailChange} // Passing input to function to get the value
                                 />
-                            </div>
-                            <div>
+                            </label>
+                            <label>
                                 <input className="RegisterInput"
                                 type="password"
                                 name="password"
@@ -97,7 +97,7 @@ class Signin extends React.Component {
                                 placeholder="Password"
                                 onChange={this.onPasswordChange}
                                 />
-                            </div>
+                            </label>
                         </div>
                         <div className="SignInButtons">
                             <div className="SignInButtonBox">

@@ -62,7 +62,6 @@ export default class StocksTable extends Component {
                 <AddStockMenu 
                     Stocks={this.props.stocks} 
                     Show={this.state.Show} 
-                    //setNewUserStock={this.props.setNewUserStock}
                     setStockMarketData={this.props.setStockMarketData} // For updating stocks data
                 />
                 <div className="TopBar">

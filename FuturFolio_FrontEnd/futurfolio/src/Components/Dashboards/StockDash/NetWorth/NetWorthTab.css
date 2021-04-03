@@ -1,10 +1,14 @@
+.NetworthBox {
+    width: 100%;
+    height: 100%;
+}
+
 .NetWorthTab {
     margin: 15px;
     width: calc(100%-15px);
     height: 120px;
     border-radius: 25px;
     background: linear-gradient(0.55turn, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0) );
-    backdrop-filter: blur(4px);
     border: 0.1em solid rgba(255, 255, 255, 0.123);
     -webkit-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
     -moz-box-shadow: 3px 10px 41px 9px rgba(0,0,0,0.06);
@@ -17,4 +21,19 @@
     margin-top: 10px;
     color: rgb(48, 48, 48);
     text-shadow: 5px 5px 20px rgba(31, 31, 31, 0.466);
+}
+
+.BigLineChartBox {
+    margin: 15px;
+    width: 100%;
+    height: 60%;
+}
+
+/* Graph text */
+line + text {
+    fill: rgb(150, 150, 150) !important;
+}
+
+line {
+    opacity: 0.4;
 }

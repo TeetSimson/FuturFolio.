@@ -43,6 +43,7 @@ export default class Dashboards extends Component {
 
     removeStockFromTable = (Name) => {
         const newArray = this.state.stocks[0].filter((item) => item.stockName !== Name);
+        //const newArray = this.state.stocks[1].filter((item) => item.stockName !== Name);
         this.setState({stocks: [newArray, this.state.stocks[1]]});
     }
 
