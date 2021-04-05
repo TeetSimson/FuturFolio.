@@ -190,28 +190,42 @@ router.post("/removeStock", auth, async (req,res) => {
 	try{
 
 		const id =req.user;
-		const {stockName} = req.body;
-
-		if(!stockName)
+		const {stockNameList} = req.body;
+		console.log(stockNameList);
+		if(!stockNameList)
 			return res.status(400).json({errorMessage: "Please enter a stock."})
 
-		const userDetails = await User.findById(id);
-		const stocksList = await userDetails.stocks;
-		const existingStock = await stocksList.find(obj =>{
-			return obj.stockName === stockName;
-		});
+		var userDetails = await User.findById(id);
+		var stocksList = await userDetails.stocks;
+		
+		for (var i = 0; i < stockNameList.length; i++) {
+			const existingStock = await stocksList.find(obj =>{
+				return obj.stockName === stockNameList[i];
+			});
 
-		if(!existingStock)
-			return res.json({errorMessage: "You cannot remove a stock you do not own."});
+			if(!existingStock)
+				return res.status(400).json({errorMessage: "You cannot remove a stock you do not own."});
+			
+		}
 
-		const updatedStocksList = stocksList.filter(function(value, index, arr){ 
-        	return value != existingStock;
-        });
+		for (var i = 0; i < stockNameList.length; i++) {
+			const existingStock = await stocksList.find(obj =>{
+				return obj.stockName === stockNameList[i];
+			});
 
-        await User.findByIdAndUpdate(
-        	id,
-        	{$set:{stocks:updatedStocksList}}
-        );
+			const updatedStocksList = stocksList.filter(function(value, index, arr){ 
+	        	return value != existingStock;
+	        });
+	     
+
+	        await User.findByIdAndUpdate(
+	        	id,
+	        	{$set:{stocks:updatedStocksList}}
+	        );
+
+	        var userDetails = await User.findById(id);
+	        var stocksList = await userDetails.stocks;
+		}
 		
 		return res.json({Message : "You have removed stock"});
 

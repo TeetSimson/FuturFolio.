@@ -35,24 +35,28 @@ export default class StocksTable extends Component {
     removeStock = () => {
         let tableFields = document.getElementById("GetRows");
         let currentStocks = tableFields.children;
+        const stockNameList = [];
         for (var i = 1; i < currentStocks.length; i++) {
             let checkbox = currentStocks[i].children[0].children[0];
             if (checkbox.checked) {
-                
-                Axios.post("http://localhost:5000/stocks/removeStock",{
-                        stockName: checkbox.value,
-                        token: localStorage.getItem("token")
-                    })
-                    .then(() => {
-                        console.log("Stock Removed");
-                        this.props.removeStockFromTable(checkbox.value);
-
-                    }).catch(err => {
-                        console.log(err)
-                        console.log("Database error for adding dividends")
-                    });
+                stockNameList.push(checkbox.value);                
             }
         }
+        Axios.post("http://localhost:5000/stocks/removeStock",{
+            stockNameList: stockNameList,
+            token: localStorage.getItem("token")
+        })
+        .then(() => {
+            for (var i = 0; i < stockNameList.length; i++) {
+                this.props.removeStockFromTable(stockNameList[i]);
+            }
+            console.log("Stock Removed");
+            
+
+        }).catch(err => {
+            console.log(err)
+            console.log("Database error for adding dividends")
+        });
     }
     
     render() {
