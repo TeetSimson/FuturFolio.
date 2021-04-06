@@ -11,7 +11,8 @@ export default class NetWorth extends Component {
             tempNetWorth: 0,
             Currency: '£',
             colors: ["#00a2ff", "#00d123", "#00ccff", "#6bf181"],
-            swtich: false
+            swtich: false,
+            bug: true
         };
       }
     
@@ -47,17 +48,13 @@ export default class NetWorth extends Component {
                 orient: 'bottom',
                 tickSize: 0,
                 tickPadding: 15,
-                format: '%b %d',
-                /*tickValues: 'every 2 days',*/ 
+                format: '%b',
+                tickValues: 'every 2 months'
             }}
             axisLeft={{
                 orient: 'left',
                 tickSize: 0,
                 tickPadding: 15,
-                /*
-                format: value =>
-                `${(value).toString().substr(0,2)} k`
-                */
             }}
             enableGridX={false}
             colors={{ datum: 'color' }}
@@ -158,9 +155,20 @@ export default class NetWorth extends Component {
     }
 
     componentDidMount() {
-        const InitNetWorth = this.props.netWorthList.reduce((a, b) => a + b)/2
-        this.setState({NetWorth: InitNetWorth})
-        this.setState({tempNetWorth: InitNetWorth})
+        const InitNetWorth = this.props.netWorthList.reduce((a, b) => a + b)/2;
+        this.setState({NetWorth: InitNetWorth});
+        this.setState({tempNetWorth: InitNetWorth});
+
+        
+        /* 
+        ######## INFINITE LOOPING OPACITY BUG ##########
+        const opacityBug = document.querySelector("g");
+        if (this.state.bug) {
+            console.log(opacityBug);
+            opacityBug.style.opacity = null;
+            this.setState({bug: false});
+        }
+         */
     }
 
     render() {
