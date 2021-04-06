@@ -88,6 +88,7 @@ export default class StocksTable extends Component {
                 <div id="TableBox">
                         <Table
                             stocks={this.props.stocks}
+                            sumToGetNetWorth={this.props.sumToGetNetWorth}
                         />
                 </div>
             </div>

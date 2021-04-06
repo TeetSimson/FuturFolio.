@@ -4,12 +4,14 @@ import { ResponsiveLine } from '@nivo/line';
 import { Defs, linearGradientDef } from '@nivo/core';
 
 export default class NetWorth extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            NetWorth: "25,023",
+            NetWorth: 0,
+            tempNetWorth: 0,
             Currency: '£',
-            colors: ["#00a2ff", "#00d123", "#00ccff", "#6bf181"]
+            colors: ["#00a2ff", "#00d123", "#00ccff", "#6bf181"],
+            swtich: false
         };
       }
     
@@ -144,13 +146,31 @@ export default class NetWorth extends Component {
         return stockBigChart;
     }
 
-    render() {
+    includeTax = () => {
+        if (!this.state.switch) {
+            this.setState({NetWorth: (this.state.NetWorth*0.8).toFixed(2)});
+            this.setState({switch: true});
+        }
+        else {
+            this.setState({NetWorth: this.state.tempNetWorth});
+            this.setState({switch: false});
+        }
+    }
 
+    componentDidMount() {
+        const InitNetWorth = this.props.netWorthList.reduce((a, b) => a + b)/2
+        this.setState({NetWorth: InitNetWorth})
+        this.setState({tempNetWorth: InitNetWorth})
+    }
+
+    render() {
         return (
             <div className="NetworthBox">
                 <NetWorthTab 
                 Currency={this.state.Currency}
-                NetWorth={this.state.NetWorth} />
+                NetWorth={this.state.NetWorth}
+                includeTax={this.includeTax}
+                />
                 <div className="BigLineChartBox">
                     {this.MyResponsiveLine(this.GraphData())}
                 </div>

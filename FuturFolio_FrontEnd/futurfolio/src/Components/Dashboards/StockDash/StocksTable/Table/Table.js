@@ -191,6 +191,9 @@ class UserTableRow extends React.Component {
         dividendsTotal = this.dividendAmount();
         dividendsTotal = dividendsTotal + "/" + (dividend*stockAmountValue).toFixed(2);
       }
+
+      this.props.sumToGetNetWorth(currentInvestValue);
+
     } else {
       console.log("didnt load");
       dividendsTotal = this.dividendAmount();
@@ -324,6 +327,7 @@ export default class Table extends React.Component {
                           key={index} 
                           index={index+1} 
                           stock={stock} 
+                          sumToGetNetWorth={this.props.sumToGetNetWorth}
                           />                 
                     ))
                   )}

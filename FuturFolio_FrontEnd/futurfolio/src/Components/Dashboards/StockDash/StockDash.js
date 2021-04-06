@@ -9,7 +9,7 @@ export default class StockDash extends Component {
     constructor() {
         super()
         this.state = {
-            stocksTotalInvestment: 0
+            netWorthList: [0]
         };
     }
 
@@ -33,6 +33,11 @@ export default class StockDash extends Component {
         return (valueTotal+feesTotal);
     }
 
+    sumToGetNetWorth = (currentValue) => {
+        console.log(this.state.netWorthList);
+        this.state.netWorthList.push(parseFloat(currentValue));
+    }
+
     render() {
         return (
             <div className="StockDash">
@@ -40,7 +45,7 @@ export default class StockDash extends Component {
                     <div className="NetWorthPanelInner">
                         <NetWorth 
                             stocks={this.props.stocks}
-                            stocksTotalInvestment={this.state.stocksTotalInvestment}
+                            netWorthList={this.state.netWorthList}
                         />
                     </div>
                 </div>
@@ -63,6 +68,7 @@ export default class StockDash extends Component {
                         stocks={this.props.stocks[0]}
                         removeStockFromTable={this.props.removeStockFromTable}
                         setStockMarketData={this.props.setStockMarketData} // For updating stocks data
+                        sumToGetNetWorth={this.sumToGetNetWorth}
                     />
                 </div>
             </div>
