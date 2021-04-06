@@ -77,6 +77,7 @@ export default class App extends Component {
     this.setState(Object.assign(this.state.user, { id: user.data.userID}));
     this.setState(Object.assign(this.state.user, { email: user.data.email}));
     this.setState(Object.assign(this.state.user, { token: user.data.token}));
+    this.setState(Object.assign(this.state.user, { name: user.data.userName}));
   }
 
   setStockMarketData = (data) => {
@@ -112,6 +113,7 @@ export default class App extends Component {
             DashChangeProfile={this.DashChangeProfile}
             DashChangeSettings={this.DashChangeSettings}
             title={this.state.title}
+            user={this.state.user}
             /> 
         </div>
       :  // Else if we are on "profile" page

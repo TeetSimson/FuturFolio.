@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState} from 'react';
+import React, { Component, useEffect, useReducer, useState} from 'react';
 import '../../App.css';
 import "./Topbar.css";
 /*import { ReactComponent as ProfileIcon } from './Icons/profileIcon.svg';*/
@@ -55,6 +55,7 @@ export default class Topbar extends Component {
                         LogOut={this.props.LogOut}
                         DashChangeProfile={this.props.DashChangeProfile}
                         DashChangeSettings={this.props.DashChangeSettings}
+                        name={this.props.user.name}
                         />
                 </NavItem>
 

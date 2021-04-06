@@ -13,8 +13,6 @@ import { ReactComponent as LocationIcon } from './Icons/locationIcon.svg';
 import { ReactComponent as AdvancedIcon } from './Icons/advancedIcon.svg';
 import { ReactComponent as SwitchIcon } from './Icons/switchIcon.svg';
 
-var name = "Elon Musk"; // A variable for profile name
-
 export default function DropdownMenu(props){ //dropdownmenu function
 
     const [activeMenu, setActiveMenu] = useState('main'); //state of the menu
@@ -89,7 +87,7 @@ export default function DropdownMenu(props){ //dropdownmenu function
                     <ProfileDropItem //The top bit of the menu
                     Icon = {<img src = {ProfileIcon} height ="75px" width = "75px" />}
                     >
-                        {name} {/* The profile's name */}
+                        {props.name} {/* The profile's name */}
                     </ProfileDropItem>
 
 

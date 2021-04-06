@@ -97,7 +97,7 @@ export default class ProfileScreen extends Component{
                                 <img src = {ProfileIcon} height = "200px" width = "200px"/>
                             </div>
                             <div>
-                                <this.nameInfo/>
+                                <div className="Name"><h1>{this.props.user.name}</h1></div>
                                 <this.description/>
                                 <this.Settings
                                 DashChangeSettings={this.props.DashChangeSettings}

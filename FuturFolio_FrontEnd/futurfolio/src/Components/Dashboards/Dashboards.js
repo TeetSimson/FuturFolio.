@@ -38,12 +38,10 @@ export default class Dashboards extends Component {
             this.setState({stocks: this.props.user.stocks});
             this.setState({firstTime: false})
         }
-        console.log("UPDATE");
     }
 
     removeStockFromTable = (Name) => {
         const newArray = this.state.stocks[0].filter((item) => item.stockName !== Name);
-        //const newArray = this.state.stocks[1].filter((item) => item.stockName !== Name);
         this.setState({stocks: [newArray, this.state.stocks[1]]});
     }
 
@@ -74,6 +72,7 @@ export default class Dashboards extends Component {
                                 ? 
                                     <ProfileDash 
                                         DashChangeSettings={this.props.DashChangeSettings}
+                                        user={this.props.user}
                                     />
                                 :
                                     (this.props.dashboard === 'SettingsDash'
