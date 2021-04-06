@@ -4,10 +4,6 @@ import "./ProfileScreen.css"
 import { ReactComponent as CogIcon } from './Icons/cogIcon.svg';
 
 
-
-
-
-
 export default class ProfileScreen extends Component{
 
     constructor(props) {
@@ -39,13 +35,6 @@ export default class ProfileScreen extends Component{
         );
     }
     
-    
-    nameInfo(){
-        const name = "Elon Musk";
-        return(
-            <div className="Name"><h1>{name}</h1></div>  
-        );
-    }
 
     description(){
         const descripvar= "Hello there I am using Futurfolio for my finances";
