@@ -34,7 +34,6 @@ export default class StockDash extends Component {
     }
 
     sumToGetNetWorth = (currentValue) => {
-        console.log(this.state.netWorthList);
         this.state.netWorthList.push(parseFloat(currentValue));
     }
 

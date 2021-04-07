@@ -155,7 +155,7 @@ export default class NetWorth extends Component {
     }
 
     componentDidMount() {
-        const InitNetWorth = this.props.netWorthList.reduce((a, b) => a + b)/2;
+        const InitNetWorth = (this.props.netWorthList.reduce((a, b) => a + b)/2).toFixed(2);
         this.setState({NetWorth: InitNetWorth});
         this.setState({tempNetWorth: InitNetWorth});
 

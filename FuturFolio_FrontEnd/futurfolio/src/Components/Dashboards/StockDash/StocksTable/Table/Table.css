@@ -27,7 +27,7 @@ table {
 }
 
 .uk-overflow-auto {
-    height: 330px;
+    height: 38vh;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -42,6 +42,7 @@ tr.expandable > td {
 tr.expandable > td > .inner {
     margin: 15px;
     overflow: hidden;
+    height: 100%;
 }
 
 .Row {
@@ -78,3 +79,27 @@ td:last-child {
     border-top-right-radius: 20px; 
 }
 
+.InfoBox {
+    margin-top: 20px;
+    padding-left: 40px;
+}
+
+.InfoGrid {
+    float: left;
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 50%;
+    margin-top: 20px;
+}
+
+.DetailLabel {
+    margin: 20px;
+}
+
+.stockDetailGraph {
+    float: right;
+    width: 50%;
+    height: 30vh;
+    margin-top: -20px;
+    z-index: 3;
+}

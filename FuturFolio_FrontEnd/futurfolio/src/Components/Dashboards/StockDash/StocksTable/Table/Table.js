@@ -4,6 +4,7 @@ import { slideDown, slideUp } from "./Animate";
 import { ResponsiveLine } from '@nivo/line';
 import "./Table.css";
 import Header from  './Header';
+import { Defs, linearGradientDef } from '@nivo/core';
 
 class UserTableRow extends React.Component {
   state = { expanded: false };
@@ -54,7 +55,61 @@ class UserTableRow extends React.Component {
     return (divTotal);
   }
 
-  
+  generateDetailGraph = (data, areaBase) => (
+    <ResponsiveLine
+            data={data}
+            margin={{ top: 5, right: 50, bottom: 40, left: 40 }}
+            xScale={{
+                type: 'time',
+                format: '%Y-%m-%d',
+                useUTC: false,
+                precision: 'day'
+            }}
+            xFormat="time:%Y-%m-%d"
+            yScale={{ 
+                type: 'linear',
+                min: 'auto',
+                max: 'auto',
+                stacked: false,
+                reverse: false 
+            }}
+            curve="linear"
+            defs={[
+                linearGradientDef('gradientA', [
+                    { offset: 0, color: 'inherit' },
+                    { offset: 100, color: 'inherit', opacity: 0 },
+                ]),
+            ]}
+            fill={[{ match: '*', id: 'gradientA' }]}
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+                orient: 'bottom',
+                tickSize: 0,
+                tickPadding: 25,
+                format: '%b',
+                tickValues: 'every 2 months'
+            }}
+            axisLeft={{
+                orient: 'left',
+                tickSize: 0,
+                tickPadding: 15,
+            }}
+            enableGridX={false}
+            colors={{ datum: 'color' }}
+            lineWidth={2}
+            pointSize={3}
+            pointColor={{ from: 'color', modifiers: [] }}
+            pointBorderWidth={10}
+            pointBorderColor={{ theme: 'background' }}
+            pointLabelYOffset={-12}
+            enableArea={true}
+            areaBaselineValue={areaBase}
+            areaBlendMode="multiply"
+            crosshairType="cross"
+            useMesh={true}
+        />
+  )
 
   generateSmallGraph = (data) => (
     <ResponsiveLine
@@ -112,6 +167,7 @@ class UserTableRow extends React.Component {
     const { stock, index } = this.props;
     let chartData = [];
     let stockSmallChart = [];
+    let minGradientValue = stock.chart.data.close[0];
     let currentPrice = 0;
     let marketChange = 0;
     let marketChangePerc = 0;
@@ -136,16 +192,39 @@ class UserTableRow extends React.Component {
       ///////// Small Stock Graph /////////
       for (let i=(parseInt((stock.chart.time.length)/5))*4; i<stock.chart.time.length; i++) { // Get 1y graph
         try {
-          chartData.push({
-            x: stock.chart.time[i],
-            y: stock.chart.data.close[i]
-          });
+
+          let currentDate = new Date(0);
+          currentDate.setUTCSeconds(stock.chart.time[i]);
+          let finalDate = currentDate.getUTCFullYear()+"-";
+          let temp = currentDate.getUTCMonth();
+          if (temp<10) {
+              finalDate = finalDate + "0" + temp + "-";
+          }
+          else {
+              finalDate = finalDate + temp + "-";
+          }
+
+          temp = currentDate.getUTCDate();
+          if (temp<10) finalDate = finalDate + "0" + temp;
+          else finalDate = finalDate + temp;
+
+          let timePrice = stock.chart.data.close[i]
+          if (timePrice !== null) {
+            chartData.push({
+              x: finalDate,
+              y: timePrice
+            });
+
+            if (timePrice<minGradientValue) minGradientValue = timePrice;
+          }
         }
         catch {
           console.log("undefined");
         }
       }
-  
+      
+      chartData.pop();
+
       stockSmallChart.push({
         id: stock.stockSymbol,
         color: '#3f80ED',
@@ -198,6 +277,8 @@ class UserTableRow extends React.Component {
       console.log("didnt load");
       dividendsTotal = this.dividendAmount();
     }
+
+    console.log(minGradientValue);
 
     return [
         <tr className="RowShadow" key="main" onClick={this.toggleExpander}>
@@ -266,34 +347,26 @@ class UserTableRow extends React.Component {
         </tr>,
         this.state.expanded && (
           <tr className="expandable" key="tr-expander">
-            <td className="uk-background-muted Expanded" colSpan={17} >
+            <td className="uk-background-muted Expanded" colSpan={20} >
               <div ref="expanderBody" className="inner uk-grid">
-                <div className="uk-width-1-4 uk-text-center">
-                  <img
-                    className="uk-preserve-width uk-border-circle"
-                    src=""
-                    alt="avatar"
-                  />
-                </div>
-                <div className="uk-width-3-4">
-                  <h3>John Schumacher</h3>
-                  <p>
-                    Address:
-                    <br />
-                    <i>
-                      Location: UK
-                      <br />
-                       Location: Manchester
-                      <br />
-                      239MRL
-                    </i>
-                  </p>
-                  <p>
-                    E-mail: john@gmail.com
-                    <br />
-                    Phone: +44 542132321
-                  </p>
-                  <p>Date of birth: 21.10.1985</p>
+                <div className="InfoBox">
+                  <h3>{stock.stockName}</h3>
+                  <div className="InfoGrid">
+                    <label className="DetailLabel">Exchange: {stock.marketData.fullExchangeName}</label>
+                    <label className="DetailLabel">Market Cap: {stock.marketData.marketCap}</label>
+                    <label className="DetailLabel">Market Volume: {stock.marketData.regularMarketVolume}</label>
+                    <label className="DetailLabel">Book Value: {stock.marketData.bookValue}</label>
+                    <label className="DetailLabel">EPS (TTM): {stock.marketData.epsTrailingTwelveMonths}</label>
+                    <label className="DetailLabel">Total of Shares: {stock.marketData.sharesOutstanding}</label>
+                    <label className="DetailLabel">50 day change: {stock.marketData.fiftyDayAverageChange}</label>
+                    <label className="DetailLabel">Price Hint: {stock.marketData.priceHint}</label>
+                  </div>
+                  <div className="stockDetailGraph">
+                    {(stockSmallChart[0] !== 'Error') 
+                      ? (this.generateDetailGraph(stockSmallChart, minGradientValue))
+                      : (<p>Error</p>)
+                      }
+                  </div>
                 </div>
               </div>
             </td>
