@@ -100,6 +100,9 @@
 .LeftLabel {
     display: inline-block;
     margin-right: 8px;
+    font-weight: bold;
+    font-size: 13px;
+    color: rgb(66, 66, 66);
 }
 
 /* Graph text */

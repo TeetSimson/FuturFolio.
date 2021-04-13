@@ -7,7 +7,7 @@ export default function NetWorthTab(props) {
             <h1 className="NetWorthNumber">{props.Currency}{props.NetWorth}</h1>
             <div className="RightSide">
                 <label className="form-switch">
-                    <p className="LeftLabel">Incl. Tax</p>
+                    <p className="LeftLabel">Include Tax -20%</p>
                     <input type="checkbox"
                         onChange={props.includeTax}
                     />
