@@ -30,12 +30,10 @@ class Register extends React.Component {
             email: this.state.email,
             password: this.state.password
         }).then(response => {
-            if (response.data.auth === true) {
-                this.props.onRouteChange('signin');
-            }
+            this.props.onRouteChange('signin');
         });
 
-        this.props.onRouteChange('dashboard'); // SEND EVERYTHING TO HOME
+        //this.props.onRouteChange('dashboard'); // SEND EVERYTHING TO HOME
     }
 
     render() {
