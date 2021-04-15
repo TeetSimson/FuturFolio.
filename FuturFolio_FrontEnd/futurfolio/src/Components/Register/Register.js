@@ -30,31 +30,11 @@ class Register extends React.Component {
             email: this.state.email,
             password: this.state.password
         }).then(response => {
-            console.log("NEW USER!")
-            console.log(response);
-        });
-            /* if (response.data.auth === true) {
-                this.props.loadUser(response); // If user registration was successful then load app with this user account
-                this.props.onRouteChange('dashboard');
-                localStorage.setItem("token", response.data.token);
+            if (response.data.auth === true) {
+                this.props.onRouteChange('signin');
             }
-        }); */
-        /* fetch('http://localhost:3000/register', {  // Send inputs to database through server as json with POST
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ // Converts JavaScript object to JSON string
-                email: this.state.email,
-                password: this.state.password,
-                name: this.state.name
-            })
-        })
-            .then(response => response.json())
-            .then(user => {
-                if (user.id) { // "user.id" cannot be empty list but just "user" can and would always return true
-                    this.props.loadUser(user) // If user registration was successful then load app with this user account
-                    this.props.onRouteChange('home');
-                }
-            }) */
+        });
+
         this.props.onRouteChange('dashboard'); // SEND EVERYTHING TO HOME
     }
 
