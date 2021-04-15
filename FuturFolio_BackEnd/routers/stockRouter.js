@@ -123,8 +123,8 @@ router.post("/sellStock", auth, async (req,res) => {
 			const newTransaction = {
 					"amount": -amount,
 					"date": date,
-					"price": price,
-					"fees": -fees,
+					"price": 0,
+					"fees": 0,
 					"addReserve": reserve
 			};
 
