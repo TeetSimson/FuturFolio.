@@ -245,7 +245,7 @@ class UserTableRow extends React.Component {
 
       //// DCR Calculation ////
       stockAmount = stock.marketData.marketCap/stock.marketData.regularMarketPrice; 
-      if(dividend !== "-") DCR = "-";
+      if(dividend === 0) DCR = "-";
       else DCR = (stock.marketData.epsTrailingTwelveMonths*stockAmount/(dividend*stockAmount)).toFixed(3);
 
       //// Other Key Ratios ////
@@ -330,7 +330,7 @@ class UserTableRow extends React.Component {
             <p>{currency}{(investmentValue/stockAmountValue).toFixed(2)}</p>
           </td>
           <td className="TableTab">
-            <p>{currency}{investmentValue}</p>
+            <p>{currency}{(investmentValue/stockAmountValue)*stockAmountValue.toFixed(2)}</p>
           </td>
           <td className="TableTab">
             <p>{currency}{currentInvestValue}</p>

@@ -13,7 +13,7 @@ export default class NetWorth extends Component {
             colors: ["#00a2ff", "#00d123", "#00ccff", "#6bf181"],
             swtich: false,
             bug: true,
-            smallestGradient: props.stocks[1].comparisons[0].close[0]
+            smallestGradient: 99999
         };
       }
     
@@ -104,48 +104,50 @@ export default class NetWorth extends Component {
         let stockBigChart = [];
         let stockPrice = 0;
 
-        // BIG O(a*b)
-        for (let i=0; i<stocks[1].comparisons.length; i++) { // Get 5y graph
-            let chartData = [];
-            for (let j=0; j<stocks[1].timestamp.length; j += 40) {
-                try {
-                    let currentDate = new Date(0)
-                    currentDate.setUTCSeconds(stocks[1].timestamp[j]);
-                    let finalDate = currentDate.getUTCFullYear()+"-";
-                    let temp = currentDate.getUTCMonth();
-                    if (temp<10) {
-                        finalDate = finalDate + "0" + temp + "-";
-                    }
-                    else {
-                        finalDate = finalDate + temp + "-";
-                    }
+        if (stocks[0].length !== 0) {
+            // BIG O(a*b)
+            for (let i=0; i<stocks[1].comparisons.length; i++) { // Get 5y graph
+                let chartData = [];
+                for (let j=0; j<stocks[1].timestamp.length; j += 40) {
+                    try {
+                        let currentDate = new Date(0)
+                        currentDate.setUTCSeconds(stocks[1].timestamp[j]);
+                        let finalDate = currentDate.getUTCFullYear()+"-";
+                        let temp = currentDate.getUTCMonth();
+                        if (temp<10) {
+                            finalDate = finalDate + "0" + temp + "-";
+                        }
+                        else {
+                            finalDate = finalDate + temp + "-";
+                        }
 
-                    temp = currentDate.getUTCDate();
-                    if (temp<10) finalDate = finalDate + "0" + temp;
-                    else finalDate = finalDate + temp;
+                        temp = currentDate.getUTCDate();
+                        if (temp<10) finalDate = finalDate + "0" + temp;
+                        else finalDate = finalDate + temp;
 
-                    stockPrice = stocks[1].comparisons[i].close[j]
-                    if (stockPrice !== null) {
-                        if (stockPrice < this.state.smallestGradient) this.setState({smallestGradient: stockPrice});
-                        chartData.push({
-                            x: finalDate,
-                            y: stockPrice,
-                        });
+                        stockPrice = stocks[1].comparisons[i].close[j]
+                        if (stockPrice !== null) {
+                            if (stockPrice < this.state.smallestGradient) 
+                            this.setState({smallestGradient: stockPrice});
+                            
+                            chartData.push({
+                                x: finalDate,
+                                y: stockPrice,
+                            });
+                        }
                     }
-
+                    catch {
+                        console.log("undefined");
+                    }
                 }
-                catch {
-                    console.log("undefined");
-                }
+
+                stockBigChart.push({
+                    id: stocks[1].comparisons[i].symbol,
+                    color: this.state.colors[i],
+                    data: chartData
+                }); 
             }
-
-            stockBigChart.push({
-                id: stocks[1].comparisons[i].symbol,
-                color: this.state.colors[i],
-                data: chartData
-            }); 
         }
-
         return stockBigChart;
     }
 
