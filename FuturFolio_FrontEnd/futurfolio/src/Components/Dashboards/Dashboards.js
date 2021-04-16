@@ -4,6 +4,7 @@ import StockDash from './StockDash/StockDash';
 import ProfileDash from './ProfileDash/ProfileScreen';
 import SettingsDash from './SettingsDash/SettingsDash';
 import Axios from 'axios';
+import demoPic from './demo.png'
 
 export default class Dashboards extends Component {
     constructor(props) {
@@ -50,7 +51,7 @@ export default class Dashboards extends Component {
             <div className="background"> {/* On which Dashboard */}
                 {this.props.dashboard === 'Dashboard'
                 ? 
-                    console.log("Shows Dashboard")
+                    <img className="Demo" src={demoPic}></img>
                 :
                     (this.props.dashboard === 'StockDash'
                     ? 
